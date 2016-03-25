@@ -1,0 +1,27 @@
+PATH
+  remote: .
+  specs:
+    podcasting (0.1.0)
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    diff-lcs (1.1.3)
+    rspec (2.9.0)
+      rspec-core (~> 2.9.0)
+      rspec-expectations (~> 2.9.0)
+      rspec-mocks (~> 2.9.0)
+    rspec-core (2.9.0)
+    rspec-expectations (2.9.1)
+      diff-lcs (~> 1.1.3)
+    rspec-mocks (2.9.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  podcasting!
+  rspec (>= 2.9)
+
+BUNDLED WITH
+   1.11.2
