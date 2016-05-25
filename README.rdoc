@@ -1,10 +1,10 @@
-= Jekyll - Podcasting
+= Jekyll - Octopod
 
 Podcasting publishing extension for Jekyll
 
 == Installation
 
-  $ gem install jekyll-podcasting
+  $ gem install jekyll-octopod
 
 == Usage
 
@@ -22,13 +22,11 @@ Stefan Haslinger <mailto:stefan.haslinger@informatom.com>
 == Credits
 
 This Gem is sitting on the shoulder of giants, lots of the code was not written by me and/or depends on other code.
-Especially to be mentioned: Arne Eilermann from Octopod https://github.com/pattex/octopod
+Especially to be mentioned: Arne Eilermann eilermann@lavabit.com from Octopod https://github.com/pattex/octopod
 
 == License
 
 The MIT License
-
-Copyright (c) 2012 Arne Eilermann eilermann@lavabit.com
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 

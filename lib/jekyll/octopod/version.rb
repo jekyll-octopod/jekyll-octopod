@@ -1,5 +1,5 @@
 module Jekyll
-  class Podcasting
+  class Octopod
     module VERSION #:nodoc:
       MAJOR = 0
       MINOR = 1
