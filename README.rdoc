@@ -4,7 +4,20 @@ Podcasting publishing extension for Jekyll
 
 == Installation
 
-  $ gem install jekyll-octopod
+  $ gem install jekyll
+  $ jekyll new name-of-my-podcast
+  $ cd name-of-my-podcast
+
+  Create file Gemfile with the contents:
+
+  ```
+  source 'http://rubygems.org'
+
+  gem 'jekyll-octopod'
+  ```
+  $ bundle install
+
+
 
 == Usage
 
@@ -17,6 +30,7 @@ are welcomed!
 == Author
 
 Stefan Haslinger <mailto:stefan.haslinger@informatom.com>
+Based on octopod by Arne Eilermann <mailto: arne@kleinerdrei.org>
 
 
 == Credits

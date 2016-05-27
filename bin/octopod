@@ -1,0 +1,221 @@
+#!/usr/bin/env ruby
+
+PWD = Dir.pwd
+
+require 'rubygems'
+require 'optparse'
+require 'yaml'
+
+octopod_help = <<HELP
+Octopod - podcast publishing for geeks
+
+Basic Command Line Usage:
+  Standard Jekyll commands:
+    octopod                                                   # . -> ./_site
+    octopod <path to write generated site>                    # . -> <path>
+    octopod <path to source> <path to write generated site>   # <path> -> <path>
+    octopod import <importer name> <options>                  # imports posts using named import script
+
+  Additional Octopod commands:
+    octopod episode                                           # adds a template for a new episode
+    octopod deploy                                            # deploys your site
+
+  See 'octopod <command> --help' for more information on a specific command.
+
+Configuration is read from '<source>/_config.yml' but can be overridden
+using the following options:
+
+HELP
+
+episode_help = <<EPISODE_HELP
+octopod episode - generates a template to post your next episode
+
+octopod episode [options] [audio file[, audio file]]
+
+Configuration is read from '<source>/_config.yml' but can be overridden
+using the following options:
+
+EPISODE_HELP
+
+deploy_help = <<DEPLOY_HELP
+octopod deploy - deploys website via rsync
+
+octopod deploy [path to write generated site] [options]
+
+Configuration is read from '<source>/_config.yml' but can be overridden
+using the following options:
+
+DEPLOY_HELP
+
+DEFAULT_EXT = '.md'
+
+class OptionParser
+  alias_method :_octopod_banner=, :banner=
+  def banner=(_)
+    return ''
+  end
+end
+
+def ok_failed(condition)
+  if (condition)
+    puts "OK"
+  else
+    puts "FAILED"
+  end
+end
+
+def write_file?(filename)
+  if File.exists?(filename)
+    'y' == ask("Fiel '#{filename}' already exists. Overwrite?", ['y', 'n'])
+  else
+    true
+  end
+end
+
+def ask(message, valid_options = nil)
+  if valid_options
+    answer = get_stdin("#{message} #{valid_options.to_s.gsub(/"/, '').gsub(/, /,'/')} ") while !valid_options.include?(answer)
+  else
+    answer = get_stdin(message)
+  end
+  answer
+end
+
+def get_stdin(message)
+  print message
+  STDIN.gets.chomp
+end
+
+if ARGV.size > 0 && (ARGV[0] == 'episode' || ARGV[0] == 'deploy')
+  options = YAML.load_file(File.join(PWD, '_config.yml'))
+  options['posts_dir'] = File.join(PWD, '_posts')
+
+  case ARGV[0]
+
+  when 'episode'
+    post_header = {
+      'title'         => nil,
+      'layout'        => 'post',
+      'author'        => options['author'],
+      'explicit'      => options['explicit'] || 'no',
+      'audio'         => {
+        'm4a'  => 'name.m4a',
+        'mp3'  => 'name.mp3',
+        'opus' => 'name.opus'},
+    }
+
+    opts = OptionParser.new do |opts|
+      opts._octopod_banner = episode_help
+
+      opts.on("-a", "--author [AUTHOR]", "Name of post author") do |episode_author|
+        post_header['author'] = options['author'] = episode_author
+      end
+
+      opts.on("-c", "--chapters [chapter1,chapter2,...]", Array, "The episodes chapters.") do |episode_chapters|
+        warn episode_chapters.inspect
+        post_header['chapters'] = options['chapters'] = episode_chapters
+      end
+
+      opts.on("-d", "--duration [DURATION]", "Duration of the episode") do |episode_duration|
+        post_header['duration'] = options['duration'] = episode_duration.to_i
+      end
+
+      opts.on("-e", "--explicit [yes/no]", "Explicit rating for this episode (default: 'no')") do |episode_explicit|
+        post_header['explicit'] = options['explicit'] = episode_explicit
+      end
+
+      opts.on("--episode-cover [PATH]", "Path to the image that represents the episode.") do |episode_cover|
+        post_header['episode_cover'] = options['episode_cover'] = episode_cover
+      end
+
+      opts.on("-l", "--layout [LAYOUT]", "Layout to use (default: 'post')") do |episode_layout|
+        post_header['layout'] = options['layout'] = episode_layout
+      end
+
+      opts.on("-p", "--posts-dir [PATH]", "Path to the post directory (default: '_posts')") do |episode_posts_dir|
+        options['posts_dir'] = episode_posts_dir
+      end
+
+      opts.on("-s", "--subtitle [TEXT]", "Subtitle of the episode") do |episode_subtitle|
+        post_header['subtitle'] = options['subtitle'] = episode_subtitle
+      end
+
+      opts.on("--summary [TEXT]", "Summary of the episode") do |episode_summary|
+        post_header['summary'] = options['summary'] = episode_summary
+      end
+
+      opts.on("--tags [tag1,tag2,...]", Array, "Tags for the episode") do |episode_tags|
+        post_header['tags'] = options['tags'] = episode_tags
+      end
+
+      opts.on("-t", "--title [TEXT]", "Title of the episode") do |episode_title|
+        post_header['title'] = options['title'] = episode_title
+      end
+    end
+    opts.parse!
+
+    unless FileTest.directory?(options['posts_dir'])
+      abort("rake aborted: '#{options['posts_dir']}' directory not found.")
+    end
+
+    post_header['title'] = post_header['title'] || 'untitled'
+    slug = post_header['title'].downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, '_')
+    date = Time.now.strftime('%Y-%m-%d')
+
+    filename = File.join(options['posts_dir'], "#{date}-#{slug}#{DEFAULT_EXT}")
+
+    abort() unless write_file?(filename)
+
+    open(filename, 'w') do |post|
+      post.puts post_header.to_yaml
+      post.puts '---'
+      post.puts "Insert eloquent and worth reading text here.\n\n"
+      post.puts "{{ page | web_player:site }}\n\n"
+      post.puts "## Shownotes\n* Note"
+    end
+
+    puts "Created new episode: #{filename}" if File.exists?(filename)
+
+  when 'deploy'
+    opts = OptionParser.new do |opts|
+      opts._octopod_banner = deploy_help
+
+      opts.on("--document-root [PATH]", "Path to the document root on the remote machine") do |deploy_document_root|
+        options['document_root'] = deploy_document_root
+      end
+
+      opts.on("--rsync-delete", "Delete extraneous files from destination dir") do |deploy_rsync_delete|
+        options['rsync_delete'] = deploy_rsync_delete
+      end
+
+      opts.on("--ssh-host [USER@]<HOST>", "[User and] host of the destination machine") do |deploy_ssh_host|
+        options['ssh_host'] = deploy_ssh_host =~ /\A\w*@.*/ ? deploy_ssh_host : "#{ENV['USER']}@#{deploy_ssh_host}"
+      end
+
+      opts.on("--ssh-port [PORT]", "SSH port on the remote machine") do |deploy_ssh_port|
+        options['ssh_port'] = deploy_ssh_port.to_i
+      end
+    end
+    opts.parse!
+
+    options['public_dir'] = ARGV[1] ? ARGV[1] : File.join(PWD, '_site')
+    exclude = ""
+    if File.exists?('./rsync-exclude')
+      exclude = "--exclude-from '#{File.expand_path('./rsync-exclude')}'"
+    end
+    puts "## Deploying website via Rsync"
+
+    rsync_command = "rsync --progress -avze 'ssh -p #{options['ssh_port']}' #{exclude} \
+      #{"--delete" unless options['rsync_delete'] == false} \
+      #{options['public_dir']}/ #{options['ssh_host']}:#{options['document_root']}"
+
+    ok_failed system(rsync_command)
+
+  when 'setup'
+    debugger
+
+  end
+else
+  puts octopod_help if ARGV.size > 0 && ARGV[0] == '--help'
+  load Gem.bin_path('jekyll', 'jekyll')
+end
