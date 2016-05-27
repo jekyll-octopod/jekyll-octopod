@@ -1,0 +1,47 @@
+# You have to configure this ###################################################
+title: Octopod
+# You should configure this ####################################################
+url: http://localhost:4000
+subtitle: Static Site Podcast Publishing for Geeks
+description: My super duper cool podcast.
+author: Uncle Octopod
+email: octopod@example.com
+keywords: [octopod, podcast, magic]
+itunes_categories: [Technology]
+# additional_feeds:
+#   itunes: http://itunes.apple.com/de/podcast/podcast_name/id42424242
+#   torrent_m4a: http://bitlove.org/example_user/example_podcast_m4a/feed
+#   torrent_mp3: http://bitlove.org/example_user/example_podcast_mp3/feed
+## podlove-web-palyer ##########################################################
+# poster: /img/logo-360x360.png
+# alwaysShowHours: true
+# startVolume: 0.8
+# width: auto
+# summaryVisible: false
+# timecontrolsVisible: false
+# chaptersVisible: true
+# sharebuttonsVisible: false
+## Rsync Deploy config #########################################################
+### Be sure your public key is listed in your server's ~/.ssh/authorized_keys
+### file.
+ssh_host: user@host.org
+ssh_port: 22
+document_root: /path/to/your/htdocs/
+rsync_delete: true
+# You can configure this #######################################################
+twitter_nick: my_twitter_handle
+language: en
+explicit: 'no'  # 'yes'/'no'/clean
+ license: CC BY 4.0
+## Flattr ######################################################################
+flattr_uid: # Flattr will not be used unless this is set
+flattr_button: compact # compact | default
+flattr_mode: auto # auto | manual(default)
+flattr_popout:  1 # 1 | 0 (show popout when hovering mouse over button)
+flattr_language: en_GB # available languages - https://api.flattr.com/rest/v2/languages.txt
+flattr_category: audio # available categories - https://api.flattr.com/rest/v2/categories.txt
+## Disqus comments #############################################################
+disqus_shortname: # Disqus will not be used unless this is set
+disqus_developer: 0 # 1 / 0
+## Itunes link ###########################################################
+itunes_url: "https://itunes.apple.com/at/podcast/myname/id#myid#"
