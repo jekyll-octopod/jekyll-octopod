@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-
+require "byebug"
 PWD = Dir.pwd
 
 require 'rubygems'
@@ -15,6 +15,7 @@ Basic Command Line Usage:
     octopod <path to write generated site>                    # . -> <path>
     octopod <path to source> <path to write generated site>   # <path> -> <path>
     octopod import <importer name> <options>                  # imports posts using named import script
+    octopod setup                                             # Setup blog to become podcast-aware, copy assets and default config
 
   Additional Octopod commands:
     octopod episode                                           # adds a template for a new episode
@@ -86,7 +87,7 @@ def get_stdin(message)
   STDIN.gets.chomp
 end
 
-if ARGV.size > 0 && (ARGV[0] == 'episode' || ARGV[0] == 'deploy')
+if ARGV.size > 0 && (ARGV[0] == 'episode' || ARGV[0] == 'deploy' || ARGV[0] == 'setup')
   options = YAML.load_file(File.join(PWD, '_config.yml'))
   options['posts_dir'] = File.join(PWD, '_posts')
 
@@ -212,8 +213,10 @@ if ARGV.size > 0 && (ARGV[0] == 'episode' || ARGV[0] == 'deploy')
     ok_failed system(rsync_command)
 
   when 'setup'
-    debugger
-
+    gem_dir = Gem::Specification.find_by_name("jekyll-octopod").gem_dir
+    puts "Copying assets ..."
+    FileUtils.cp_r(gem_dir + "/assets/.", PWD, {verbose: true})
+    puts "... done."
   end
 else
   puts octopod_help if ARGV.size > 0 && ARGV[0] == '--help'
