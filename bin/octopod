@@ -228,8 +228,18 @@ if ARGV.size > 0 && (ARGV[0] == 'episode' || ARGV[0] == 'deploy' || ARGV[0] == '
     ok_failed system(rsync_command)
 
   when 'setup'
+    unless File.exists?(PWD + '/_config.dist_backup.yml')
+      puts "", "===== Creating a backup of the configuation file ... ====="
+      FileUtils.cp(PWD + '/_config.yml', PWD + '/_config.dist_backup.yml', {verbose: true})
+      puts "===== ... done ===== ", ""
+    end
+
     puts "", "===== Copying assets ... ====="
     Dir.glob(GEM_DIR + "/assets/**/*").each do |file|
+      copy_file_or_create_dir(file)
+    end
+
+    Dir.glob(GEM_DIR + "/assets/**/.*").each do |file|
       copy_file_or_create_dir(file)
     end
     puts "===== ... done ===== ", ""

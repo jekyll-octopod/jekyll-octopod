@@ -1,0 +1,6 @@
+_site
+_config.yml
+.sass-cache
+.jekyll-metadata
+episodes
+.byebug_history
