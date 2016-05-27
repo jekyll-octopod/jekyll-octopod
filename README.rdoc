@@ -16,7 +16,7 @@ Podcasting publishing extension for Jekyll
   gem 'jekyll-octopod'
   ```
   $ bundle install
-
+  $ octopod setup
 
 
 == Usage
@@ -30,12 +30,14 @@ are welcomed!
 == Author
 
 Stefan Haslinger <mailto:stefan.haslinger@informatom.com>
+
 Based on octopod by Arne Eilermann <mailto: arne@kleinerdrei.org>
 
 
 == Credits
 
 This Gem is sitting on the shoulder of giants, lots of the code was not written by me and/or depends on other code.
+
 Especially to be mentioned: Arne Eilermann eilermann@lavabit.com from Octopod https://github.com/pattex/octopod
 
 == License
