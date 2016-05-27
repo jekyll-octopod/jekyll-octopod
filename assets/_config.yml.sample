@@ -13,14 +13,14 @@ itunes_categories: [Technology]
 #   torrent_m4a: http://bitlove.org/example_user/example_podcast_m4a/feed
 #   torrent_mp3: http://bitlove.org/example_user/example_podcast_mp3/feed
 ## podlove-web-palyer ##########################################################
-# poster: /img/logo-360x360.png
-# alwaysShowHours: true
-# startVolume: 0.8
-# width: auto
-# summaryVisible: false
-# timecontrolsVisible: false
-# chaptersVisible: true
-# sharebuttonsVisible: false
+poster: /img/logo-360x360.png
+alwaysShowHours: true
+startVolume: 0.8
+width: auto
+summaryVisible: false
+timecontrolsVisible: false
+chaptersVisible: true
+sharebuttonsVisible: false
 ## Rsync Deploy config #########################################################
 ### Be sure your public key is listed in your server's ~/.ssh/authorized_keys
 ### file.
@@ -32,7 +32,7 @@ rsync_delete: true
 twitter_nick: my_twitter_handle
 language: en
 explicit: 'no'  # 'yes'/'no'/clean
- license: CC BY 4.0
+license: CC BY 4.0
 ## Flattr ######################################################################
 flattr_uid: # Flattr will not be used unless this is set
 flattr_button: compact # compact | default
