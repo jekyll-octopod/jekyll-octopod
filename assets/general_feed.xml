@@ -1,0 +1,31 @@
+---
+layout: null
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+ <title>{{ site.title }}</title>
+ <link href="{{ site.url }}/general_feed.xml" rel="self"/>
+ <link href="{{ site.url }}"/>
+ <updated>{{ site.time | date_to_xmlschema }}</updated>
+ <id>{{ site.url }}/</id>
+ <author>
+   <name>{{ site.author }}</name>
+   <email>{{ site.email }}</email>
+ </author>
+
+ {% for post in site.posts %}
+ <entry>
+   <title>{{ post.title }}</title>
+   <link href="{{ site.url }}{{ post.url }}"/>
+   <updated>{{ post.date | date_to_xmlschema }}</updated>
+   <id>{{ site.url }}{{ post.id }}</id>
+   <content type="html">{{ post.content | xml_escape }}</content>
+   {% for file in post.audio %}
+   <link rel="enclosure" type="{{ file.first | mime_type }}" length="{{ file.last | file_size }}" href="{{ site.url }}/episodes/{{ file.last }}"/>
+   {% endfor %}
+   {{ site | flattr_atom:post }}
+ </entry>
+ {% endfor %}
+
+</feed>
