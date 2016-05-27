@@ -1,0 +1,66 @@
+---
+layout: null
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>{{ site.title }}</title>
+    <link>{{ site.url }}</link>
+    <atom:link href="{{ site.url }}/episodes.{{ page.format }}.rss" rel="self" type="application/rss+xml" title="{{ page.format }} Episode RSS-Feed"/>
+    {{ site | episode_feeds_rss:page.format }}
+    <description>{{ site.description | markdownify | strip_html }}</description>
+    <lastBuildDate>{{ site.time | time_to_rssschema }}</lastBuildDate>
+    <language>{{ site.language }}</language>
+
+    <itunes:summary>{{ site.description | markdownify | strip_html }}</itunes:summary>
+    <itunes:author>{{ site.author }}</itunes:author>
+    <itunes:explicit>{{ site.explicit }}</itunes:explicit>
+    <itunes:image href="{{ site.url | http_only }}/img/logo-itunes.jpg" />
+    <itunes:owner>
+      <itunes:name>{{ site.author }}</itunes:name>
+      <itunes:email>{{ site.email }}</itunes:email>
+    </itunes:owner>
+    <managingEditor>{{site.email}} ({{site.author}})</managingEditor>
+    <copyright>{{ site.license }}</copyright>
+    <itunes:subtitle>{{ site.subtitle }}</itunes:subtitle>
+    <itunes:keywords>{{ site.keywords | join:', ' }}</itunes:keywords>
+    <image>
+      <title>{{ site.title }}</title>
+      <url>{{ site.url }}/img/logo-itunes.jpg</url>
+      <link>{{ site.url }}</link>
+    </image>
+    {% for category in site.itunes_categories %}
+    <itunes:category text="{{ category }}">
+    {% endfor %}
+    </itunes:category>
+    {% for post in site.posts %}{% if post.audio[page.format] %}
+    <item>
+      <title>{{ post.title }} - {{ post.subtitle }}</title>
+      <link>{{ site.url }}{{ post.url }}</link>
+      <comments>{{ site.url }}{{ post.url }}#disqus_thread</comments>
+      <pubDate>{{ post.date | time_to_rssschema }}</pubDate>
+      {% for category in post.categories %}
+      <category><![CDATA[{{ category }}]]></category>
+      {% endfor %}
+      <guid isPermaLink="false">{{ site.url }}{{ post.url }}</guid>
+      <description><![CDATA[{{ post.content | expand_urls: site.url | cdata_escape | remove_script_and_audio }}]]></description>
+      <content:encoded><![CDATA[{{ post.content | expand_urls: site.url | cdata_escape | remove_script_and_audio }}]]></content:encoded>
+      <enclosure url="{{ site.url | http_only }}/episodes/{{ post.audio | audio:page.format }}" length="{{ post.audio | audio:page.format | file_size }}" type="{{ page.format | mime_type }}" />
+      <itunes:keywords>{{ post.tags }}</itunes:keywords>
+      <itunes:subtitle>{{ post.subtitle }}</itunes:subtitle>
+      <itunes:summary>{{ post.summary }}</itunes:summary>
+      <itunes:author>{{ post.author | otherwise:site.author }}</itunes:author>
+      <itunes:explicit>{{ post.explicit | otherwise:site.explicit }}</itunes:explicit>
+      <itunes:duration>{{ post.duration }}</itunes:duration>
+      {{ site | flattr_rss:post }}
+      {% if post.chapters %}
+      <psc:chapters version="1.1" xmlns:psc="http://podlove.org/simple-chapters">
+        {% for chapter in post.chapters %}
+        <psc:chapter start="{{ chapter | split_chapter:'start' }}" title="{{ chapter | split_chapter:'title' }}" />
+        {% endfor %}
+      </psc:chapters>
+      {% endif %}
+    </item>
+    {% endif %}{% endfor %}
+  </channel>
+</rss>
