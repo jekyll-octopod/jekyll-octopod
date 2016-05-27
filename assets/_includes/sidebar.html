@@ -1,0 +1,85 @@
+<div class="page-header">
+  <h3>
+    {{ site.title }}
+    {% if site.subtitle %}<br/><small>{{ site.subtitle }}</small>{% endif %}
+  </h3>
+</div>
+
+<p class="text-center">
+  <img width="200px" src="{{ site.url }}/img/logo-360x360.png" alt="{{ site.title }} logo">
+</p>
+
+<p>
+Anna Geiger und Stefan Haslinger podcasten über Ihre Erfahrungen beim Programmieren und Programmieren Lernen. Es geht nicht unmittelbar um Code,
+sondern um den Erfahrungsaustausch, die Motivation, auch bei Rückschlägen nicht aufzugeben und viele Tipps und Ressourcen.
+</p>
+
+<p class="text-center">
+  <script class="podlove-subscribe-button"
+          src="https://cdn.podlove.org/subscribe-button/javascripts/app.js"
+          data-language="de"
+          data-size="medium"
+          data-json-data="podcastData"
+          data-colors="#FC6E51;green;blue"
+          data-buttonid="123abc"
+          data-hide="false">
+  </script>
+  <script>
+    window.podcastData = {
+      "title": "{{ site['title']}}",
+      "subtitle": "{{ site['subtitle']}}",
+      "description": "{{ site['description']}}",
+      "cover": "{{ site.url }}/img/logo-360x360.png",
+      "feeds": [
+      {% for feed in site['episode_feed_formats'] %}
+        {
+          "type": "audio",
+          "format": "{{ feed }}",
+          "url": "{{ site['url']}}/episodes.{{ feed }}.rss",
+          "directory-url-itunes": "{{ site['itunes_url']}}",
+          "variant": "high"
+        },
+      {% endfor %}
+      ]
+    }
+  </script>
+</p>
+
+<hr/>
+
+<h4>RSS-Feeds</h4>
+
+<ol type="i">
+  {% for feed in site['episode_feed_formats'] %}
+    <li><a href="{{ site['url']}}/episodes.{{ feed }}.rss"><i class="fa fa-rss"></i> {{ feed }}-Feed</a></li>
+  {% endfor %}
+</ol>
+
+
+<h4>Verzeichnisse</h4>
+
+<ol type="i">
+  <li>in Apple-<a href="https://itunes.apple.com/at/podcast/aua-uff-code!/id1099454611?l=de"><i class="fa fa-apple"></i> Itunes</a></li>
+  <li>als Torrents bei <a href="https://bitlove.org/aua-uff-code"><img src="https://bitlove.org/static/favicon.png"/> Bitlove</a></li>
+  <li>in der Podcast-Suchmaschine <a href="https://fyyd.de/podcast/39419/0">Fyyd</a></li>
+  <li>bei <a href="https://gpodder.net/podcast/aua-uff-code"><img src="https://gpodder.net/media/gpoddernet_64.png" height="16" /> Gpodder.net</a></li>
+</ol>
+
+
+<h4>Credits</h4>
+
+<ul>
+  <li>Musik: <a href="http://www.bensound.com/royalty-free-music">Bensound</a></li>
+</ul>
+
+<h4>Lizenz</h4>
+
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+  <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+
+
+<hr/>
+<span class="pull-left">{{ site | flattr_button }}</span>
+{% if site.twitter_nick %}
+  <a href="https://twitter.com/{{ site.twitter_nick }}" class="twitter-follow-button" data-show-count="false">Follow @{{ site.twitter_nick }}</a>
+{% endif %}

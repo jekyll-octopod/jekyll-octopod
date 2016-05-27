@@ -1,0 +1,18 @@
+{% if post %}
+{% elsif page %}
+  {% assign post = page %}
+{% endif %}
+<section id="{{ post.id | sha1:8 }}" class="active">
+  {% include post_header.html %}
+  {{ post.content }}
+    {% if post.audio %}
+      {% for file in post.audio %}
+      <a class="btn btn-primary" href="{{ site.url }}/episodes/{{ file.last }}">Download .{{ file.first }} ({{ file.last | file_size:'./' | string_of_size }})</a>
+      {% endfor %}
+    {% endif %}
+  <hr>
+  {{ site | flattr_button:post }}
+  <a href="https://twitter.com/share" class="twitter-share-button" data-url="{{ site.url }}{{post.url }}" data-text="{{ post.title }}">Tweet</a>
+  {% unless page.url == '/index.html' %}{% include disqus_thread.html %}{% endunless %}
+  <hr>
+</section>

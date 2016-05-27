@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 require "byebug"
 PWD = Dir.pwd
+GEM_DIR = Gem::Specification.find_by_name("jekyll-octopod").gem_dir
 
 require 'rubygems'
 require 'optparse'
@@ -67,9 +68,23 @@ end
 
 def write_file?(filename)
   if File.exists?(filename)
-    'y' == ask("Fiel '#{filename}' already exists. Overwrite?", ['y', 'n'])
+    unless ["Y","N"].include?(@answer)
+      @answer = ask("File '#{filename}' already exists. Overwrite? Capitalized answer for ALL files.", ['y', 'Y', 'n', 'N'])
+    end
+    ["Y", "y"].include?(@answer)
   else
     true
+  end
+end
+
+def copy_file_or_create_dir(file)
+  filename = file.split(GEM_DIR + "/assets")[1]
+  if File.directory?(file)
+    FileUtils.mkdir(PWD + filename, {verbose: true}) unless File.exists?(PWD + filename)
+  else
+    if write_file?(PWD + filename)
+      FileUtils.cp(file, PWD + filename, {verbose: true})
+    end
   end
 end
 
@@ -181,7 +196,7 @@ if ARGV.size > 0 && (ARGV[0] == 'episode' || ARGV[0] == 'deploy' || ARGV[0] == '
     opts = OptionParser.new do |opts|
       opts._octopod_banner = deploy_help
 
-      opts.on("--document-root [PATH]", "Path to the document root on the remote machine") do |deploy_document_root|
+      opts.on("--document-root [PATH]", "Path to the documwrite_fileent root on the remote machine") do |deploy_document_root|
         options['document_root'] = deploy_document_root
       end
 
@@ -213,10 +228,11 @@ if ARGV.size > 0 && (ARGV[0] == 'episode' || ARGV[0] == 'deploy' || ARGV[0] == '
     ok_failed system(rsync_command)
 
   when 'setup'
-    gem_dir = Gem::Specification.find_by_name("jekyll-octopod").gem_dir
-    puts "Copying assets ..."
-    FileUtils.cp_r(gem_dir + "/assets/.", PWD, {verbose: true})
-    puts "... done."
+    puts "", "===== Copying assets ... ====="
+    Dir.glob(GEM_DIR + "/assets/**/*").each do |file|
+      copy_file_or_create_dir(file)
+    end
+    puts "===== ... done ===== ", ""
   end
 else
   puts octopod_help if ARGV.size > 0 && ARGV[0] == '--help'
