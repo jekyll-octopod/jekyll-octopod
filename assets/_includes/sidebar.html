@@ -9,10 +9,7 @@
   <img width="200px" src="{{ site.url }}/img/logo-360x360.png" alt="{{ site.title }} logo">
 </p>
 
-<p>
-Anna Geiger und Stefan Haslinger podcasten über Ihre Erfahrungen beim Programmieren und Programmieren Lernen. Es geht nicht unmittelbar um Code,
-sondern um den Erfahrungsaustausch, die Motivation, auch bei Rückschlägen nicht aufzugeben und viele Tipps und Ressourcen.
-</p>
+{% if site.description %}<p>{{ site.description }}</p>{% endif %}
 
 <p class="text-center">
   <script class="podlove-subscribe-button"
@@ -56,30 +53,48 @@ sondern um den Erfahrungsaustausch, die Motivation, auch bei Rückschlägen nich
 </ol>
 
 
-<h4>Verzeichnisse</h4>
+<h4>Directories</h4>
 
 <ol type="i">
-  <li>in Apple-<a href="https://itunes.apple.com/at/podcast/aua-uff-code!/id1099454611?l=de"><i class="fa fa-apple"></i> Itunes</a></li>
-  <li>als Torrents bei <a href="https://bitlove.org/aua-uff-code"><img src="https://bitlove.org/static/favicon.png"/> Bitlove</a></li>
-  <li>in der Podcast-Suchmaschine <a href="https://fyyd.de/podcast/39419/0">Fyyd</a></li>
-  <li>bei <a href="https://gpodder.net/podcast/aua-uff-code"><img src="https://gpodder.net/media/gpoddernet_64.png" height="16" /> Gpodder.net</a></li>
+  {% if site.itunes_url %}
+    <li>in Apple-<a href="{{ site.itunes_url }}"><i class="fa fa-apple"></i> Itunes</a></li>
+  {% endif %}
+  {% if site.bitlove_url %}
+    <li>as Torrents at <a href="{{ site.bitlove_url }}"><img src="https://bitlove.org/static/favicon.png"/> Bitlove</a></li>
+  {% endif %}
+  {% if site.fyyd_url %}
+    <li>at the podcast search engine <a href="{{ site.fyyd_url }}">Fyyd</a></li>
+  {% endif %}
+  {% if site.gpodder_url %}
+    <li>at <a href="{{ site.gpodder_url }}"><img src="https://gpodder.net/media/gpoddernet_64.png" height="16" /> Gpodder.net</a></li>
+  {% endif %}
 </ol>
 
 
 <h4>Credits</h4>
 
 <ul>
-  <li>Musik: <a href="http://www.bensound.com/royalty-free-music">Bensound</a></li>
+  <li>Music: <a href="http://www.bensound.com/royalty-free-music">Bensound</a></li>
 </ul>
 
-<h4>Lizenz</h4>
+<h4>License</h4>
 
-<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
-  <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
-
+{% if site.license_url %}
+  <a rel="license" href="{{ site.license_url }}">
+    {% if site.license_image_url %}
+      <img alt="Creative Commons License" style="border-width:0" src="{{ site.license_image_url }}" />
+    {% else %}
+      {{ site.license }}
+    {% endif %}
+  </a>
+{% endif %}
 
 <hr/>
-<span class="pull-left">{{ site | flattr_button }}</span>
+
+{% if site.flattr_uid %}
+  <span class="pull-left">{{ site | flattr_button }}</span>
+{% endif %}
+
 {% if site.twitter_nick %}
   <a href="https://twitter.com/{{ site.twitter_nick }}" class="twitter-follow-button" data-show-count="false">Follow @{{ site.twitter_nick }}</a>
 {% endif %}
