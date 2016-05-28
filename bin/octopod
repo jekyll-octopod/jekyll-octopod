@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-require "byebug"
+# require "byebug"
 PWD = Dir.pwd
 GEM_DIR = Gem::Specification.find_by_name("jekyll-octopod").gem_dir
 

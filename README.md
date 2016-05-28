@@ -1,6 +1,21 @@
 # Jekyll - Octopod
 
-Podcasting publishing extension for Jekyll
+A Podcasting publishing extension for the static site generator [Jekyll](https://jekyllrb.com/).
+
+## Prerequesites
+
+The programming language Ruby and it's package manager Bundler.
+
+Nice installation guides for the different operating systems can be found at
+the [Rails Girls Website](http://guides.railsgirls.com/install). You can stop
+right before installing Rails, because we do not depend on Ruby on Rails here.
+
+You can check, if you succeeded, by entering
+```
+$ ruby -v
+$ gem -v
+```
+at the command prompt. Both commands should return version greater or equal 2.0 .
 
 ## Installation
 
@@ -56,6 +71,7 @@ created Octopod https://github.com/pattex/octopod
 [Licensend under the MIT-License](license.md)
 
 The following assets from seperate projects are packaged in this repo:
+* The cute Octopod Logo is by Thekla "TeMeL" Löhr, http://www.temel-art.de/, CC BY 3.0 Germany License
 * Podlove Webplayer, version 3.0.0-beta.3, http://podlove.org/podlove-web-player/, BSD 2-Clause License
 * Bootflat, version 2.0.4, http://bootflat.github.io/, MIT License
 * Bootstrap, version 3.3.0 http://getbootstrap.com/, MIT License
