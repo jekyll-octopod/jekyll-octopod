@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.license = "MIT"
 
   s.rubyforge_project = "jekyll-"
-  s.files = Dir["lib/**/*"] + ["Rakefile", "README.rdoc"]
+  s.files = Dir["lib/**/*"] + ["Rakefile", "README.md"]
   s.test_files = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.executables = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
