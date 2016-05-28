@@ -49,10 +49,14 @@ application directory.
 
 Generate the site and test drive it
 
+```
 $ octopod build
 $ octopod serve
+```
 
-opening a browser tab and navigate to ```http://localhost:4000```.
+## Demo
+
+Open a browser tab and navigate to ```http://localhost:4000```.
 You should see a fully functional podcasting site like
 
 ![demo](materials/demo.png)
