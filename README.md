@@ -1,6 +1,6 @@
 # Jekyll - Octopod
 
-![alt tag](assets/img/logo.jpg)
+![logo](assets/img/logo.jpg)
 
 A Podcasting publishing extension for the static site generator [Jekyll](https://jekyllrb.com/).
 
@@ -47,6 +47,18 @@ application directory.
   * You might want to change the images and logos in ...
   * You might want to delete the demo episode files
 
+Generate the site and test drive it
+
+$ octopod build
+$ octopod serve
+
+opening a browser tab and navigate to ```http://localhost:4000```.
+You should see a fully functional podcasting site like
+
+![demo](matarials/demo.png)
+
+Episode 0 is a demo episode. You can even listen to the nice tune
+[Jazz Comedy](http://www.bensound.com/royalty-free-music/track/jazz-comedy) from Bensound using the web player.
 
 ## Usage
 
@@ -67,6 +79,7 @@ by me and/or depends on other code.
 
 Especially to be mentioned: Arne Eilermann eilermann@lavabit.com who started and
 created Octopod https://github.com/pattex/octopod
+
 
 ## License
 

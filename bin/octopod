@@ -242,6 +242,10 @@ if ARGV.size > 0 && (ARGV[0] == 'episode' || ARGV[0] == 'deploy' || ARGV[0] == '
     Dir.glob(GEM_DIR + "/assets/**/.*").each do |file|
       copy_file_or_create_dir(file)
     end
+
+    if write_file?(PWD + "/_config.yaml")
+      FileUtils.cp(GEM_DIR + "/assets/_config.yml.sample", PWD + "/_config.yml", {verbose: true})
+    end
     puts "===== ... done ===== ", ""
   end
 else
