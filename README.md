@@ -1,5 +1,7 @@
 # Jekyll - Octopod
 
+![alt tag](assets/img/logo.jpg)
+
 A Podcasting publishing extension for the static site generator [Jekyll](https://jekyllrb.com/).
 
 ## Prerequesites
@@ -68,7 +70,7 @@ created Octopod https://github.com/pattex/octopod
 
 ## License
 
-[Licensend under the MIT-License](license.md)
+[Licensend under the MIT-License](LICENSE)
 
 The following assets from seperate projects are packaged in this repo:
 * The cute Octopod Logo is by Thekla "TeMeL" Löhr, http://www.temel-art.de/, CC BY 3.0 Germany License
