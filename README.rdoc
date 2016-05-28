@@ -8,13 +8,13 @@ Podcasting publishing extension for Jekyll
   $ jekyll new name-of-my-podcast
   $ cd name-of-my-podcast
 
-  Create file Gemfile with the contents:
+Create file Gemfile with the contents:
 
-  ```
   source 'http://rubygems.org'
-
   gem 'jekyll-octopod'
-  ```
+
+Install the dependencies and run the setup script via:
+
   $ bundle install
   $ octopod setup
 
