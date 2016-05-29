@@ -1,6 +1,6 @@
 # Jekyll - Octopod
 
-| :A Podcasting publishing extension for the static site generator [Jekyll](https://jekyllrb.com/). | ![logo](assets/img/logo.jpg): |
+| A Podcasting publishing extension for the static site generator [Jekyll](https://jekyllrb.com/). | ![logo](assets/img/logo.jpg) |
 
 ## tl;dr
 
