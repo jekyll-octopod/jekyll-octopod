@@ -1,7 +1,7 @@
 # Jekyll - Octopod
 
 <img align="right" src="assets/img/logo.jpg" alt="logo">
-A Podcasting publishing extension for the static site generator [Jekyll](https://jekyllrb.com/).
+A podcast publishing extension for the static site generator [Jekyll](https://jekyllrb.com/)
 
 ## tl;dr
 
