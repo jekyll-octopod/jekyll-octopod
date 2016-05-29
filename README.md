@@ -1,8 +1,6 @@
 # Jekyll - Octopod
 
-![logo](assets/img/logo.jpg)
-
-A Podcasting publishing extension for the static site generator [Jekyll](https://jekyllrb.com/).
+| :A Podcasting publishing extension for the static site generator [Jekyll](https://jekyllrb.com/). | ![logo](assets/img/logo.jpg): |
 
 ## tl;dr
 
@@ -15,12 +13,19 @@ Thich increases security immensely.
 
 If you want to take a look: See (and listen to) Stefan's podcast [Aua-Uff-Code!](https://aua-uff-co.de) or find a screenshot below.
 
-Technically Jekyll-Octopod is a Jekyll plugin and a Ruby Gem. It contains of
-scripts, templates, helpers and extensions to deliver your podcasts the cool text file lover's way.
+Technically speaking, jekyll-octopod is a Jekyll plugin and a Ruby Gem. It
+contains of scripts, templates, helpers and extensions to publish your
+podcasts the cool text file lover's way.
 
-If you are not afraid of the command line of your computer and text files are the stuff to heat up your geeky little heart, Octopod may be worth a trial to publish your podcasts.
+If you are not afraid of the command line of your computer and text files are the
+stuff to heat up your geeky little heart, jekyll-octopod may be worth a trial
+to publish your podcasts.
 
-The underlying assumptions of Octopod are that static content should be delivered statically and text files are the perfect way to handle podcast metadata. So Octopod makes it easy to generate and deploy a website and feeds for your podcast out of one textfile and at least one audio file per episode.
+The underlying assumptions of Octojekyll-octopodpod are that static content
+should be delivered statically and text files are the perfect way to handle
+podcast metadata. So jekyll-octopod makes it easy to generate and deploy a
+website and feeds for your podcast out of one textfile and at least one audio
+file per episode.
 
 
 ## Features
