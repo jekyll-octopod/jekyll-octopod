@@ -110,14 +110,21 @@ if ARGV.size > 0 && (ARGV[0] == 'episode' || ARGV[0] == 'deploy' || ARGV[0] == '
 
   when 'episode'
     post_header = {
-      'title'         => nil,
+      'title'         => 'a title',
+      'subtitle'      => "a clever subtitle",
+      'datum'         => 'May 22nd, 2016',
       'layout'        => 'post',
       'author'        => options['author'],
       'explicit'      => options['explicit'] || 'no',
+      'duration'      => "0:01:00",
       'audio'         => {
         'm4a'  => 'name.m4a',
         'mp3'  => 'name.mp3',
-        'opus' => 'name.opus'},
+        'ogg'  => 'name.ogg'},
+      'chapters'      => [
+        '00:00:00.000 Intro.',
+        '00:00:30.000 Outro.'
+      ]
     }
 
     opts = OptionParser.new do |opts|
@@ -185,9 +192,9 @@ if ARGV.size > 0 && (ARGV[0] == 'episode' || ARGV[0] == 'deploy' || ARGV[0] == '
     open(filename, 'w') do |post|
       post.puts post_header.to_yaml
       post.puts '---'
-      post.puts "Insert eloquent and worth reading text here.\n\n"
-      post.puts "{{ page | web_player:site }}\n\n"
-      post.puts "## Shownotes\n* Note"
+      post.puts "## {{ page.subtitle }}\n\n"
+      post.puts "{{ page | web_player_moderator:site }}\n\n"
+      post.puts "## Shownotes and Links\n\n* Note"
     end
 
     puts "Created new episode: #{filename}" if File.exists?(filename)
