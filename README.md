@@ -33,14 +33,17 @@ Jekyll-Octopod brings innately:
 * [Podlove Alternate Feeds](http://podlove.org/alternate-feeds/)
 * [Podlove Simple Chapters](http://podlove.org/simple-chapters/)
 * [Podlove Subscribe Button](http://podlove.org/podlove-subscribe-button/) for easy podcast subscription on any operating system, including mobile phones.
-* https compatibilty
+* https compatibility
 * Google search integration
-* easy creation of shownotes
+* easy creation of show notes
 
-***Is this production ready? *** We use it in production and believe it is.
-But it is very likely, that it still contains bugs. Hopefully you are brave enough to play with this cute little toy anyway.
+**Is this production ready?**
 
-This project is absolutely in a non 1.0 status. This means that there is no guarantee that behavior will change with the next update.
+We use it in production, so we believe it is.
+But it is very likely, that it still contains bugs. And there is no guarantee that behavior will change with the next update :-).
+
+Hopefully you are brave enough to play with this cute little toy anyway.
+
 
 ## Documentation
 
