@@ -42,33 +42,9 @@ But it is very likely, that it still contains bugs. Hopefully you are brave enou
 
 This project is absolutely in a non 1.0 status. This means that there is no guarantee that behavior will change with the next update.
 
-## Prerequesites
-
-The [Ruby programming language](http://www.ruby-lang.org/) and it's package manager [Bundler](http://gembundler.com/).
-
-Nice installation guides for the different operating systems can be found at
-the [Rails Girls Website](http://guides.railsgirls.com/install). You can stop
-right before installing Rails, because we do not depend on Ruby on Rails here.
-
-You can check, if you succeeded, by entering
-```
-$ ruby -v
-$ gem -v
-```
-at the command prompt. Both commands should return version greater or equal 2.0 .
-
 ## Documentation
 
-is provided in the Wiki. Start with the [[Home]].
-You will find a link on each page to continue reading as suggested.
-Or jump to the individual topics directly:
-
-* [[Installation]]
-* [[Demo]]
-* [[Usage]]
-* [[Contributions]]
-* [[Credits]]
-* [[License]]
+Detailed documentation is provided in the [Wiki](https://github.com/informatom/jekyll-octopod/wiki)
 
 ## Maintainer
 
