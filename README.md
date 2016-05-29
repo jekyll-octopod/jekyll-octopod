@@ -1,6 +1,6 @@
 # Jekyll - Octopod
 
-![logo](assets/img/logo.jpg){:align="right;}
+<img align="right" src="assets/img/logo.jpg" alt="logo">
 A Podcasting publishing extension for the static site generator [Jekyll](https://jekyllrb.com/).
 
 ## tl;dr
