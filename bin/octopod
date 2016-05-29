@@ -12,11 +12,12 @@ Octopod - podcast publishing for geeks
 
 Basic Command Line Usage:
   Standard Jekyll commands:
-    octopod                                                   # . -> ./_site
-    octopod <path to write generated site>                    # . -> <path>
-    octopod <path to source> <path to write generated site>   # <path> -> <path>
-    octopod import <importer name> <options>                  # imports posts using named import script
-    octopod setup                                             # Setup blog to become podcast-aware, copy assets and default config
+    octopod b[uild]                                                # . -> ./_site
+    octopod build <path to write generated site>                   # . -> <path>
+    octopod build <path to source> <path to write generated site>  # <path> -> <path>
+    octopod import <importer name> <options>                       # imports posts using named import script
+    octopod setup                                                  # Setup blog to become podcast-aware, copy assets and default config
+    octopod s[erver]                                               # Starts the server
 
   Additional Octopod commands:
     octopod episode                                           # adds a template for a new episode
