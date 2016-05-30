@@ -10,7 +10,7 @@ A podcast publishing extension for the static site generator [Jekyll](https://je
 You generate a static web site for your podcast on your own computer, test drive it and sync it to your web space.
 
 So no Wordpress, PHP, Ruby other scripting language, database management system or any other dynamic component is needed on your server.
-Thich increases security immensely.
+This increases security immensely.
 
 ## Tell me more!
 
