@@ -1,4 +1,4 @@
-# Jekyll - Octopod
+# jekyll-octopod
 
 [![Gem Version](https://badge.fury.io/rb/jekyll-octopod.svg)](https://badge.fury.io/rb/jekyll-octopod)
 
@@ -10,7 +10,7 @@ A podcast publishing extension for the static site generator [Jekyll](https://je
 You generate a static web site for your podcast on your own computer, test drive it and sync it to your web space.
 
 So no Wordpress, PHP, Ruby other scripting language, database management system or any other dynamic component is needed on your server.
-Thich increases security immensely.
+This increases security immensely.
 
 ## Tell me more!
 
@@ -28,7 +28,7 @@ If you are not afraid of the command line of your computer and text files are th
 stuff to heat up your geeky little heart, jekyll-octopod may be worth a trial
 to publish your podcasts.
 
-The underlying assumptions of Octojekyll-octopodpod are that static content
+The underlying assumptions of jekyll-octopod are that static content
 should be delivered statically and text files are the perfect way to handle
 podcast metadata. So jekyll-octopod makes it easy to generate and deploy a
 website and feeds for your podcast out of one textfile and at least one audio
@@ -37,7 +37,7 @@ file per episode.
 
 ## Features
 
-Jekyll-Octopod brings innately:
+jekyll-octopod brings innately:
 * iTunes ready episode feeds for different file formats (e.g. mp3, ogg, m4a)
 * a ready to use [Bootflat](http://bootflat.github.io/) and  [Twitter Bootstrap](http://twitter.github.com/bootstrap/) based, responsible (i.e. mobile friendly) layout modifiable to your heart's desire.
 * [Flattr](https://flattr.com/) support on the website and in the episode feed
@@ -55,7 +55,7 @@ Jekyll-Octopod brings innately:
 **Is this production ready?**
 
 We use it in production, so we believe it is.
-But it is very likely, that it still contains bugs. And there is no guarantee that behavior will change with the next update :-).
+But it is very likely, that it still contains bugs. And there is no guarantee that behavior will not change with the next update :-).
 
 Hopefully you are brave enough to play with this cute little toy anyway.
 
