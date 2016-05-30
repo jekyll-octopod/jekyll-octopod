@@ -30,6 +30,8 @@ module Jekyll
     end
 
     # Removes scripts tag and audio tags in multiline moderator
+    #
+    #   {{ page.content | remove_script_and_audio }}
     def remove_script_and_audio(input)
       input.gsub(/<audio.*audio>/m, '').gsub(/<script.*script>/m, '')
     end
@@ -135,7 +137,7 @@ module Jekyll
     end
 
 
-    # Returns the web player moderator tag for the episode of a given page.
+    # Returns the web player iframe for the episode of a given page.
     #
     #   {{ page | web_player_moderator:site }}
     def web_player_moderator(page, site)
@@ -149,7 +151,7 @@ module Jekyll
     end
 
 
-    # Returns the web player for the episode of a given page.
+    # Returns the web player for the episode of a given page for the iframe mentioned in the filter above.
     #
     #   {{ page | web_player:site }}
     def web_player(page, site)
@@ -176,7 +178,7 @@ module Jekyll
       out = audio_tag(page, sitehash)
     end
 
-    # Returns the web player for the episode of a given page.
+    # Returns the script tag initializing the web player for the episode of a given page.
     #
     #   {{ page | web_player_script_tag:site }}
     def web_player_script_tag(page, site)

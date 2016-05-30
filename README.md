@@ -18,7 +18,7 @@ If you want to take a look: See (and listen to) Stefan's podcast [Aua-Uff-Code!]
 
 The page, you will get, when you follow the installation instructions later, looks like this:
 
-![sreenshot](materials/demo.png)
+![screenshot](materials/demo.png)
 
 Technically speaking, jekyll-octopod is a Jekyll plugin and a Ruby Gem. It
 contains of scripts, templates, helpers and extensions to publish your
