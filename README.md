@@ -63,8 +63,9 @@ Hopefully you are brave enough to play with this cute little toy anyway.
 ## Documentation
 
 Detailed documentation is provided in the [Wiki](https://github.com/informatom/jekyll-octopod/wiki)
-* [Credits](https://github.com/informatom/jekyll-octopod/credits)
 
 ## Maintainer
 
 Stefan Haslinger <mailto:stefan.haslinger@informatom.com>
+
+Credits go to lots of [people and projects](https://github.com/informatom/jekyll-octopod/wiki/Credits).
