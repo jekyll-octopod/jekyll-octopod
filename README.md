@@ -55,7 +55,7 @@ jekyll-octopod brings innately:
 **Is this production ready?**
 
 We use it in production, so we believe it is.
-But it is very likely, that it still contains bugs. And there is no guarantee that behavior will change with the next update :-).
+But it is very likely, that it still contains bugs. And there is no guarantee that behavior will not change with the next update :-).
 
 Hopefully you are brave enough to play with this cute little toy anyway.
 
