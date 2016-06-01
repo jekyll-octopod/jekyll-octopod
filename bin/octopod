@@ -237,10 +237,14 @@ if ARGV.size > 0 && (ARGV[0] == 'episode' || ARGV[0] == 'deploy' || ARGV[0] == '
 
   when 'setup'
     unless File.exists?(PWD + '/_config.dist_backup.yml')
-      puts "", "===== Creating a backup of the configuation file ... ====="
+      puts "", "===== Creating a backup of the configuration file ... ====="
       FileUtils.cp(PWD + '/_config.yml', PWD + '/_config.dist_backup.yml', {verbose: true})
       puts "===== ... done ===== ", ""
     end
+
+
+    puts "", "If you are creating a brand new podcasting site, you can safely overwrite and answer with 'Y'."
+    puts "If this is an old site, it's better to answer with 'N'." , ""
 
     puts "", "===== Copying assets ... ====="
     Dir.glob(GEM_DIR + "/assets/**/*").each do |file|
