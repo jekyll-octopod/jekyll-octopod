@@ -5,4 +5,4 @@
 <img align="right" src="assets/img/logo.jpg" alt="logo">
 A podcast publishing extension for the static site generator [Jekyll](https://jekyllrb.com/)
 
-I have got a proper [Jekyll-octopod Project Site](https://jekyll-octopod.github.io/) now!
+jekyll-octopod has now it's own [Project Site](https://jekyll-octopod.github.io/)!
