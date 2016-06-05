@@ -16,6 +16,7 @@ module Jekyll
       end
       self.data['myself'] = page_number == 1 ? nil : "?page=" + page_number.to_s
       self.data['format'] = format
+      self.data['page_number'] = page_number
     end
   end
 
