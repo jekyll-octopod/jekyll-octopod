@@ -12,6 +12,7 @@ itunes_categories: [Technology]
 #   itunes: http://itunes.apple.com/de/podcast/podcast_name/id42424242
 #   torrent_m4a: http://bitlove.org/example_user/example_podcast_m4a/feed
 #   torrent_mp3: http://bitlove.org/example_user/example_podcast_mp3/feed
+episodes_per_feed_page: 99
 ## podlove-web-palyer ##########################################################
 poster: /img/logo-360x360.png
 alwaysShowHours: true

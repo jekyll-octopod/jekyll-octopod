@@ -6,7 +6,12 @@ layout: null
   <channel>
     <title>{{ site.title }}</title>
     <link>{{ site.url }}</link>
-    <atom:link href="{{ site.url }}/episodes.{{ page.format }}.rss" rel="self" type="application/rss+xml" title="{{ page.format }} Episode RSS-Feed"/>
+    <atom:link href="{{ site.url }}/episodes.{{ page.format }}.rss{{page.myself}}" rel="self" type="application/rss+xml" title="{{ page.format }} Episode RSS-Feed"/>
+    <atom:link href="{{ site.url }}/episodes.{{ page.format }}.rss" rel="first" type="application/rss+xml" />
+    <atom:link href="{{ site.url }}/episodes.{{ page.format }}.rss{{page.last}}" rel="last" type="application/rss+xml" />
+    {% if page.next %}<atom:link href="{{ site.url }}/episodes.{{ page.format }}.rss{{page.next}}" rel="next" type="application/rss+xml" />{% endif %}
+    {% if page.prev %}<atom:link href="{{ site.url }}/episodes.{{ page.format }}.rss{{page.prev}}" rel="prev" type="application/rss+xml" />{% endif %}
+
     {{ site | episode_feeds_rss:page.format }}
     <description>{{ site.description | markdownify | strip_html }}</description>
     <lastBuildDate>{{ site.time | time_to_rssschema }}</lastBuildDate>
