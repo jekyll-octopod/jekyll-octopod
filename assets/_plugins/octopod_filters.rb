@@ -143,8 +143,8 @@ module Jekyll
     def web_player_moderator(page, site)
       return if page['audio'].nil?
       out = %Q{<div class="podlove-player-wrapper">}
-      out = out + %Q{  <audio data-podlove-web-player-source="/players/#{page['slug']}/index.html">\n}
-      out = out + "    <source src='episodes/#{page['audio']['mp3']}' type='audio/mp3'>\n"
+      out = out + %Q{  <audio data-podlove-web-player-source="#{site['url']}/players/#{page['slug']}/index.html">\n}
+      out = out + "    <source src='#{site['url']}/episodes/#{page['audio']['mp3']}' type='audio/mp3'>\n"
       out = out + "  </audio>\n"
       out = out + "</div>\n"
       out = out + "<script>$('audio').podlovewebplayer();</script>\n"

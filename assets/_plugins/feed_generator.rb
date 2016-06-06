@@ -24,7 +24,7 @@ module Jekyll
     safe true
 
     def generate(site)
-      pages_total = site.posts.docs.count / site.config["episodes_per_feed_page"].ceil
+      pages_total = (site.posts.docs.count.to_f / site.config["episodes_per_feed_page"]).ceil
 
       site.config["episode_feed_formats"].each do |page_format|
         name = "episodes." + page_format + ".rss"
