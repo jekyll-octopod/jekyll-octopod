@@ -40,7 +40,7 @@ layout: null
     </itunes:category>
     {% for post in site.posts %}
       {% if post.audio[page.format] %}
-        {% assign check = forloop.index | divided_by:site.episodes_per_feed_page | plus: 1 %}
+        {% assign check = forloop.index | plus: 1 | divided_by:site.episodes_per_feed_page | plus: 1 %}
         {% if check == page.page_number %}
           <item>
             <title>{{ post.title }} - {{ post.subtitle }}</title>
