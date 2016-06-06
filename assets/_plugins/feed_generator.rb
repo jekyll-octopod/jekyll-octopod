@@ -7,14 +7,14 @@ module Jekyll
 
       self.process(@name)
       self.read_yaml(File.join(base, '_layouts'), 'feed.xml')
-      self.data['next'] = pages_total > page_number ? "?page=" + (page_number + 1).to_s : nil
-      self.data['last'] = pages_total > 1 ? "?page=" + pages_total.to_s : nil
+      self.data['next'] = pages_total > page_number ? (page_number + 1).to_s : nil
+      self.data['last'] = pages_total > 1 ? pages_total.to_s : nil
       self.data['prev'] = case page_number
         when 1 then nil
         when 2 then ""
-        else        "?page=" + (page_number - 1).to_s
+        else        (page_number - 1).to_s
       end
-      self.data['myself'] = page_number == 1 ? nil : "?page=" + page_number.to_s
+      self.data['myself'] = page_number == 1 ? nil : page_number.to_s
       self.data['format'] = format
       self.data['page_number'] = page_number
     end
@@ -31,7 +31,7 @@ module Jekyll
         page = PagedFeedPage.new(site, site.source, ".", name, 1, pages_total, page_format)
         site.pages << page
         (1..pages_total).each do |page_number|
-          name = "episodes." + page_format + ".rss?page=" + page_number.to_s
+          name = "episodes" + page_number.to_s + "." + page_format + ".rss"
           page = PagedFeedPage.new(site, site.source, ".", name, page_number, pages_total, page_format)
           site.pages << page
         end
