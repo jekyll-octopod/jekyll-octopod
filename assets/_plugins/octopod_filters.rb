@@ -226,7 +226,7 @@ module Jekyll
                    downloadUrl: sitehash["url"] + "/episodes/" + page['audio']['mp3'] },
                ],
                summary: options['summary'],
-               duration: string_of_duration(options['duration']),
+               duration: options['duration'],
                permalink: sitehash['url'] + page['url'],
                activeTab: "chapters"
              }.to_json
