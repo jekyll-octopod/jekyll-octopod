@@ -6,6 +6,8 @@ GEM_DIR = Gem::Specification.find_by_name("jekyll-octopod").gem_dir
 require 'rubygems'
 require 'optparse'
 require 'yaml'
+require 'fileutils'
+
 
 octopod_help = <<HELP
 Octopod - podcast publishing for geeks
