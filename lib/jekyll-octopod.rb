@@ -1,0 +1,7 @@
+require "jekyll/flattr_filters"
+require "jekyll/octopod_filters"
+require "jekyll/paged_feed_page"
+require "jekyll/podcast_player_page"
+require "jekyll/podcast_player_page_generator"
+require "jekyll/update_config"
+require "jekyll/static_file"

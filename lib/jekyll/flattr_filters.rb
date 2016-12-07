@@ -2,7 +2,6 @@ require 'erb'
 
 module Jekyll
   module FlattrFilters
-
     # Generates the query string part for the flattr load.js from the
     # configurations in _config.yml
     #

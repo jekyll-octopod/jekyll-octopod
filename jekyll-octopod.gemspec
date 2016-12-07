@@ -20,6 +20,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
 # s.add_dependency 'byebug'
-  s.add_dependency 'jekyll', '~> 3.1'
+  s.add_dependency 'jekyll', '~> 3.3.1'
+  s.add_dependency 'jekyll-bootflat', '~> 0.1'
   s.add_development_dependency 'rspec', '~> 2.9'
 end

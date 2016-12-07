@@ -3,3 +3,4 @@
 .bundle
 pkg
 rdoc
+.sass-cache/*

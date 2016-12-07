@@ -1,1 +1,0 @@
-require "octopod/version"

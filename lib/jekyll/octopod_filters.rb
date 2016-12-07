@@ -1,4 +1,3 @@
-#require 'erb'
 require 'uri'
 require 'digest/sha1'
 
@@ -30,8 +29,6 @@ module Jekyll
     end
 
     # Removes scripts tag and audio tags in multiline moderator
-    #
-    #   {{ page.content | remove_script_and_audio }}
     def remove_script_and_audio(input)
       input.gsub(/<audio.*audio>/m, '').gsub(/<script.*script>/m, '')
     end
@@ -137,21 +134,21 @@ module Jekyll
     end
 
 
-    # Returns the web player iframe for the episode of a given page.
+    # Returns the web player moderator tag for the episode of a given page.
     #
     #   {{ page | web_player_moderator:site }}
     def web_player_moderator(page, site)
       return if page['audio'].nil?
       out = %Q{<div class="podlove-player-wrapper">}
-      out = out + %Q{  <audio data-podlove-web-player-source="#{site['url']}/players/#{page['slug']}/index.html">\n}
-      out = out + "    <source src='#{site['url']}/episodes/#{page['audio']['mp3']}' type='audio/mp3'>\n"
+      out = out + %Q{  <audio data-podlove-web-player-source="/players/#{page['slug']}/index.html">\n}
+      out = out + "    <source src='episodes/#{page['audio']['mp3']}' type='audio/mp3'>\n"
       out = out + "  </audio>\n"
       out = out + "</div>\n"
       out = out + "<script>$('audio').podlovewebplayer();</script>\n"
     end
 
 
-    # Returns the web player for the episode of a given page for the iframe mentioned in the filter above.
+    # Returns the web player for the episode of a given page.
     #
     #   {{ page | web_player:site }}
     def web_player(page, site)
@@ -178,7 +175,7 @@ module Jekyll
       out = audio_tag(page, sitehash)
     end
 
-    # Returns the script tag initializing the web player for the episode of a given page.
+    # Returns the web player for the episode of a given page.
     #
     #   {{ page | web_player_script_tag:site }}
     def web_player_script_tag(page, site)
@@ -316,12 +313,26 @@ module Jekyll
         p.data['navigation'] && p.data['title']
       }.sort_by { |p| p.data['navigation'] }
 
-      list =  ['<ul class="nav navbar-nav">']
+      list = []
       list << pages.map { |p|
         active = (p.url == page['url']) || (page.has_key?('next') && File.join(p.dir, p.basename) == '/index')
         navigation_list_item(File.join(site['url'], p.url), p.data['title'], active)
       }
-      list << ['</ul>']
+      list.join("\n")
+    end
+
+    def talk_list(site, page)
+      pages = site['pages'].select { |p|
+        p.data['talk'] && p.data['title']
+      }.sort_by { |p| p.data['talk'] }
+
+      list =  ['<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"> Talks <span class="caret"></span>
+                </a><ul class="dropdown-menu">']
+      list << pages.map { |p|
+        active = (p.url == page['url']) || (page.has_key?('next') && File.join(p.dir, p.basename) == '/index')
+        navigation_list_item(File.join(site['url'], p.url), p.data['title'], active)
+      }
+      list << ['</ul></li>']
 
       list.join("\n")
     end
