@@ -1,8 +1,6 @@
 module Jekyll
   module PodigeePlayer
 
-def podigee_playe
-
 #  <script>
 #    window.playerConfiguration = <%= podigee_episodestruct(@episode) %>
 #  </script>
