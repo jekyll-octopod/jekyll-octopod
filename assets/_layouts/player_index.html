@@ -11,13 +11,6 @@ layout: null
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>{{ site.title }} - {{ page.title }}</title>
 
-  <link rel="stylesheet" type="text/css" href="{{ site.url }}/podlove-web-player/css/pwp-light-gray.css" media="screen">
-  <link rel="stylesheet" type="text/css" href="{{ site.url }}/podlove-web-player/css/vendor/progress-polyfill.css" media="screen">
-
-  <script type='text/javascript' src="{{ site.url }}/podlove-web-player/js/vendor/html5shiv.min.js"></script>
-  <script type='text/javascript' src="{{ site.url }}/podlove-web-player/js/vendor/jquery.min.js"></script>
-  <script type='text/javascript' src="{{ site.url }}/podlove-web-player/js/vendor/progress-polyfill.min.js"></script>
-
   <meta property="og:type" content="website"/>
   <meta property="og:site_name" content="{{ site.title }}"/>
   <meta property="og:title" content="{{ page.title }} - {{ page.subtitle }}"/>
@@ -32,9 +25,7 @@ layout: null
 </head>
 
 <body>
-  {{ page | web_player:site }}
-  <script type='text/javascript' src="{{ site.url }}/podlove-web-player/js/podlove-web-player.js"></script>
-  {{ page | web_player_script_tag:site }}
+  {% podigee_player %}
 </body>
 
 </html>
