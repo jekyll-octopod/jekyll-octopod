@@ -1,7 +1,8 @@
 #!/usr/bin/env ruby
 # require "byebug"
 PWD = Dir.pwd
-GEM_DIR = Gem::Specification.find_by_name("jekyll-octopod").gem_dir
+GEM_DIR = "/home/user/jekyll/jekyll-octopod/"
+# GEM_DIR = Gem::Specification.find_by_name("jekyll-octopod").gem_dir
 
 require 'rubygems'
 require 'optparse'
