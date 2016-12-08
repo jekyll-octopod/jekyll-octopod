@@ -60,7 +60,7 @@ module Jekyll
     #   {{ post.audio | audio:"m4a" }} => "my-episode.m4a"
     def audio(hsh, key = nil)
       if key.nil?
-        hsh['mp3'] ? hsh['mp3'] : hsh['m4a'] ? hsh['m4a'] : hsh.values.first
+        hsh['mp3'] ? hsh['mp3'] : hsh['m4a'] ? hsh['m4a'] : hsh['ogg'] ? hsh['ogg'] : hsh['opus'] ? hsh['opus'] : hsh.values.first
       else
         hsh[key]
       end
