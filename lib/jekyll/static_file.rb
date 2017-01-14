@@ -6,7 +6,7 @@ module Jekyll
       nested_files = %w[]
 
       excludes = %w[Gemfile Gemfile.lock README.md octopod]
-      return true if excludes.include?(src))
+      return true if excludes.include?(src)
     end
 
     alias_method :_octopod_original_write, :write
