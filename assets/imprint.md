@@ -1,5 +1,5 @@
 ---
-title: Inprint
+title: Imprint
 layout: default
 navigation: 1
 ---
