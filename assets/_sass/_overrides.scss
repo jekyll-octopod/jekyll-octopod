@@ -1,0 +1,13 @@
+// Improve visibility of subtitles and similar text by increasing contrast
+h1 small, h2 small, h3 small {
+  color: #77778C;
+}
+
+btn small, .btn small {
+  color: #2A2A2A;
+}
+
+// Making the date smaller improves the episode header when it includes the subtitle
+.episode_date {
+  font-size: 45%;
+}
