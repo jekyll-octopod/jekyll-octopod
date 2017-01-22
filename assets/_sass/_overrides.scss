@@ -11,3 +11,53 @@ btn small, .btn small {
 .episode_date {
   font-size: 45%;
 }
+
+// Theme for the Swiss-Sided Dice podcast, red and white based on the Swiss flag
+
+.navbar-default {
+  background-color: #E11A27;
+}
+
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus,
+.navbar-default .navbar-nav > li > a {
+  color: #FFF;
+  background-color: #E11A27;
+}
+
+.navbar-default .navbar-brand, .navbar-default .navbar-brand:hover {
+  color: #FFF;
+}
+
+.navbar-default .navbar-toggle {
+  background-color: #E11A27;
+  border-color: #FFF;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #FFF;
+}
+
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus,
+.navbar-default .navbar-nav > li > a:hover {
+  background-color: #A5131D;
+  border-color: #FFF;
+  color: #FFF;
+}
+
+a {
+  color: #CF000F;
+}
+
+a:hover {
+  color: #EF3743;
+}
+
+.btn-primary {
+  background-color: #CF000F;
+}
+
+.btn-primary:hover, .btn-primary:focus {
+  background-color: #EF3743;
+}
