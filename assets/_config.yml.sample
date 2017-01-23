@@ -37,6 +37,8 @@ disqus_shortname: # Disqus will not be used unless this is set
 disqus_developer: 0 # 1 / 0
 ## Itunes link ###########################################################
 itunes_url: "https://itunes.apple.com/at/podcast/myname/id#myid#"
+## Isso comments #########################################################
+use_isso: no # set to 'yes' to include isso comments form
 
 gems: [jekyll-octopod]
 theme: jekyll-bootflat
