@@ -83,7 +83,7 @@ layout: null
                 <atom:name>{{ contributor.name}}</atom:name>
                 <atom:uri>{{ contributor.uri}}</atom:uri>
                 <atom:email>{{ contributor.email}}</atom:email>
-              <atom:contributor>
+              </atom:contributor>
               {% endfor %}
             {% endif %}
             {% if post.image %}
