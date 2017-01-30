@@ -294,6 +294,10 @@ module Jekyll
       }.join("\n")
     end
 
+    # Prints out current version
+    def version_string(site)
+      Jekyll::Octopod::VERSION::STRING
+    end
   end
 end
 
