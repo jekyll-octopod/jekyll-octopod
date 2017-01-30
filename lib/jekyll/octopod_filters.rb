@@ -33,10 +33,6 @@ module Jekyll
       input.gsub(/<audio.*audio>/m, '').gsub(/<script.*script>/m, '')
     end
 
-    def http_only(input)
-      input.gsub(/https/,"http")
-    end
-
     # Formats a Time to be RSS compatible like "Wed, 15 Jun 2005 19:00:00 GMT"
     #
     #   {{ site.time | time_to_rssschema }}

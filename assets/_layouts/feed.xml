@@ -20,7 +20,7 @@ layout: null
     <itunes:summary>{{ site.description | markdownify | strip_html }}</itunes:summary>
     <itunes:author>{{ site.author }}</itunes:author>
     <itunes:explicit>{{ site.explicit }}</itunes:explicit>
-    <itunes:image href="{{ site.url | http_only }}/img/logo-itunes.jpg" />
+    <itunes:image href="{{ site.url }}/img/logo-itunes.jpg" />
     <itunes:owner>
       <itunes:name>{{ site.author }}</itunes:name>
       <itunes:email>{{ site.email }}</itunes:email>
@@ -53,7 +53,7 @@ layout: null
             <guid isPermaLink="false">{{ site.url }}{{ post.url }}</guid>
             <description><![CDATA[{{ post.content | expand_urls: site.url | cdata_escape | remove_script_and_audio }}]]></description>
             <content:encoded><![CDATA[{{ post.content | expand_urls: site.url | cdata_escape | remove_script_and_audio }}]]></content:encoded>
-            <enclosure url="{{ site.url | http_only }}/episodes/{{ post.audio | audio:page.format }}" length="{{ post.audio | audio:page.format | file_size }}" type="{{ page.format | mime_type }}" />
+            <enclosure url="{{ site.url }}/episodes/{{ post.audio | audio:page.format }}" length="{{ post.audio | audio:page.format | file_size }}" type="{{ page.format | mime_type }}" />
             <itunes:keywords>{{ post.tags }}</itunes:keywords>
             <itunes:subtitle>{{ post.subtitle }}</itunes:subtitle>
             <itunes:summary>{{ post.summary }}</itunes:summary>
