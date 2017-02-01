@@ -61,7 +61,7 @@ layout: null
             <guid isPermaLink="false">{{ site.url }}{{ post.url }}</guid>
             <description><![CDATA[{{ post.content | expand_urls: site.url | cdata_escape | remove_script_and_audio }}]]></description>
             <content:encoded><![CDATA[{{ post.content | expand_urls: site.url | cdata_escape | remove_script_and_audio }}]]></content:encoded>
-            {% assign url = site.url | append: '/episodes/' | append: post.audio[page.format] %}
+            {% assign url = site.download_url | append: '/' | append: post.audio[page.format] %}
             <enclosure url="{{ url }}" length="{{ post.audio | audio:page.format | file_size }}" type="{{ page.format | mime_type }}" guid="{{ url | sha1:32}}" />
             <itunes:keywords>{{ post.tags }}</itunes:keywords>
             <itunes:subtitle>{{ post.subtitle }}</itunes:subtitle>
