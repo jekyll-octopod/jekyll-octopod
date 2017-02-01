@@ -4,3 +4,4 @@
 pkg
 rdoc
 .sass-cache/*
+Gemfile.lock
