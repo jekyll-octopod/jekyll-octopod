@@ -14,5 +14,6 @@
   {{ site | flattr_button:post }}
   <a href="https://twitter.com/share" class="twitter-share-button" data-url="{{ site.url }}{{post.url }}" data-text="{{ post.title }}">Tweet</a>
   {% unless page.url == '/index.html' %}{% include disqus_thread.html %}{% endunless %}
+  {% unless page.url == '/index.html' %}{% include isso_thread.html %}{% endunless %}
   <hr>
 </section>
