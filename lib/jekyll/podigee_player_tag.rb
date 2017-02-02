@@ -5,7 +5,8 @@ module Jekyll
       page = context.registers[:page]
 
       audio = {}
-      page["audio"].each { |key, value| audio[key] = config["download_url"] + "/" + value}
+      download_url = config["download_url"] || config["url"] + "/episodes"
+      page["audio"].each { |key, value| audio[key] = download_url + "/" + value}
 
       { options: { theme: "default",
                    startPanel: "ChapterMarks" },
