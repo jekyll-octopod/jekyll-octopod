@@ -2,6 +2,7 @@
 title: Octopod
 # You should configure this ####################################################
 url: http://localhost:4000
+download_url: "http://your.fancy.hosting/episodes"
 subtitle: Static Site Podcast Publishing for Geeks
 description: My super duper cool podcast.
 author: Uncle Octopod

@@ -18,8 +18,13 @@ layout: null
   <meta property="og:description" content="{{ site.description }}"/>
   <meta property="og:image" content="{{ site.url }}/img/logo-360x360.png"/>
 
+  {% if site.download_url == "" or site.download_url == nil %}
+    {% assign download_url = site.url | append: '/episodes' %}
+  {% else %}
+    {% assign download_url = site.download_url %}
+  {% endif %}
   {% for feed in site['episode_feed_formats'] %}
-    <meta property="og:audio" content="{{ site.url }}/episodes/{{ page['audio'][feed] }}"/>
+    <meta property="og:audio" content="{{ download_url }}/{{ page['audio'][feed] }}"/>
     <meta property="og:audio:type" content="audio/{{ feed }}"/>
   {% endfor %}
 </head>
