@@ -14,6 +14,8 @@ itunes_categories: [Technology]
 #   torrent_m4a: http://bitlove.org/example_user/example_podcast_m4a/feed
 #   torrent_mp3: http://bitlove.org/example_user/example_podcast_mp3/feed
 episodes_per_feed_page: 100
+# Date can be localized via date_de.rb plugin
+date_format: "ordinal"
 ## Rsync Deploy config #########################################################
 ### Be sure your public key is listed in your server's ~/.ssh/authorized_keys
 ### file.
