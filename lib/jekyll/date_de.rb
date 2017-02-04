@@ -27,7 +27,7 @@ module Jekyll
       end
       date
     end
-        
+
     # Formats date by given date format
     def format_date(date, format)
       date = datetime(date)
