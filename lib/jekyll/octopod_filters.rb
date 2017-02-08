@@ -205,7 +205,7 @@ module Jekyll
 
       list = []
       list << pages.map { |p|
-        active = (p.url == page['url']) || (page.has_key?('next') && File.join(p.dir, p.basename) == '/index')
+        active = (p.url == page['url']) || (page.key?('next') && File.join(p.dir, p.basename) == '/index')
         navigation_list_item(File.join(site['url'], p.url), p.data['title'], active)
       }
       list.join("\n")
@@ -219,7 +219,7 @@ module Jekyll
       list =  ['<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"> Talks <span class="caret"></span>
                 </a><ul class="dropdown-menu">']
       list << pages.map { |p|
-        active = (p.url == page['url']) || (page.has_key?('next') && File.join(p.dir, p.basename) == '/index')
+        active = (p.url == page['url']) || (page.key?('next') && File.join(p.dir, p.basename) == '/index')
         navigation_list_item(File.join(site['url'], p.url), p.data['title'], active)
       }
       list << ['</ul></li>']
