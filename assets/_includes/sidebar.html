@@ -44,12 +44,13 @@
 
 <hr/>
 
-<h4>RSS-Feeds</h4>
+<h4>Feeds</h4>
 
 <ol type="i">
   {% for feed in site['episode_feed_formats'] %}
     <li><a href="{{ site['url']}}/episodes.{{ feed }}.rss"><i class="fa fa-rss"></i> {{ feed }}-Feed</a></li>
   {% endfor %}
+  <li><a href="{{ site['url']}}/feed.json"><i class="fa fa-rss"></i> JSON-Feed</a></li>
 </ol>
 
 
