@@ -6,6 +6,7 @@ download_url: "http://your.fancy.hosting/episodes"
 subtitle: Static Site Podcast Publishing for Geeks
 description: My super duper cool podcast.
 author: Uncle Octopod
+author_url: "http://your.fancy.hosting/" # This is the URL of a site owned by the author (s. https://jsonfeed.org/version/1)
 email: octopod@example.com
 keywords: [octopod, podcast, magic]
 itunes_categories: [Technology]
