@@ -44,14 +44,22 @@
 
 <hr/>
 
-<h4>Feeds</h4>
+<h4>RSS-Feeds</h4>
 
 <ol type="i">
   {% for feed in site['episode_feed_formats'] %}
-    <li><a href="{{ site['url']}}/episodes.{{ feed }}.rss"><i class="fa fa-rss"></i> {{ feed }}-Feed</a></li>
+    <li><a href="{{ site['url']}}/episodes.{{ feed }}.rss"><i class="fa fa-rss"></i> {{ feed }}-RSS-Feed</a></li>
   {% endfor %}
-  <li><a href="{{ site['url']}}/feed.json"><i class="fa fa-rss"></i> JSON-Feed</a></li>
 </ol>
+
+<h4>JSON-Feeds</h4>
+
+<ol type="i">
+  {% for jsonfeed in site['json_feed_formats'] %}
+    <li><a href="{{ site['url']}}/feed.{{ jsonfeed }}.json"><i class="fa fa-rss-square"></i> {{ jsonfeed }}-JSON-Feed</a></li>
+  {% endfor %}
+</ol>
+
 
 
 <h4>Directories</h4>

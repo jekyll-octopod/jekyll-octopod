@@ -1,0 +1,48 @@
+---
+layout: null
+---
+{%- if site.download_url == "" or site.download_url == nil -%}
+  {%- assign download_url = site.url | append: '/episodes' -%}
+{%- else -%}
+  {%- assign download_url = site.download_url -%}
+{%- endif -%}
+
+{"version": "https://jsonfeed.org/version/1",
+ "title": "{{ site.title | xml_escape }}",
+ "home_page_url": "{{ "/" | absolute_url }}",
+ "feed_url": "{{ "/feed.json" | absolute_url }}",
+ "description": {{ site.description | jsonify }},
+ "user_comment": {{ site.description | jsonify }},
+ "icon": "{{ "/apple-touch-icon-precomposed.png" | absolute_url }}",
+ "favicon": "{{ "/favicon.ico" | absolute_url }}",
+ "expired": false,
+ "author": {
+   "name": {{ site.author | jsonify }},
+   "url": {{ site.author_url | jsonify }}
+ },
+ "items": [
+ {%- for post in site.posts limit:36 -%}
+ {% assign url = download_url | append: '/' | append: post.audio[page.format] %}
+   {"id": "{{ post.url | absolute_url | sha1 }}",
+    "title": {{ post.title | jsonify }},
+    "summary": "",
+    "content_text": {{ post.content | strip_html | strip_newlines | jsonify }},
+    "content_html": {{ post.content | strip_newlines | jsonify }},
+    "url": "{{ post.url | absolute_url }}",
+    {%- if post.tags.size > 0 -%}"tags": {{ post.tags | jsonify }}, {%- endif -%}
+    {% if post.audio.size > 1 %}
+    "attachments": [
+      {"url": "{{ url }}",
+       "mime_type": "audio/mpeg",
+       "size_in_bytes": "{{ post.audio | audio:mp3 | file_size }}"
+      }
+    ],{% endif %}
+    "date_published": "{{ post.date | date_to_xmlschema }}",
+    "date_modified": "{{ post.date | date_to_xmlschema }}",
+    "author": {
+      "name": "{{ post.author }}"
+    }
+  }{% if forloop.last == false %},{% endif %}
+ {%- endfor -%}
+ ]
+}
