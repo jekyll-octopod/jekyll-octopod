@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="{{ site.language }}">
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>{{ site.title }} - {{ page.title | otherwise:site.subtitle }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  {% if site.description %}<meta name="description" content="{{ site.description | markdownify | strip_html }}">{% endif %}
+  {% if site.author %}<meta name="author" content="{{ site.author }}">{% endif %}
+
+  <link rel="alternate" type="application/atom+xml" href="{{ site.url }}/general_feed.xml" title="General Site Atom Feed (No Podcast Metadata!)" />
+  {{ site | episode_feeds_html }}
+
+  <link rel="stylesheet" type="text/css" href="{{ site.url }}/assets/css/main.css">
+
+  <script type='text/javascript' src="{{ site.url }}/assets/js/jquery.min.js"></script>
+  <script type='text/javascript' src="{{ site.url }}/assets/js/bootstrap.min.js"></script>
+  <script type='text/javascript' src="{{ site.url }}/assets/js/icheck.min.js"></script>
+  <script type='text/javascript' src="{{ site.url }}/assets/js/jquery.fs.selecter.min.js"></script>
+  <script type='text/javascript' src="{{ site.url }}/assets/js/jquery.fs.stepper.min.js"></script>
+  <script type='text/javascript' src="{{ site.url }}/assets/js/custom.js"></script>
+
+  <meta name="twitter:card" content="player" />
+  <meta name="twitter:site" content="@{{ site.twitter_nick }}" />
+  <meta name="twitter:title" content="{{ page.title }}" />
+  <meta name="twitter:description" content="{{ page.subtitle }}" />
+  <meta name="twitter:image" content="{{site.url}}{{ page | image_with_fallback }}" />
+  <meta name="twitter:player" content="{{ site.url }}/players/{{ page.slug }}" />
+  <meta name="twitter:player:width" content="480" />
+  <meta name="twitter:player:height" content="480" />
+  <meta name="twitter:player:stream" content="{{ site | download_url_with_fallback }}/{{ page.audio | audio }}" />
+  <meta name="twitter:player:stream:content_type" content="{{ page.audio | audio_type }}" />
+
+  <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+
+  {% if site.flattr_uid %}{% include flattr_loader.html %}{% endif %}
+  {% if site.disqus_shortname %}
+  <script>
+    {{ site | disqus_config }}
+  </script>
+  {% endif %}
+</head>
+
+<body>
+  <div class="container-fluid">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{{ site.url }}">{{ site.title }}</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            {{ site | navigation_list:page }}
+          </ul>
+          <form class="navbar-form navbar-right" action="https://google.com/search" method="get" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="search item">
+              <input type="hidden" name="q" value="site:{{ site.url | host_from_url }}" />
+            </div>
+            <button type="submit" class="btn btn-default">Search</button>
+          </form>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="row ">
+        <div class="col-sm-8">
+          <div class="content">
+            {{ content }}
+          </div>
+        </div>
+        <div id="sidebar" class="col-sm-4">
+          <div class="well">
+            {% include sidebar.html %}
+          </div>
+        </div>
+      </div>
+      <div class="row" id="footer">
+        <small class="pull-right">
+          Powered by <a href="https://jekyll-octopod.github.io/">jekyll-octopod</a>
+          and <a href="http://jekyllrb.com/">Jekyll</a>.
+        </small>
+      </div>
+    </div><!-- /.container -->
+  </div><!-- /.container -->
+
+<script>
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+</script>
+</html>

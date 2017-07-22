@@ -49,7 +49,7 @@ module Jekyll
       first.empty? ? second : first
     end
 
-    # Returns the value of a given hash. Is no key as second parameter given, it
+    # Returns the audio file name of a given hash. Is no key as second parameter given, it
     # trys first "mp3", than "m4a" and than it will return a more or less random
     # value.
     #
@@ -61,6 +61,17 @@ module Jekyll
         hsh[key]
       end
     end
+
+
+    # Returns the audio-type of a given hash. Is no key as second parameter given, it
+    # trys first "mp3", than "m4a" and than it will return a more or less random
+    # value.
+    #
+    #   {{ post.audio | audiotype }} => "my-episode.m4a"
+    def audio_type(hsh)
+      hsh['mp3'] ? mime_type('mp3') : hsh['m4a'] ? mime_type('m4a') : hsh['ogg'] ? mime_type('ogg') : mime_type('opus')
+    end
+
 
     # Returns the MIME-Type of a given file format.
     #
@@ -94,6 +105,27 @@ module Jekyll
     def slug(page)
       page['id'][1..-1].gsub('/', '_')
     end
+
+    # Returns the image of the post or the default logo.
+    #
+    #   {{ page | image_with_fallback }} => '/path/to/image.png'
+    def image_with_fallback(page)
+      if page["image"]
+        "/img/" + page["image"]
+      else
+        "/img/logo-itunes.jpg"
+      end
+    end
+
+    # Returns the dowrload url with fallback to the site's episode folder url
+    def download_url_with_fallback(site)
+      if site["download_url"] == "" or site["download_url"] == nil
+        site["url"] + "/episodes"
+      else
+        site["download_url"]
+      end
+    end
+
 
     # Splits a chapter, like it is written to the post YAML front matter into
     # the components 'start' which refers to a single point in time relative to
