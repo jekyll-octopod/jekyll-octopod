@@ -43,9 +43,8 @@ layout: null
       <link>{{ site.url }}</link>
     </image>
     {% for category in site.itunes_categories %}
-    <itunes:category text="{{ category }}">
+    <itunes:category text="{{ category }}" />
     {% endfor %}
-    </itunes:category>
     {% if site.download_url == "" or site.download_url == nil %}
       {% assign download_url = site.url | append: '/episodes' %}
     {% else %}
