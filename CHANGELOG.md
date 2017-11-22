@@ -152,7 +152,7 @@
 
 ## 0.4 - 2016-05-29
 #### Changed
-- Command line h elp update
+- Command line help update
 - Documentation update
 - Set up a demo instance as a documentation site
 
