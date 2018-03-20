@@ -55,10 +55,12 @@ module Jekyll
     #
     #   {{ post.audio | audio:"m4a" }} => "my-episode.m4a"
     def audio(hsh, key = nil)
-      if key.nil?
-        hsh['mp3'] ? hsh['mp3'] : hsh['m4a'] ? hsh['m4a'] : hsh['ogg'] ? hsh['ogg'] : hsh['opus'] ? hsh['opus'] : hsh.values.first
-      else
-        hsh[key]
+      if !hsh.nil? && hsh.length
+        if key.nil?
+          hsh['mp3'] ? hsh['mp3'] : hsh['m4a'] ? hsh['m4a'] : hsh['ogg'] ? hsh['ogg'] : hsh['opus'] ? hsh['opus'] : hsh.values.first
+        else
+          hsh[key]
+        end
       end
     end
 
@@ -69,7 +71,9 @@ module Jekyll
     #
     #   {{ post.audio | audiotype }} => "my-episode.m4a"
     def audio_type(hsh)
-      hsh['mp3'] ? mime_type('mp3') : hsh['m4a'] ? mime_type('m4a') : hsh['ogg'] ? mime_type('ogg') : mime_type('opus')
+      if !hsh.nil? && hsh.length
+        hsh['mp3'] ? mime_type('mp3') : hsh['m4a'] ? mime_type('m4a') : hsh['ogg'] ? mime_type('ogg') : mime_type('opus')
+      end
     end
 
 
