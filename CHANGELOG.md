@@ -1,10 +1,17 @@
 # Changelog
 
-## Unreleased
+## 0.9.4 - 2018-03-20
+#### Changed
+- Fixed a bug, that demo site could not be created (thanks to https://github.com/marksweiss)
+- Chapters are not mandatory any more (thanks to https://github.com/kylemhall)
+
+## 0.9.3 - 2017-12-06
 #### Added
 - Added a changelog
+
 #### Changed
 - Fixed an XML-encoding bug in podcast feeds
+
 #### Removed
 - Removed the guid from enclosures in podcast feeds
 
@@ -28,14 +35,14 @@
 
 ## 0.8.9 - 2017-04-07
 #### Fixed
-- Fixed a bug, that whole post get's included in guid insteat of guid itself 
+- Fixed a bug, that whole post get's included in guid insteat of guid itself
 
 ## 0.8.8 - 2017-05-15
 #### Added
 - Jekyll admin: a gui web interface for adding posts in development locally
 
 ## 0.8.7 - 2017-02-09
-#### Added 
+#### Added
 - Swiss theme as an option
 
 ## 0.8.6 - 2017-02-08
@@ -55,7 +62,7 @@
 
 ## 0.8.2 - 2017-02-03
 #### Added
-- support for hosting audio files on an external server<br/> 
+- support for hosting audio files on an external server<br/>
   use download_url attribute in _config.yml to specify
 
 ## 0.8.1 - 2017-02-01
@@ -103,7 +110,7 @@
 
 ## 0.7.1 - 2016-12-07
 #### Changed
-- Using Podigee Player instead of Podlove Webplayer 
+- Using Podigee Player instead of Podlove Webplayer
 - Proper gem dependencies instead of including them in the repo
 
 ## 0.6.7 - 2016-08-16
