@@ -20,7 +20,7 @@ module Jekyll
                    subtitle: page["subtitle"],
                    url: config['url'] + page["url"],
                    description: page["description"],
-                   chaptermarks: page["chapters"].map {|chapter| { start: chapter[0..12], title: chapter[13..255] }}
+                   chaptermarks: page["chapters"] ? page["chapters"].map {|chapter| { start: chapter[0..12], title: chapter[13..255] }} : nil
                  }
       }.to_json
     end
