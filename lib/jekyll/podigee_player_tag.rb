@@ -8,7 +8,7 @@ module Jekyll
       download_url = config["download_url"] || config["url"] + "/episodes"
       page["audio"].each { |key, value| audio[key] = download_url + "/" + value}
 
-      { options: { theme: "default",
+      config = { options: { theme: "default",
                    startPanel: "ChapterMarks" },
         extensions: { ChapterMarks: {},
                       EpisodeInfo:  {},
@@ -20,9 +20,13 @@ module Jekyll
                    subtitle: page["subtitle"],
                    url: config['url'] + page["url"],
                    description: page["description"],
-                   chaptermarks: page["chapters"] ? page["chapters"].map {|chapter| { start: chapter[0..12], title: chapter[13..255] }} : nil
                  }
-      }.to_json
+      }
+      if page.key?("chapters".to_sym)
+        config["episode"]["chaptermarks"] = page["chapters"].map {|chapter| { start: chapter[0..12], title: chapter[13..255] }}
+      end
+
+      config.to_json
     end
 
     def render(context)
