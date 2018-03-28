@@ -22,8 +22,8 @@ module Jekyll
                    description: page["description"],
                  }
       }
-      if page.key?("chapters".to_sym)
-        config["episode"]["chaptermarks"] = page["chapters"].map {|chapter| { start: chapter[0..12], title: chapter[13..255] }}
+      if page.key?("chapters")
+        config[:episode][:chaptermarks] = page["chapters"].map {|chapter| { start: chapter[0..12], title: chapter[13..255] }}
       end
 
       config.to_json
