@@ -1,5 +1,8 @@
 module Jekyll
   class PodigeePlayerTag < Liquid::Tag
+    # From here: https://github.com/podigee/podigee-podcast-player/tree/master/src/themes
+    PLAYER_THEMES = ["default", "default-dark", "legacy", "minimal", "republica"]
+
     def playerconfig(context)
       config = context.registers[:site].config
       page = context.registers[:page]
@@ -7,8 +10,8 @@ module Jekyll
       audio = {}
       download_url = config["download_url"] || config["url"] + "/episodes"
       page["audio"].each { |key, value| audio[key] = download_url + "/" + value}
-
-      { options: { theme: "default",
+ 
+      { options: { theme: page["player_theme"] && PLAYER_THEMES.include?(page["player_theme"]) ? page["player_theme"] : "default",
                    startPanel: "ChapterMarks" },
         extensions: { ChapterMarks: {},
                       EpisodeInfo:  {},
