@@ -49,7 +49,7 @@
           </ul>
           <form class="navbar-form navbar-right" action="https://google.com/search" method="get" role="search">
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="search item">
+              <input type="text" name="q" class="form-control" placeholder="search item" value="">
               <input type="hidden" name="q" value="site:{{ site.url | host_from_url }}" />
             </div>
             <button type="submit" class="btn btn-default">Search</button>
