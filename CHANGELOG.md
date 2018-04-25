@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.9.5 - 2018-04-25
+#### Added
+- Podigee Player theme is now configureable (thanks to https://github.com/marksweiss)
+
+#### Fixed
+- Bug in site search (thanks to https://github.com/marksweiss)
+
 ## 0.9.4 - 2018-03-20
 #### Changed
 - Fixed a bug, that demo site could not be created (thanks to https://github.com/marksweiss)
