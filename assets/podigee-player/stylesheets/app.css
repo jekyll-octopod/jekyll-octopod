@@ -1,0 +1,223 @@
+@charset "UTF-8";
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; }
+
+@font-face {
+  font-family: 'podigee-podcast-player';
+  src: url("../fonts/podigee-podcast-player.ttf?kq1u8x") format("truetype"), url("../fonts/podigee-podcast-player.woff?kq1u8x") format("woff"), url("../fonts/podigee-podcast-player.svg?kq1u8x#podigee-podcast-player") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+.icon, .play-button, .backward-button, .forward-button, .skip-backward-button, .skip-forward-button, .chaptermarks-button, .download-button, .episode-info-button, .playlist-button, .share-button, .transcript-button, .search-result-next, .search-result-prev, .panels .share-social-links a {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'podigee-podcast-player' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+.icon-cast:before {
+  content: ""; }
+
+.icon-close:before {
+  content: ""; }
+
+.icon-download:before, .download-button:before {
+  content: ""; }
+
+.icon-chaptermarks:before, .chaptermarks-button:before {
+  content: ""; }
+
+.icon-error_outline:before, .error-loading .play-button:before {
+  content: ""; }
+
+.icon-transcript:before, .transcript-button:before {
+  content: ""; }
+
+.icon-forward-30:before, .forward-button:before {
+  content: ""; }
+
+.icon-episode-info:before, .episode-info-button:before {
+  content: ""; }
+
+.icon-keyboard_arrow_left:before, .search-result-prev:before {
+  content: ""; }
+
+.icon-keyboard_arrow_right:before, .search-result-next:before {
+  content: ""; }
+
+.icon-playlist:before, .playlist-button:before {
+  content: ""; }
+
+.icon-mail_outline:before {
+  content: ""; }
+
+.icon-pause:before, .playing .play-button:before {
+  content: ""; }
+
+.icon-play:before, .play-button:before {
+  content: ""; }
+
+.icon-backward-10:before, .backward-button:before {
+  content: ""; }
+
+.icon-share:before, .share-button:before {
+  content: ""; }
+
+.icon-skip-next:before, .skip-forward-button:before {
+  content: ""; }
+
+.icon-skip-previous:before, .skip-backward-button:before {
+  content: ""; }
+
+.icon-twitter:before {
+  content: ""; }
+
+.icon-facebook:before {
+  content: ""; }
+
+.icon-facebook-f:before {
+  content: ""; }
+
+.icon-google-plus:before {
+  content: ""; }
+
+.icon-whatsapp:before {
+  content: ""; }
+
+.loading .play-button:before {
+  content: ''; }
+
+.loading .play-button {
+  animation: sk-scaleout 1.0s infinite ease-in-out;
+  -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
+  background-color: #666;
+  border-radius: 100%; }
+
+@-webkit-keyframes sk-scaleout {
+  0% {
+    -webkit-transform: scale(0); }
+  100% {
+    -webkit-transform: scale(1);
+    opacity: 0; } }
+
+@keyframes sk-scaleout {
+  0% {
+    -webkit-transform: scale(0);
+    transform: scale(0); }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 0; } }
+
+.error-loading .play-button {
+  color: red !important;
+  font-size: 36px !important; }
+
+body {
+  margin: 0;
+  padding: 0; }
+
+.video-player {
+  margin: 0;
+  width: 100%; }
+
+.panels .share-social-links {
+  height: 48px;
+  list-style: none;
+  padding: 0;
+  text-align: center; }
+  .panels .share-social-links li {
+    display: inline-block;
+    height: 48px;
+    padding: 0 5px;
+    position: relative;
+    overflow: hidden; }
+    .panels .share-social-links li:hover:after {
+      background: rgba(0, 0, 0, 0.2);
+      bottom: 0;
+      content: '';
+      display: block;
+      height: 5px;
+      left: 5px;
+      position: absolute;
+      width: calc(100% - 10px);
+      z-index: 10; }
+  .panels .share-social-links a {
+    color: transparent;
+    display: block;
+    font-size: 1px;
+    letter-spacing: -1px;
+    position: relative;
+    text-decoration: none; }
+    .panels .share-social-links a:hover {
+      text-decoration: none; }
+  .panels .share-social-links a:before {
+    border-radius: 3px;
+    color: #fff;
+    font-size: 2rem;
+    letter-spacing: normal;
+    top: 8px;
+    position: relative; }
+  .panels .share-social-links .share-link-facebook:before {
+    background: #3b5998;
+    content: "";
+    padding: 8px 14px; }
+  .panels .share-social-links .share-link-googleplus:before {
+    background: #dd4b39;
+    font-size: 1.6rem;
+    content: "";
+    padding: 10px 9px 12px;
+    top: 11px; }
+  .panels .share-social-links .share-link-twitter:before {
+    background: #00aced;
+    content: "";
+    padding: 8px 9px; }
+  .panels .share-social-links .share-link-whatsapp:before {
+    background: #43d854;
+    content: "";
+    padding: 8px 10px; }
+  .panels .share-social-links .share-link-email:before {
+    background: #999999;
+    content: "";
+    padding: 8px 8px; }
+
+.panels .download .icon-download, .panels .download .download-button {
+  display: block;
+  font-size: 3rem;
+  text-align: center; }
+
+.panels .download .download-links {
+  padding: 0;
+  text-align: center; }
+  .panels .download .download-links li {
+    display: inline-block;
+    font-size: 18px;
+    padding: 0 10px; }
+  .panels .download .download-links li + li {
+    border-left: 1px solid; }
+
+.transcript .search button {
+  padding: 0; }
+
+.transcript .search .search-result button {
+  font-size: 110%;
+  color: inherit;
+  padding-bottom: 0;
+  padding-top: 0;
+  position: relative;
+  top: 2px; }
+
+.transcript .search input {
+  border: 1px solid #ccc;
+  border-radius: 0;
+  font-size: 110%;
+  margin: 0;
+  width: 300px; }

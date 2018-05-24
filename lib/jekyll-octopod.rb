@@ -1,5 +1,6 @@
 require "jekyll/flattr_filters"
 require "jekyll/octopod_filters"
+require "jekyll/font_awesome"
 require "jekyll/paged_feed_page"
 require "jekyll/paged_feed_page_generator"
 require "jekyll/podcast_player_page"

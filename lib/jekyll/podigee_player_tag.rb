@@ -10,7 +10,7 @@ module Jekyll
       audio = {}
       download_url = config["download_url"] || config["url"] + "/episodes"
       page["audio"].each { |key, value| audio[key] = download_url + "/" + value}
- 
+
       { options: { theme: page["player_theme"] && PLAYER_THEMES.include?(page["player_theme"]) ? page["player_theme"] : "default",
                    startPanel: "ChapterMarks" },
         extensions: { ChapterMarks: {},
@@ -37,7 +37,7 @@ module Jekyll
           window.playerConfiguration = #{playerconfig(context)}
         </script>
         <script class="podigee-podcast-player" data-configuration="playerConfiguration"
-                src="#{config["url"].split(":").first}://cdn.podigee.com/podcast-player/javascripts/podigee-podcast-player.js">
+                src="#{config["url"]}/podigee-player/javascripts/podigee-podcast-player.js">
         </script>
 HTML
     end
@@ -45,3 +45,5 @@ HTML
 end
 
 Liquid::Template.register_tag('podigee_player', Jekyll::PodigeePlayerTag)
+
+# src="#{config["url"].split(":").first}://cdn.podigee.com/podcast-player/javascripts/podigee-podcast-player.js">

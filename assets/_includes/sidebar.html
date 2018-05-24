@@ -11,16 +11,15 @@
 
 {% if site.description %}<p>{{ site.description }}</p>{% endif %}
 
-<p class="text-center">
   <script class="podlove-subscribe-button"
-          src="https://cdn.podlove.org/subscribe-button/javascripts/app.js"
+          src="/subscribe-button/javascripts/app.js"
           data-language="{{ site.language }}"
-          data-size="medium"
+          data-size="medium auto"
+          data-style="filled"
           data-json-data="podcastData"
-          data-colors="#FC6E51;green;blue"
-          data-buttonid="123abc"
-          data-hide="false">
+          data-colors="#FC6E51;green;blue">
   </script>
+
   <script>
     window.podcastData = {
       "title": "{{ site['title']}}",
@@ -105,5 +104,9 @@
 {% endif %}
 
 {% if site.twitter_nick %}
-  <a href="https://twitter.com/{{ site.twitter_nick }}" class="twitter-follow-button" data-show-count="false">Follow @{{ site.twitter_nick }}</a>
+  <a href="https://twitter.com/{{ site.twitter_nick }}"
+     class="button btn-primary btn-sm"
+     data-show-count="false">
+    <i class="fa fa-twitter"></i>Follow @{{ site.twitter_nick }}
+  </a>
 {% endif %}
