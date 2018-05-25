@@ -2,18 +2,19 @@
 
 I wanted to remove all external dependencies and be fully self sustained, so I did the following:
 
-### 1) Remove Disqus commenting by removing from _config.yml
+### 1. Remove Disqus commenting by removing from _config.yml
 ```
 ## Disqus comments #############################################################
 disqus_shortname: # Disqus will not be used unless this is set
 disqus_developer: 0 # 1 / 0
 ```
 
-2) Clone the repo into a new directory
-3) copy /assets/subscribe-button into the main folder
-4) copy /assets/podcast-player into the main folder
+### 2. Clone the repo into a new directory
 
-### 5) in _includes/sidebar.html replace
+### 3. copy /assets/subscribe-button into the main folder
+### 4. copy /assets/podcast-player into the main folder
+
+### 5. in _includes/sidebar.html replace
 ```
   <script class="podlove-subscribe-button"
           src="https://cdn.podlove.org/subscribe-button/javascripts/app.js"
@@ -37,7 +38,7 @@ with
   </script>
 ```
 
-### 6) in _includes/sidebar.html replace
+### 6. in _includes/sidebar.html replace
 ```
 <a href="https://twitter.com/{{ site.twitter_nick }}" class="twitter-follow-button" data-show-count="false">Follow @{{ site.twitter_nick }}</a>
 ```
@@ -50,7 +51,7 @@ with
   </a>
 ```
 
-### 7) in _includes/post.html replace
+### 7. in _includes/post.html replace
 ```
 <a href="https://twitter.com/share" class="twitter-share-button" data-url="{{ site.url }}{{post.url }}" data-text="{{ post.title }}">Tweet</a>
 ```
@@ -63,16 +64,24 @@ with
     <i class="fa fa-twitter"></i> Tweet</a>
 ```
 
-### 8) in _layouts/default.html (and _layouts/with_twitter_card.html, if it exists) delete
+### 8. in _layouts/default.html (and _layouts/with_twitter_card.html, if it exists) delete
 ```
 <script>
 !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
 </script>
 ```
 
-### 9) in _layouts/default.html (and _layouts/with_twitter_card.html, if it exists) delete
+### 9. in _layouts/default.html (and _layouts/with_twitter_card.html, if it exists) delete
 ```
   <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 ```
 
+### 10. Removed Flattr buttons by deleting for _config.yml
+```
+```
+
 Finally rebuild and deploy your site.
+
+Yes, I anbandomed comments and Flattr integration that way, but the declease in load time of my
+page made more than up for that. And neither of these features were used, anyways ;-(, my listeners
+tend to prefer to comment via email.
