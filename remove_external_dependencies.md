@@ -11,7 +11,7 @@ disqus_shortname: # Disqus will not be used unless this is set
 disqus_developer: 0 # 1 / 0
 ```
 
-### 2. To self host Subscribe button and Podigee podcast player
+### 2. Self host Subscribe button and Podigee podcast player
 
 * Clone the repo into a new directory
 
@@ -83,7 +83,7 @@ with
 ```
 
 
-### 4. Removed Flattr buttons
+### 4. Remove Flattr buttons
 
 * delete in _config.yml
 ```
