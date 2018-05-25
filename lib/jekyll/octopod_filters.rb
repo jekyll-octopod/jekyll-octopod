@@ -260,7 +260,9 @@ module Jekyll
       }
       list << ['</ul></li>']
 
-      list.join("\n")
+      if pages.any?
+        list.join("\n")
+      end
     end
 
     def navigation_list_item(url, title, active = false)

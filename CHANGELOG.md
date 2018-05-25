@@ -6,6 +6,7 @@
 - Dependency Podlove Subscribe Button is now included and therefor served locally
 - Twitter Buttons are now simply decorated links (and no 'twitter widgets').
 - This means no data transfered with requests to external CDNs any more.
+- Talks menu item only displayed, if any.
 
 #### Removed
 - Removed support for Mathjax
