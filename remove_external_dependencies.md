@@ -1,4 +1,4 @@
-## Howto remove all external dependencies
+## How to remove all external dependencies
 
 I wanted to remove all external dependencies and be fully self sustained, so I did the following:
 
