@@ -1,5 +1,16 @@
 # Changelog
 
+## pending for 0.9.6 (with the next release)
+#### Changed
+- Dependency Podigee Podcast Player is now included and therefor served locally
+- Dependency Podlove Subscribe Button is now included and therefor served locally
+- Twitter Buttons are now simply decorated links (and no 'twitter widgets').
+- This means no data transfered with requests to external CDNs any more.
+
+#### Removed
+- Removed support for Mathjax
+
+
 ## 0.9.5 - 2018-04-25
 #### Added
 - Podigee Player theme is now configureable (thanks to https://github.com/marksweiss)
