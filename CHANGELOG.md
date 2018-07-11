@@ -1,6 +1,11 @@
 # Changelog
 
-## pending for 0.9.6 (with the next release)
+## pending for 0.9.7 (with the next release)
+
+- nothing yet
+
+## 0.9.6
+
 #### Changed
 - Dependency Podigee Podcast Player is now included and therefor served locally
 - Dependency Podlove Subscribe Button is now included and therefor served locally
@@ -10,7 +15,6 @@
 
 #### Removed
 - Removed support for Mathjax
-
 
 ## 0.9.5 - 2018-04-25
 #### Added
