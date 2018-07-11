@@ -39,7 +39,7 @@ There are several issues, that I see with jekyll-octopod that could be fixed:
    Currently links open in the same tab. We could add a helper to open them in a new one to be
    able to continue playing the episode itself. That helper should then be using the attribute
    noopener. See
-   [this explanaition](https://developers.google.com/web/tools/lighthouse/audits/noopener), if
+   [this explaination](https://developers.google.com/web/tools/lighthouse/audits/noopener), if
    you don't know about the issue with just using target="\_blank"
    But you had to use that helper than for each and every link. The other option would be to
    hack in a preprocessor step, that I am currently not capable of and that is probably not worth
