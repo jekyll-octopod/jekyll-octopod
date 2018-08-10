@@ -5,13 +5,13 @@
 - nothing yet
 
 
-## 0.9.7
+## 0.9.7 - 2018-08-10
 
 #### Changed
 
 - Roboto fonts for Podlove Subscribe Button now include cyrillic and greek character sets
 
-## 0.9.6
+## 0.9.6 - 2018-07-11
 
 #### Changed
 - Dependency Podigee Podcast Player is now included and therefor served locally
