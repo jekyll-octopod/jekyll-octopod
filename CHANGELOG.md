@@ -1,8 +1,15 @@
 # Changelog
 
-## pending for 0.9.7 (with the next release)
+## pending for 0.9.8 (with the next release)
 
 - nothing yet
+
+
+## 0.9.7
+
+#### Changed
+
+- Roboto fonts for Podlove Subscribe Button now include cyrillic and greek character sets
 
 ## 0.9.6
 
