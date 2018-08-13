@@ -4,6 +4,13 @@
 
 - nothing pending yet
 
+## 0.9.9 - 2018-08-13
+
+### Changed
+
+- moved jekyll-octopod into the plugins section of the `_config.yml` file to get rid of the
+  deprecation warning
+
 ## 0.9.8 - 2018-08-13
 
 ### Changed
