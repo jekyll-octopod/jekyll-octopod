@@ -63,10 +63,10 @@ disqus_developer: 0 # 1 | 0
 ### Isso comments
 use_isso: "no" # "no" | "yes"
 
-gems: [jekyll-octopod]
 theme: jekyll-bootflat
 
-### Jekyll Admin: uncomment the last two lines of this paragraph to enable Jekyll Admin.
+### Jekyll Admin: uncomment the last line of this paragraph to enable Jekyll Admin.
 ### (but you will loose auto regeneration after code changes with a text editor then)
-# plugins:
+plugins:
+  - jekyll-octopod
 #  - jekyll-admin
