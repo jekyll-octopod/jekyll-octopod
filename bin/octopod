@@ -155,10 +155,6 @@ if ARGV.size > 0 && (ARGV[0] == 'episode' || ARGV[0] == 'deploy' || ARGV[0] == '
         post_header['explicit'] = options['explicit'] = episode_explicit
       end
 
-      opts.on("--episode-cover [PATH]", "Path to the image that represents the episode.") do |episode_cover|
-        post_header['episode_cover'] = options['episode_cover'] = episode_cover
-      end
-
       opts.on("-l", "--layout [LAYOUT]", "Layout to use (default: 'post')") do |episode_layout|
         post_header['layout'] = options['layout'] = episode_layout
       end

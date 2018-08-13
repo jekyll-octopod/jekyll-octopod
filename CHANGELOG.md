@@ -1,9 +1,19 @@
 # Changelog
 
-## pending for 0.9.8 (with the next release)
+## pending for 0.9.9 (with the next release)
+
+- nothing pending yet
+
+## 0.9.8 - 2018-08-13
+
+### Changed
 
 - cleaned up `_config.yml`: conistent comments, options and descriptions
 - added all config options available to `_config.yml`. Commented out the unimportant ones.
+- there was an inconsistancy on episode level: `episode-cover` and `image` where both expected to be filled
+  for an episode cover image. `image` is the one and only param from now on.
+  It should contain the image filename and the file should be put in the img directory. (That has
+  not changed.)
 
 ## 0.9.7 - 2018-08-10
 
