@@ -2,8 +2,7 @@
 
 ## pending for 0.9.8 (with the next release)
 
-- nothing yet
-
+- cleaned up `_config.yml`: conistent comments, options and descriptions
 
 ## 0.9.7 - 2018-08-10
 
