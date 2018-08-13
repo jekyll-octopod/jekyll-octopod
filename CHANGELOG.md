@@ -10,7 +10,7 @@
 
 - cleaned up `_config.yml`: conistent comments, options and descriptions
 - added all config options available to `_config.yml`. Commented out the unimportant ones.
-- there was an inconsistancy on episode level: `episode-cover` and `image` where both expected to be filled
+- there was an inconsistency on episode level: `episode-cover` and `image` where both expected to be filled
   for an episode cover image. `image` is the one and only param from now on.
   It should contain the image filename and the file should be put in the img directory. (That has
   not changed.)
