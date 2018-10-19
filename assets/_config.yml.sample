@@ -71,3 +71,11 @@ theme: jekyll-bootflat
 plugins:
   - jekyll-octopod
 #  - jekyll-admin
+
+### Links to all domains, expect whitelisted will be rendered with rel="nofollow noopener noreferrer"
+# kramdown:
+#   input: 'NoopenerGFM'
+#   same_tab_domains:
+#     - localhost
+#     - 127.0.0.1
+#     - podcast.your-domain.com
