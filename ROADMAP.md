@@ -35,23 +35,13 @@ There are several issues, that I see with jekyll-octopod that could be fixed:
    so you should add an extra comment in your data privacy statement then to explain that cookie.
    The cookie wouldn't be evaluated at the server, nevertheless.
 
-4. Links:
-   Currently links open in the same tab. We could add a helper to open them in a new one to be
-   able to continue playing the episode itself. That helper should then be using the attribute
-   noopener. See
-   [this explaination](https://developers.google.com/web/tools/lighthouse/audits/noopener), if
-   you don't know about the issue with just using target="\_blank"
-   But you had to use that helper than for each and every link. The other option would be to
-   hack in a preprocessor step, that I am currently not capable of and that is probably not worth
-   the effort (dealing with the bugs maintaining it.)
-
-5. Ruby dependency:
+4. Ruby dependency:
    I don't really see a way around this, though I see people struggling with getting Ruby working
    on Windows. I have considered a rewrite with a differernt technology - maybe as an Electron
    app using a Node based static site generator or even as a hosted service for non technical
    users providing them with just web forms to fill out. But that would mean giving up on
    Jekyll Octopod all together.
 
-6. Fatigue:
+5. Fatigue:
    I feel a bit of fatigue, maintaining Jekyll Octopod now for 28 months. So if anybody of you
    want's to take over as a maintainer, now would be a good point in time. :-)
