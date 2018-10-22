@@ -39,6 +39,7 @@ license_image_url: https://i.creativecommons.org/l/by/4.0/88x31.png
 
 ### Feed links, optional
 itunes_url: https://itunes.apple.com/at/podcast/myname/id232323
+# google_play_url: https://playmusic.app.goo.gl/...
 # bitlove_url: https://bitlove.org/myaccount
 # fyyd_url: https://fyyd.de/podcast/myaccount/myid
 # gpodder_url: https://gpodder.net/podcast/mypodcast
@@ -70,3 +71,11 @@ theme: jekyll-bootflat
 plugins:
   - jekyll-octopod
 #  - jekyll-admin
+
+### Links to all domains, expect whitelisted will be rendered with rel="nofollow noopener noreferrer"
+# kramdown:
+#   input: 'NoopenerGFM'
+#   same_tab_domains:
+#     - localhost
+#     - 127.0.0.1
+#     - podcast.your-domain.com
