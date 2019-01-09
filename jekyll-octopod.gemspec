@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_dependency 'facets', '~> 3.1'
-  s.add_dependency 'jekyll', '~> 3.3', '>= 3.3.1'
+  s.add_dependency 'jekyll', '~> 3.8'
   s.add_dependency 'jekyll-bootflat', '~> 0.2.6'
   s.add_development_dependency 'rspec', '~> 2.9'
   s.add_dependency 'jekyll-admin', '~> 0.4.0'

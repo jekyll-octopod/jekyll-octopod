@@ -4,6 +4,13 @@
 
 - nothing pending yet
 
+## 0.9.11 - 2019-01-09
+
+### Changed
+
+- Increasede Jekyll Version dependency to mitigate vulnerability in certain 
+  Jekyll versions.
+
 ## 0.9.10 - 2019-01-09
 
 ### Fixed
