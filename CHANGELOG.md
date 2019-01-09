@@ -1,8 +1,15 @@
 # Changelog
 
-## pending for 0.9.9 (with the next release)
+## pending for 0.9.11 (with the next release)
 
 - nothing pending yet
+
+## 0.9.10 - 2019-01-09
+
+### Fixed
+
+- Ubuntu font was required, but not properly loaded. It is now available in
+  /assets/fonts/ubuntu/ via the required version of jekyll-bootflat
 
 ## 0.9.9 - 2018-08-13
 
