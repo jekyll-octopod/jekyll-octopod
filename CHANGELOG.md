@@ -1,8 +1,11 @@
 # Changelog
 
-## pending for 0.9.11 (with the next release)
+## 0.9.12 - 2019-01-18
 
-- nothing pending yet
+## Fixed
+
+- Layout 'with_twitter_card' used by episode default view had already several
+  differences to the default layout.
 
 ## 0.9.11 - 2019-01-09
 
