@@ -1,8 +1,15 @@
 # Changelog
 
+## 0.9.14 - 2020-03-23
+
+### Fixed
+
+- Dump, when files where hosted externally.
+- Filesizes now can be provided via front matter.
+
 ## 0.9.12 - 2019-01-18
 
-## Fixed
+### Fixed
 
 - Layout 'with_twitter_card' used by episode default view had already several
   differences to the default layout.

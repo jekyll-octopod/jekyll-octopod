@@ -34,7 +34,11 @@ layout: null
     "attachments": [
       {"url": "{{ url }}",
        "mime_type": "audio/mpeg",
+       {%- if post.filesize -%}
+       "size_in_bytes": "{{ post | size_by_format: page.format }}"
+       {%- else -%}
        "size_in_bytes": "{{ post.audio | audio:mp3 | file_size }}"
+       {%- endif -%}
       }
     ],{% endif %}
     "date_published": "{{ post.date | date_to_xmlschema }}",

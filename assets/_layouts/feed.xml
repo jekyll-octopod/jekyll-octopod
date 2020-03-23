@@ -45,15 +45,15 @@ layout: null
     {% for category in site.itunes_categories %}
     <itunes:category text="{{ category | xml_escape }}" />
     {% endfor %}
-    {% if site.download_url == "" or site.download_url == nil %}
+    {%- if site.download_url == "" or site.download_url == nil -%}
       {% assign download_url = site.url | append: '/episodes' %}
-    {% else %}
+    {%- else -%}
       {% assign download_url = site.download_url %}
     {% endif %}
-    {% for post in site.posts %}
-      {% if post.audio[page.format] %}
-        {% assign check = forloop.index0 | divided_by:site.episodes_per_feed_page | plus: 1 %}
-        {% if check == page.page_number %}
+    {%- for post in site.posts -%}
+      {%- if post.audio[page.format] -%}
+        {%- assign check = forloop.index0 | divided_by:site.episodes_per_feed_page | plus: 1 -%}
+        {%- if check == page.page_number -%}
           <item>
             <title>{{ post.title }} - {{ post.subtitle }}</title>
             <link>{{ site.url }}{{ post.url }}</link>
@@ -67,7 +67,15 @@ layout: null
             <description><![CDATA[{{ post.content | expand_urls: site.url | cdata_escape | remove_script_and_audio }}]]></description>
             <content:encoded><![CDATA[{{ post.content | expand_urls: site.url | cdata_escape | remove_script_and_audio }}]]></content:encoded>
             {% assign url = download_url | append: '/' | append: post.audio[page.format] %}
-            <enclosure url="{{ url }}" length="{{ post.audio | audio:page.format | file_size }}" type="{{ page.format | mime_type }}" />
+            {%- if post.filesize -%}
+              <enclosure url="{{ url }}" 
+                         length="{{ post | size_by_format: page.format }}" 
+                         type="{{ page.format | mime_type }}" />
+            {%- else -%}
+              <enclosure url="{{ url }}" 
+                         length="{{ post.audio | audio:page.format | file_size }}" 
+                         type="{{ page.format | mime_type }}" />
+            {% endif %}
             <itunes:keywords>{{ post.tags }}</itunes:keywords>
             <itunes:subtitle>{{ post.subtitle }}</itunes:subtitle>
             <itunes:summary>{{ post.summary }}</itunes:summary>
@@ -75,33 +83,33 @@ layout: null
             <itunes:explicit>{{ post.explicit | otherwise:site.explicit }}</itunes:explicit>
             <itunes:duration>{{ post.duration }}</itunes:duration>
             {{ site | flattr_rss:post }}
-            {% if post.chapters %}
+            {%- if post.chapters -%}
             <psc:chapters version="1.1" xmlns:psc="http://podlove.org/simple-chapters">
-              {% for chapter in post.chapters %}
+              {%- for chapter in post.chapters -%}
               <psc:chapter start="{{ chapter | split_chapter:'start' }}" title="{{ chapter | split_chapter:'title' }}" />
               {% endfor %}
             </psc:chapters>
-            {% endif %}
-            {% if post.contributors %}
-              {% for contributor in post.contributors %}
+            {%- endif -%}
+            {%- if post.contributors -%}
+              {%- for contributor in post.contributors -%}
               <atom:contributor>
                 <atom:name>{{ contributor.name}}</atom:name>
                 <atom:uri>{{ contributor.uri}}</atom:uri>
                 <atom:email>{{ contributor.email}}</atom:email>
               </atom:contributor>
-              {% endfor %}
-            {% endif %}
-            {% if post.image %}
+              {%- endfor -%}
+            {%- endif -%}
+            {%- if post.image -%}
               <itunes:image href="{{ site.url }}/img/{{post.image}}" />
               <image>
                 <title>{{ post.image_title }}</title>
                 <url>{{ site.url }}/img/{{post.image}}</url>
                 <link>{{ site.url }}</link>
               </image>
-            {% endif %}
+            {%- endif -%}
           </item>
-        {% endif %}
-      {% endif %}
-    {% endfor %}
+        {%- endif -%}
+      {%- endif -%}
+    {%- endfor -%}
   </channel>
 </rss>

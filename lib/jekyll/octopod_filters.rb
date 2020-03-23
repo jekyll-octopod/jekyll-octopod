@@ -64,7 +64,6 @@ module Jekyll
       end
     end
 
-
     # Returns the audio-type of a given hash. Is no key as second parameter given, it
     # trys first "mp3", than "m4a" and than it will return a more or less random
     # value.
@@ -101,6 +100,24 @@ module Jekyll
       path = path =~ /\// ? path : File.join('episodes', path)
       path = rel + path if rel
       File.size(path)
+    end
+
+    # Returns the size of a given file in bytes by looking into the front matter
+    # The sizes should be in 
+    # filesize:
+    #   mp3: 4242
+    # ...
+    #
+    #   {{ "example.m4a" | size_by_format: "mp3" }} => 4242
+    def size_by_format(page, format)
+      page["filesize"][format]
+    end
+
+    # Converts a size in Bytes to Megabytes
+    #
+    #   {{ 123456 | in_megabytes }} => 0.1 MB
+    def in_megabytes(size_in_bytes)
+      (size_in_bytes / 1024.0 / 1024.0).round(2).to_s + " MB"
     end
 
     # Returns a slug based on the id of a given page.
