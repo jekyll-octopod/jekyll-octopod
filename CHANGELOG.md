@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.9.15 - 2020-03-24
+
+### Fixed
+
+- config_theme not working
+- octopod episode created deprecated example file
+
 ## 0.9.14 - 2020-03-23
 
 ### Fixed

@@ -11,7 +11,7 @@ module Jekyll
       download_url = config["download_url"] || config["url"] + "/episodes"
       page["audio"].each { |key, value| audio[key] = download_url + "/" + value}
 
-      { options: { theme: page["player_theme"] && PLAYER_THEMES.include?(page["player_theme"]) ? page["player_theme"] : "default",
+      { options: { theme: config["player_theme"] && PLAYER_THEMES.include?(config["player_theme"]) ? config["player_theme"] : "default",
                    startPanel: "ChapterMarks" },
         extensions: { ChapterMarks: {},
                       EpisodeInfo:  {},
