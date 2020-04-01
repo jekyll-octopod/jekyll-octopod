@@ -1,5 +1,5 @@
 _site
-_config.yml
+# _config.yml
 .sass-cache
 .jekyll-metadata
 episodes
