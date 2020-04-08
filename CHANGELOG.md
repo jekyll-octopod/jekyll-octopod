@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.9.16 - 2020-04-08
+
+### Changed
+
+- Bumped versions of dependencies, especially Jekyll to 4.0
+
 ## 0.9.15 - 2020-03-24
 
 ### Fixed
