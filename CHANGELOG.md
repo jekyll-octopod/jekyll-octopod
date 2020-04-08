@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.9.17 -2020-04-08
+
+### Fixed
+
+- fixed issues with font-awesome-sass gem within jekyll-bootflat
+- updated dependency to latest version of jekyll-bootflat 0.3.1
+
 ## 0.9.16 - 2020-04-08
 
 ### Changed
