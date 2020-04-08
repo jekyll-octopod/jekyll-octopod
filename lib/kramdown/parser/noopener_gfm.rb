@@ -1,3 +1,6 @@
+require 'kramdown'
+require 'kramdown-parser-gfm'
+
 class Kramdown::Parser::NoopenerGFM < Kramdown::Parser::GFM
   SAFE_OPTS = { "target" => "_blank", "rel"=>"nofollow noopener noreferrer" }.freeze
 
