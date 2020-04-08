@@ -1,6 +1,12 @@
 # Changelog
 
-## 0.9.17 -2020-04-08
+## 0.9.18 - 2020-04-08
+
+### Changed
+
+- updated dependency to latest version of jekyll-bootflat 0.3.2
+
+## 0.9.17 - 2020-04-08
 
 ### Fixed
 
@@ -279,6 +285,6 @@
 - Updated the gemspec
 - Added license info
 
-## 0.1- 2016-03-26
+## 0.1 - 2016-03-26
 #### Changed
 - Let's get started!
