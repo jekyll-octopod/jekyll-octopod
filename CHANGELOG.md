@@ -1,28 +1,17 @@
 # Changelog
 
-## 0.9.19 - 2020-04-14
+## 0.9.20 - 2020-04-14
 
 ### Fixed
 
 - Google Play Icon and Gpodder Icon. Thanks to Chester Wisniewski!
 
-## 0.9.18 - 2020-04-08
+## 0.9.16, 0.9.17, 0.9.18, 0.9.19 - 2020-04-08
 
 ### Changed
 
 - updated dependency to latest version of jekyll-bootflat 0.3.2
-
-## 0.9.17 - 2020-04-08
-
-### Fixed
-
 - fixed issues with font-awesome-sass gem within jekyll-bootflat
-- updated dependency to latest version of jekyll-bootflat 0.3.1
-
-## 0.9.16 - 2020-04-08
-
-### Changed
-
 - Bumped versions of dependencies, especially Jekyll to 4.0
 
 ## 0.9.15 - 2020-03-24
