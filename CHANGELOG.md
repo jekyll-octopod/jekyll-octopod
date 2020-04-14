@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.9.19 - 2020-04-14
+
+### Fixed
+
+- Google Play Icon and Gpodder Icon. Thanks to Chester Wisniewski!
+
 ## 0.9.18 - 2020-04-08
 
 ### Changed

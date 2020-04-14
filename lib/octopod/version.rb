@@ -3,7 +3,7 @@ module Jekyll
     module VERSION #:nodoc:
       MAJOR = 0
       MINOR = 9
-      TINY  = 18
+      TINY  = 19
 
       STRING = [MAJOR, MINOR, TINY].join('.')
     end
