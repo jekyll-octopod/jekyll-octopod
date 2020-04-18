@@ -1,30 +1,14 @@
-# Changelog
-
-## 0.9.18 - 2020-04-08
-
-### Changed
-
-- updated dependency to latest version of jekyll-bootflat 0.3.2
-
-## 0.9.17 - 2020-04-08
-
-### Fixed
-
-- fixed issues with font-awesome-sass gem within jekyll-bootflat
-- updated dependency to latest version of jekyll-bootflat 0.3.1
-
-## 0.9.16 - 2020-04-08
-
-### Changed
-
-- Bumped versions of dependencies, especially Jekyll to 4.0
-
-## 0.9.15 - 2020-03-24
+## 0.9.15, 0.9.16, 0.9.17, 0.9.18, 0.9.19 - 2020-03-24
 
 ### Fixed
 
 - config_theme not working
 - octopod episode created deprecated example file
+- fixed issues with font-awesome-sass gem within jekyll-bootflat
+
+## Changed 
+
+- Bumped versions of dependencies, especially Jekyll to 4.0
 
 ## 0.9.14 - 2020-03-23
 
