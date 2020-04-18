@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.9.21 - 2020-04-18
+
+### Bugfix
+
+- Last published version had wrong version of jekyll-bootflat as a dependency
+
 ## 0.9.20 - 2020-04-14
 
 ### Fixed
