@@ -2,7 +2,7 @@
   <h1>
     <a class='episode_title' href='{{ site.url }}{{ post.url }}#{{ post.id | sha1:8 }}'>{{ post.title }}</a>
     <small class='episode_date'>
-      {% if site.language == "en" %}
+      {% if site.language == "de" %}
         {{ post.date | full_date_de }}
       {% else %}
         {% if post.datum %}

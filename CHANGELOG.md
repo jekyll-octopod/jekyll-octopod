@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.9.21 - 2020-04-23
+
+### Fixed
+
+- Check for wrong language in post_header, so wrong date format was displayed.
+
 ## 0.9.20 - 2020-04-14
 
 ### Fixed
