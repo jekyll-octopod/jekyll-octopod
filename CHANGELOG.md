@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.9.23 - 2020-04-25
+
+### Fixed
+
+- Broken rss feeds.
+
 ## 0.9.22 - 2020-04-23
 
 ### Fixed
