@@ -1,6 +1,6 @@
 # jekyll-octopod
 
-Today, on November 9th 2020, after 1690 of maintainence, 204 commits and 59 releases, I stop working
+Today, on November 9th 2020, after 1690 days  of maintainence, 204 commits and 59 releases, I stop working
 on this project due to lack of time.
 
 I would probably rather start a rewrite in dart than trying to fix what
