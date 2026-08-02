@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.11.0 - 2026-08-02
+
+### Changed
+
+- **Breaking**: Ported the `{% icon %}` Liquid tag from Font Awesome to Line Awesome (bundled with jekyll-bulma). Icon names now use the `la-` prefix instead of `fa-`, e.g. `{% icon la-camera-retro %}` instead of `{% icon fa-camera-retro %}`.
+
+## 0.10.0 - 2026-08-02
+
+### Changed
+
+- Updated all dependencies; now requires Jekyll ~> 4.4.
+- Switched the bundled CSS/theme from jekyll-bootflat to [jekyll-bulma](https://github.com/jekyll-octopod/jekyll-bulma).
+
 ## 0.9.23 - 2020-04-25
 
 ### Fixed

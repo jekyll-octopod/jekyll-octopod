@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'facets', '~> 3.2'
   s.add_dependency 'jekyll', '~> 4.4'
-  s.add_dependency 'jekyll-bulma', '~> 1.0'
+  s.add_dependency 'jekyll-bulma', '~> 1.0.2'
   s.add_development_dependency 'rspec', '~> 3.13'
   s.add_dependency 'jekyll-admin', '~> 0.12'
   s.add_dependency 'kramdown-parser-gfm', '~> 1.1'
