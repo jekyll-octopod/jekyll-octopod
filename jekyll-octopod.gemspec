@@ -19,10 +19,10 @@ Gem::Specification.new do |s|
   s.executables = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 
-  s.add_dependency 'facets', '~> 3.1'
-  s.add_dependency 'jekyll', '~> 4.0'
-  s.add_dependency 'jekyll-bootflat', '~> 0.3.2'
-  s.add_development_dependency 'rspec', '~> 3.9'
-  s.add_dependency 'jekyll-admin', '~> 0.10'
+  s.add_dependency 'facets', '~> 3.2'
+  s.add_dependency 'jekyll', '~> 4.4'
+  s.add_dependency 'jekyll-bulma', '~> 1.0'
+  s.add_development_dependency 'rspec', '~> 3.13'
+  s.add_dependency 'jekyll-admin', '~> 0.12'
   s.add_dependency 'kramdown-parser-gfm', '~> 1.1'
 end

@@ -2,7 +2,7 @@
 
 This is the first time I (Stefan) writes down some thoughts on the future of jekyll-octopod,
 so let's see, how this turns out. Maybe RFC would be a better title for this, so please send
-comments to mailto:stefan@panoptikum.io and include a statement, if they may be included here,
+comments to mailto:stefan@panoptikum.social and include a statement, if they may be included here,
 so that other people could read them as well.
 
 ## Current issues
