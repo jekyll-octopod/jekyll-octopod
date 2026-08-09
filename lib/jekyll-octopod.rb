@@ -1,4 +1,3 @@
-require "jekyll/flattr_filters"
 require "jekyll/octopod_filters"
 require "jekyll/line_awesome"
 require "jekyll/paged_feed_page"

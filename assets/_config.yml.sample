@@ -49,14 +49,6 @@ itunes_url: https://itunes.apple.com/at/podcast/myname/id232323
 #  torrent_m4a: http://bitlove.org/example_user/example_podcast_m4a/feed
 #  torrent_mp3: http://bitlove.org/example_user/example_podcast_mp3/feed
 
-### Flattr config, optional
-flattr_uid: # Flattr will not be used unless this is set
-flattr_button: compact # compact | default
-flattr_mode: auto # auto | manual
-flattr_popout:  1 # 1 | 0 (show popout when hovering mouse over button)
-flattr_language: en_GB # available languages see https://api.flattr.com/rest/v2/languages.txt
-flattr_category: audio # available categories see https://api.flattr.com/rest/v2/categories.txt
-
 ### Disqus comments
 disqus_shortname: # Disqus will not be used unless this is set
 disqus_developer: 0 # 1 | 0

@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.12.0 - 2026-08-09
+
+### Removed
+
+- **Breaking**: Removed Flattr integration (Flattr shut down in 2023). Deleted the `flattr_button`, `flattr_loader_options`, `flattr_rss`, and `flattr_atom` Liquid filters (`lib/jekyll/flattr_filters.rb`), the `flattr_loader.html` include, and all `flattr_*` `_config.yml` keys. Sites still setting `flattr_uid` etc. can remove those keys; the filter calls in `sidebar.html`, `post.html`, `feed.xml`, `general_feed.xml`, and the `default.html`/`with_twitter_card.html` layouts are gone, so no template changes are needed on the consuming site's side.
+
+## 0.11.1 - 2026-08-02
+
+### Fixed
+
+- Fixed a `_site/episodes.*.rss` destination-conflict warning on `jekyll build`/`serve`: the on-disk feed marker files (`assets/episodes.mp3.rss` etc.) and `paged_feed_page_generator.rb`'s generated pages both targeted the same output path. `update_config.rb` now excludes the marker files via `site.exclude` so the generator remains the sole writer.
+
 ## 0.11.0 - 2026-08-02
 
 ### Changed

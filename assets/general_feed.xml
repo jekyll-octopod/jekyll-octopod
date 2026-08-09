@@ -34,7 +34,6 @@ layout: null
                 href="{{ site.url }}/episodes/{{ file.last }}"/>    
         {% endif %}
       {% endfor %}
-      {{ site | flattr_atom:post }}
     </entry>
   {% endfor %}
 </feed>

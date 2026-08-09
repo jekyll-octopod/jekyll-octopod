@@ -83,20 +83,8 @@ with
 ```
 
 
-### 4. Remove Flattr buttons
-
-* delete in _config.yml
-```
-flattr_uid: # Flattr will not be used unless this is set
-flattr_button: compact # compact | default
-flattr_mode: auto # auto | manual(default)
-flattr_popout:  1 # 1 | 0 (show popout when hovering mouse over button)
-flattr_language: en_GB # available languages - https://api.flattr.com/rest/v2/languages.txt
-flattr_category: audio # available categories - https://api.flattr.com/rest/v2/categories.txt
-```
-
 Finally,  rebuild, test the site locally and deploy your site as usual.
 
-Yes, I anbandomed comments and Flattr integration that way, but the decrease in load time of my
-page made more than up for that. And neither of these features were used, anyways ;-(, my listeners
+Yes, I anbandomed comments that way, but the decrease in load time of my
+page made more than up for that. That feature wasn't used, anyways ;-(, my listeners
 tend to prefer to comment via email.
