@@ -259,7 +259,7 @@ module Jekyll
       list = []
       list << pages.map { |p|
         active = (p.url == page['url']) || (page.key?('next') && File.join(p.dir, p.basename) == '/index')
-        navigation_list_item(File.join(site['url'], p.url), p.data['title'], active)
+        navbar_item(File.join(site['url'], p.url), p.data['title'], active)
       }
       list.join("\n")
     end
@@ -283,6 +283,16 @@ module Jekyll
     end
 
     def navigation_list_item(url, title, active = false)
+      a_class = active ? ' class="active"' : ''
+      %Q{<li#{a_class}><a #{a_class} href="#{url}">#{title}</a></li>}
+    end
+
+    # Bulma's navbar has no <ul>/<li> wrapper - navbar-item links sit as flat
+    # children of .navbar-start/.navbar-end, with the active state expressed
+    # as a class on the <a> itself. Kept separate from navigation_list_item,
+    # which other callers (e.g. jekyll-octopod.github.io's documentation_list
+    # plugin) rely on for real <li> list items inside an actual <ol>/<ul>.
+    def navbar_item(url, title, active = false)
       a_class = active ? ' is-active' : ''
       %Q{<a class="navbar-item#{a_class}" href="#{url}">#{title}</a>}
     end

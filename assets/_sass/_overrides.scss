@@ -1,3 +1,12 @@
+// Use the bundled Ubuntu webfont (assets/css/ubuntu.css, assets/fonts/ubuntu/) as the site's
+// body font instead of jekyll-bulma's own default font stack. This file shadows jekyll-bulma's
+// own _sass/_overrides.scss entirely (theme vs. site file, same name, whole-file precedence, not
+// merged) so the theme's own Ubuntu default never reaches a site created via `octopod setup`
+// unless it's set here too.
+:root {
+  --bulma-body-family: Ubuntu, Helvetica, Arial, sans-serif;
+}
+
 // Improve visibility of subtitles and similar text by increasing contrast
 h1 small, h2 small, h3 small {
   color: #77778C;
