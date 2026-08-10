@@ -1,5 +1,28 @@
 # Changelog
 
+## 0.14.0 - 2026-08-10
+
+### Changed
+
+- Updated the bundled Podigee Podcast Player (`assets/podigee-player/`) to the latest version served
+  from Podigee's CDN: `podigee-podcast-player.html`, `javascripts/podigee-podcast-player.js` and
+  `-embed.js`, `stylesheets/app.css`, the icon font (`fonts/podigee-podcast-player.*`), and the
+  `default`/`default-dark`/`legacy`/`minimal` theme templates. The `default` theme in particular is
+  now considerably richer (search, transcripts, Chromecast, playlist, speed selector, share panel)
+  than the ~2018 snapshot that was vendored before. Precompressed `.gz` variants regenerated to match.
+
+### Removed
+
+- **Breaking**: Dropped support for the `republica` Podigee player theme. Podigee discontinued it
+  upstream — it's gone from their current source tree and CDN (`403` on every path checked). Removed
+  from `PLAYER_THEMES` in `lib/jekyll/podigee_player_tag.rb`, from the `player_theme` comment in
+  `assets/_config.yml.sample`, and deleted the vendored `assets/podigee-player/themes/republica/`
+  files. Sites with `player_theme: republica` set will fall back to the `default` theme.
+- Removed the obsolete `themes/*/variables.css` files (default, default-dark, legacy). The current
+  Podigee build consolidated per-theme variables into a single `index.css` per theme; the separate
+  `variables.css` split no longer exists upstream (`403` on the CDN for all themes, not just
+  `republica`).
+
 ## 0.13.0 - 2026-08-10
 
 ### Changed

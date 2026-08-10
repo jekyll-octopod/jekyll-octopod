@@ -15,7 +15,7 @@ keywords: [octopod, podcast, magic]
 itunes_categories: [Technology]
 episodes_per_feed_page: 100
 
-player_theme: default # default | "default-dark" | legacy | minimal | republica
+player_theme: default # default | "default-dark" | legacy | minimal
 
 ### Date can be localized via date_de.rb plugin, you don't need to change this
 date_format: ordinal

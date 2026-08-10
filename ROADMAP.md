@@ -25,18 +25,19 @@ There are several issues, that I see with jekyll-octopod that could be fixed:
    framework called [Bulma](https://bulma.io) and already created a jekyll theme for this
    [jekyll-bulma](https://github.com/jekyll-octopod/jekyll-bulma), that I use on my
    [homepage](https://informatom.com) already. This new theme can be used as a basis for the Asset
-   gem mentioned in 1.~~
+   gem mentioned in 1.~~  
    **Done (2026-08-10):** Bootflat and Bootstrap have been successfully replaced by
    [Bulma](https://bulma.io) via [jekyll-bulma](https://github.com/jekyll-octopod/jekyll-bulma)
    across jekyll-octopod, its demo site, and consuming sites.
 
-3. Web Player:
+3. ~~Web Player:
    We having been using Podigee Web Player now for a while, and it works nicely. (Props to the nice
    guys from Podigee, whom I highly appreciate.) Nevertheless, meanwhile I would prefer the
    [Podlove Web Player](https://podlove.org/podlove-web-player/), that could remember the position
    where you left it, but it would introduce a cookie for that - which we didn't use up to now,
    so you should add an extra comment in your data privacy statement then to explain that cookie.
-   The cookie wouldn't be evaluated at the server, nevertheless.
+   The cookie wouldn't be evaluated at the server, nevertheless.~~  
+   **Changed (2026-08-10):** Updated Podigee Web Player to it's latest version.
 
 4. Ruby dependency:
    I don't really see a way around this, though I see people struggling with getting Ruby working

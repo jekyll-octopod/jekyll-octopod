@@ -1,7 +1,7 @@
 module Jekyll
   class PodigeePlayerTag < Liquid::Tag
     # From here: https://github.com/podigee/podigee-podcast-player/tree/master/src/themes
-    PLAYER_THEMES = ["default", "default-dark", "legacy", "minimal", "republica"]
+    PLAYER_THEMES = ["default", "default-dark", "legacy", "minimal"]
 
     def playerconfig(context)
       config = context.registers[:site].config

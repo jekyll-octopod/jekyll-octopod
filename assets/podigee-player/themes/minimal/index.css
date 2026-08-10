@@ -5,12 +5,14 @@
   height: 50px;
   min-width: 100%;
   position: relative;
-  width: 1px; }
+  width: 1px;
+}
 
 .custom-podcast-player .info,
 .custom-podcast-player .controls {
   position: relative;
-  z-index: 1; }
+  z-index: 1;
+}
 
 .custom-podcast-player .info {
   font-size: 16px;
@@ -19,18 +21,21 @@
   left: 60px;
   overflow: hidden;
   position: absolute;
-  top: 15px; }
+  top: 15px;
+}
 
 .custom-podcast-player .controls {
   height: 50px;
   position: absolute;
   top: 0;
-  width: 50px; }
+  width: 50px;
+}
 
 .custom-podcast-player .controls .play-button {
   font-size: 34px;
   line-height: 50px;
-  padding: 0 10px; }
+  padding: 0 10px;
+}
 
 .custom-podcast-player .progress-bar {
   height: 100%;
@@ -38,18 +43,21 @@
   position: absolute;
   top: 0;
   width: 100%;
-  z-index: 0; }
+  z-index: 0;
+}
 
 .custom-podcast-player .progress-bar .progress-bar-time-player {
   display: none;
-  width: 0; }
+  width: 0;
+}
 
 .custom-podcast-player .progress-bar .progress-bar-rail {
   background-color: #ddd;
   height: 100%;
   position: absolute;
   top: 0;
-  width: 100%; }
+  width: 100%;
+}
 
 .custom-podcast-player .progress-bar .progress-bar-played,
 .custom-podcast-player .progress-bar .progress-bar-loaded {
@@ -58,8 +66,10 @@
   height: 100%;
   position: absolute;
   top: 0;
-  width: 0; }
+  width: 0;
+}
 
 .custom-podcast-player .progress-bar .progress-bar-loaded {
   background-color: #aaa;
-  display: none; }
+  display: none;
+}
