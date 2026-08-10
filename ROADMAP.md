@@ -49,4 +49,4 @@ There are several issues, that I see with jekyll-octopod that could be fixed:
    I feel a bit of fatigue, maintaining Jekyll Octopod now for 28 months. So if anybody of you
    want's to take over as a maintainer, now would be a good point in time. :-)~~
    **Update (2026-08-10):** with the help of Claude, an update of jekyll-octopod is in heavy
-   development (also as of today).
+   development.
