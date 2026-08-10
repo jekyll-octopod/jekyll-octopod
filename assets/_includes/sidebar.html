@@ -1,8 +1,8 @@
 <div class="block">
-  <p class="title is-4">
+  <h3 class="title is-4">
     {{ site.title }}
-  </p>
-  {% if site.subtitle %}<p class="subtitle is-6">{{ site.subtitle }}</p>{% endif %}
+  </h3>
+  {% if site.subtitle %}<h4 class="subtitle is-6">{{ site.subtitle }}</h4>{% endif %}
 </div>
 
 <p class="has-text-centered">
@@ -42,7 +42,7 @@
 
 <hr/>
 
-<p class="title is-5">RSS-Feeds</p>
+<h4 class="title is-5">RSS-Feeds</h4>
 
 <ol type="i">
   {% for feed in site['episode_feed_formats'] %}
@@ -50,7 +50,7 @@
   {% endfor %}
 </ol>
 
-<p class="title is-5">JSON-Feeds</p>
+<h4 class="title is-5">JSON-Feeds</h4>
 
 <ol type="i">
   {% for jsonfeed in site['json_feed_formats'] %}
@@ -58,7 +58,7 @@
   {% endfor %}
 </ol>
 
-<p class="title is-5">Directories</p>
+<h4 class="title is-5">Directories</h4>
 
 <ol type="i">
   {% if site.itunes_url %}
@@ -78,13 +78,13 @@
   {% endif %}
 </ol>
 
-<p class="title is-5">Credits</p>
+<h4 class="title is-5">Credits</h4>
 
 <ul>
   <li>Music: <a href="http://www.bensound.com/royalty-free-music">Bensound</a></li>
 </ul>
 
-<p class="title is-5">License</p>
+<h4 class="title is-5">License</h4>
 
 {% if site.license_url %}
   <a rel="license" href="{{ site.license_url }}">

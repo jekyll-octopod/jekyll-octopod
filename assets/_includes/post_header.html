@@ -1,17 +1,17 @@
 <div class="block">
   <h1 class="title">
     <a class='episode_title' href='{{ site.url }}{{ post.url }}#{{ post.id | sha1:8 }}'>{{ post.title }}</a>
-    <span class='subtitle episode_date'>
-      {% if site.language == "de" %}
-        {{ post.date | full_date_de }}
-      {% else %}
-        {% if post.datum %}
-          {{ post.datum }}
-        {% else %}
-          {{ post.date }}
-        {% endif %}
-      {% endif %}
-    </span>
-    {% if post.subtitle %}<span class="subtitle">{{ post.subtitle }}</span>{% endif %}
   </h1>
+  <h2 class='subtitle episode_date'>
+    {% if site.language == "de" %}
+      {{ post.date | full_date_de }}
+    {% else %}
+      {% if post.datum %}
+        {{ post.datum }}
+      {% else %}
+        {{ post.date }}
+      {% endif %}
+    {% endif %}
+  </h2>
+  {% if post.subtitle %}<h2 class="subtitle">{{ post.subtitle }}</h2>{% endif %}
 </div>
