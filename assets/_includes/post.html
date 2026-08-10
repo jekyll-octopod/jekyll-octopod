@@ -2,27 +2,27 @@
 {% elsif page %}
   {% assign post = page %}
 {% endif %}
-<section id="{{ post.id | sha1:8 }}" class="active">
+<section id="{{ post.id | sha1:8 }}">
   {% include post_header.html %}
 
   {{ post.content }}
     {% if post.audio %}
       {% for file in post.audio %}
         {% if post.filesize %}
-          <a class="btn btn-info" 
+          <a class="button is-info"
           href="{{ site | download_url_with_fallback }}/{{ file.last }}">Download .{{ file.first }} ({{ post | size_by_format: file.first | in_megabytes }})</a>
         {% else %}
-          <a class="btn btn-info" 
+          <a class="button is-info"
             href="{{ site | download_url_with_fallback }}/{{ file.last }}">Download .{{ file.first }} ({{ file.last | file_size:'./' | string_of_size }})</a>
         {% endif %}
       {% endfor %}
     {% endif %}
   <hr>
   <a href="https://twitter.com/share"
-     class="button btn-primary btn-sm"
+     class="button is-primary is-small"
      data-url="{{ site.url }}{{post.url }}"
      data-text="{{ post.title }}">
-    <i class="fab fa-twitter"></i> Tweet</a>
+    <i class="lab la-twitter"></i> Tweet</a>
   {% unless page.url == '/index.html' %}{% include disqus_thread.html %}{% endunless %}
   {% unless page.url == '/index.html' %}{% include isso_thread.html %}{% endunless %}
   <hr>

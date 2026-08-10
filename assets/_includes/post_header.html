@@ -1,7 +1,7 @@
-<div class="page-header">
-  <h1>
+<div class="block">
+  <h1 class="title">
     <a class='episode_title' href='{{ site.url }}{{ post.url }}#{{ post.id | sha1:8 }}'>{{ post.title }}</a>
-    <small class='episode_date'>
+    <span class='subtitle episode_date'>
       {% if site.language == "de" %}
         {{ post.date | full_date_de }}
       {% else %}
@@ -11,7 +11,7 @@
           {{ post.date }}
         {% endif %}
       {% endif %}
-    </small> <br />
-    <small>{{ post.subtitle }}</small>
+    </span>
+    {% if post.subtitle %}<span class="subtitle">{{ post.subtitle }}</span>{% endif %}
   </h1>
 </div>

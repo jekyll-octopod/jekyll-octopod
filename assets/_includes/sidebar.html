@@ -1,74 +1,71 @@
-<div class="page-header">
-  <h3>
+<div class="block">
+  <p class="title is-4">
     {{ site.title }}
-    {% if site.subtitle %}<br/><small>{{ site.subtitle }}</small>{% endif %}
-  </h3>
+  </p>
+  {% if site.subtitle %}<p class="subtitle is-6">{{ site.subtitle }}</p>{% endif %}
 </div>
 
-<p class="text-center">
+<p class="has-text-centered">
   <img width="200px" src="{{ site.url }}/img/logo-360x360.png" alt="{{ site.title }} logo">
 </p>
 
 {% if site.description %}<p>{{ site.description }}</p>{% endif %}
 
-  <script class="podlove-subscribe-button"
-          src="/subscribe-button/javascripts/app.js"
-          data-language="{{ site.language }}"
-          data-size="medium auto"
-          data-style="filled"
-          data-json-data="podcastData"
-          data-colors="#FC6E51;green;blue">
-  </script>
+<script class="podlove-subscribe-button"
+        src="/subscribe-button/javascripts/app.js"
+        data-language="{{ site.language }}"
+        data-size="medium auto"
+        data-style="filled"
+        data-json-data="podcastData"
+        data-colors="#FC6E51;green;blue">
+</script>
 
-  <script>
-    window.podcastData = {
-      "title": "{{ site['title']}}",
-      "subtitle": "{{ site['subtitle']}}",
-      "description": "{{ site['description']}}",
-      "cover": "{{ site.url }}/img/logo-360x360.png",
-      "feeds": [
-      {% for feed in site['episode_feed_formats'] %}
-        {
-          "type": "audio",
-          "format": "{{ feed }}",
-          "url": "{{ site['url']}}/episodes.{{ feed }}.rss",
-          "directory-url-itunes": "{{ site['itunes_url']}}",
-          "variant": "high"
-        },
-      {% endfor %}
-      ]
-    }
-  </script>
-</p>
+<script>
+  window.podcastData = {
+    "title": "{{ site['title']}}",
+    "subtitle": "{{ site['subtitle']}}",
+    "description": "{{ site['description']}}",
+    "cover": "{{ site.url }}/img/logo-360x360.png",
+    "feeds": [
+    {% for feed in site['episode_feed_formats'] %}
+      {
+        "type": "audio",
+        "format": "{{ feed }}",
+        "url": "{{ site['url']}}/episodes.{{ feed }}.rss",
+        "directory-url-itunes": "{{ site['itunes_url']}}",
+        "variant": "high"
+      },
+    {% endfor %}
+    ]
+  }
+</script>
 
 <hr/>
 
-<h4>RSS-Feeds</h4>
+<p class="title is-5">RSS-Feeds</p>
 
 <ol type="i">
   {% for feed in site['episode_feed_formats'] %}
-    <li><a href="{{ site['url']}}/episodes.{{ feed }}.rss"><i class="fa fa-rss"></i> {{ feed }}-RSS-Feed</a></li>
+    <li><a href="{{ site['url']}}/episodes.{{ feed }}.rss"><i class="las la-rss"></i> {{ feed }}-RSS-Feed</a></li>
   {% endfor %}
 </ol>
 
-<h4>JSON-Feeds</h4>
+<p class="title is-5">JSON-Feeds</p>
 
 <ol type="i">
   {% for jsonfeed in site['json_feed_formats'] %}
-    <li><a href="{{ site['url']}}/feed.{{ jsonfeed }}.json"><i class="fa fa-rss-square"></i> {{ jsonfeed }}-JSON-Feed</a></li>
+    <li><a href="{{ site['url']}}/feed.{{ jsonfeed }}.json"><i class="las la-rss-square"></i> {{ jsonfeed }}-JSON-Feed</a></li>
   {% endfor %}
 </ol>
 
-
-
-<h4>Directories</h4>
+<p class="title is-5">Directories</p>
 
 <ol type="i">
   {% if site.itunes_url %}
-    <li>in Apple-<a href="{{ site.itunes_url }}"><i class="fab fa-apple"></i> Itunes</a></li>
+    <li>in Apple-<a href="{{ site.itunes_url }}"><i class="lab la-apple"></i> Itunes</a></li>
   {% endif %}
   {% if site.google_play_url %}
-    <li>in <a href="{{ site.google_play_url }}"><i class="fab fa-google-play"></i>Google Play</a></li>    
+    <li>in <a href="{{ site.google_play_url }}"><i class="lab la-google-play"></i>Google Play</a></li>
   {% endif %}
   {% if site.bitlove_url %}
     <li>as Torrents at <a href="{{ site.bitlove_url }}"><img src="https://bitlove.org/static/favicon.png"/> Bitlove</a></li>
@@ -81,14 +78,13 @@
   {% endif %}
 </ol>
 
-
-<h4>Credits</h4>
+<p class="title is-5">Credits</p>
 
 <ul>
   <li>Music: <a href="http://www.bensound.com/royalty-free-music">Bensound</a></li>
 </ul>
 
-<h4>License</h4>
+<p class="title is-5">License</p>
 
 {% if site.license_url %}
   <a rel="license" href="{{ site.license_url }}">
@@ -104,8 +100,8 @@
 
 {% if site.twitter_nick %}
   <a href="https://twitter.com/{{ site.twitter_nick }}"
-     class="button btn-primary btn-sm"
+     class="button is-primary is-small"
      data-show-count="false">
-    <i class="fab fa-twitter"></i>Follow @{{ site.twitter_nick }}
+    <i class="lab la-twitter"></i>Follow @{{ site.twitter_nick }}
   </a>
 {% endif %}

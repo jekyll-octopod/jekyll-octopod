@@ -74,7 +74,7 @@ def ok_failed(condition)
 end
 
 def write_file?(filename)
-  if File.exists?(filename)
+  if File.exist?(filename)
     unless ["Y","N"].include?(@answer)
       puts ""
       @answer = ask("File '#{filename}' already exists. Overwrite? Capitalized answer for ALL files.", ['y', 'Y', 'n', 'N'])
@@ -88,10 +88,10 @@ end
 def copy_file_or_create_dir(file)
   filename = file.split(GEM_DIR + "/assets")[1]
   if File.directory?(file)
-    FileUtils.mkdir(PWD + filename, {verbose: true}) unless File.exists?(PWD + filename)
+    FileUtils.mkdir(PWD + filename, verbose: true) unless File.exist?(PWD + filename)
   else
     if write_file?(PWD + filename)
-      FileUtils.cp(file, PWD + filename, {verbose: true})
+      FileUtils.cp(file, PWD + filename, verbose: true)
     end
   end
 end
@@ -210,7 +210,7 @@ if ARGV.size > 0 && (ARGV[0] == 'episode' || ARGV[0] == 'deploy' || ARGV[0] == '
       post.puts "## Shownotes and Links\n\n* Note"
     end
 
-    puts "Created new episode: #{filename}" if File.exists?(filename)
+    puts "Created new episode: #{filename}" if File.exist?(filename)
 
   when 'deploy'
     opts = OptionParser.new do |opts|
@@ -236,7 +236,7 @@ if ARGV.size > 0 && (ARGV[0] == 'episode' || ARGV[0] == 'deploy' || ARGV[0] == '
 
     options['public_dir'] = ARGV[1] ? ARGV[1] : File.join(PWD, '_site')
     exclude = ""
-    if File.exists?('./rsync-exclude')
+    if File.exist?('./rsync-exclude')
       exclude = "--exclude-from '#{File.expand_path('./rsync-exclude')}'"
     end
     puts "## Deploying website via Rsync"
@@ -248,9 +248,9 @@ if ARGV.size > 0 && (ARGV[0] == 'episode' || ARGV[0] == 'deploy' || ARGV[0] == '
     ok_failed system(rsync_command)
 
   when 'setup'
-    unless File.exists?(PWD + '/_config.dist_backup.yml')
+    unless File.exist?(PWD + '/_config.dist_backup.yml')
       puts "", "===== Creating a backup of the configuration file ... ====="
-      FileUtils.cp(PWD + '/_config.yml', PWD + '/_config.dist_backup.yml', {verbose: true})
+      FileUtils.cp(PWD + '/_config.yml', PWD + '/_config.dist_backup.yml', verbose: true)
       puts "===== ... done ===== ", ""
     end
 
@@ -268,7 +268,7 @@ if ARGV.size > 0 && (ARGV[0] == 'episode' || ARGV[0] == 'deploy' || ARGV[0] == '
     end
 
     if write_file?(PWD + "/_config.yaml")
-      FileUtils.cp(GEM_DIR + "/assets/_config.yml.sample", PWD + "/_config.yml", {verbose: true})
+      FileUtils.cp(GEM_DIR + "/assets/_config.yml.sample", PWD + "/_config.yml", verbose: true)
     end
     puts "===== ... done ===== ", ""
   end

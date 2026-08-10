@@ -283,8 +283,8 @@ module Jekyll
     end
 
     def navigation_list_item(url, title, active = false)
-      a_class = active ? ' class="active"' : ''
-      %Q{<li#{a_class}><a #{a_class} href="#{url}">#{title}</a></li>}
+      a_class = active ? ' is-active' : ''
+      %Q{<a class="navbar-item#{a_class}" href="#{url}">#{title}</a>}
     end
 
     # Returns an array of all episode feeds named by the convetion

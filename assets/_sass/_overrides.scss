@@ -3,7 +3,7 @@ h1 small, h2 small, h3 small {
   color: #77778C;
 }
 
-btn small, .btn small {
+.button small {
   color: #2A2A2A;
 }
 
@@ -15,41 +15,17 @@ btn small, .btn small {
 // Theme for the Swiss-Sided Dice podcast, red and white based on the Swiss flag - commented out for now, until a better solution can be found
 
 /*
-// Main navbar background
-.navbar-default {
-  background-color: #E11A27;
-}
-
-// Hovering over navbar links, keep the text white, but add darker background
-.navbar-default .navbar-nav > .active > a,
-.navbar-default .navbar-nav > .active > a:hover,
-.navbar-default .navbar-nav > .active > a:focus,
-.navbar-default .navbar-nav > li > a {
-  color: #FFF;
-  background-color: #E11A27;
-}
-
-// The "brand" / podcast title doesn't change on hover, but does keep the text white
-.navbar-default .navbar-brand, .navbar-default .navbar-brand:hover {
-  color: #FFF;
-}
-
-// This is for the menu button on narrow screens
-.navbar-default .navbar-toggle {
-  background-color: #E11A27;
-  border-color: #FFF;
-}
-
-.navbar-default .navbar-toggle .icon-bar {
-  background-color: #FFF;
-}
-
-// Darker background, keep rest white
-.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus,
-.navbar-default .navbar-nav > li > a:hover {
-  background-color: #A5131D;
-  border-color: #FFF;
-  color: #FFF;
+// Bulma's navbar reads its colors from CSS custom properties scoped on .navbar,
+// so a single block covers the background plus the hue/saturation/lightness
+// triple it derives hover, active and dropdown shading from - no separate
+// hover/toggle overrides needed the way Bootstrap required.
+.navbar {
+  --bulma-navbar-background-color: #E11A27;
+  --bulma-navbar-h: 356deg;
+  --bulma-navbar-s: 87%;
+  --bulma-navbar-l: 45%;
+  --bulma-navbar-item-color: #FFF;
+  --bulma-navbar-burger-color: #FFF;
 }
 
 // Links and buttons in the website are a dark red for best contrast, but get lightened on hover for feedback
@@ -59,10 +35,10 @@ a {
 a:hover {
   color: #EF3743;
 }
-.btn-primary {
+.button.is-primary {
   background-color: #CF000F;
 }
-.btn-primary:hover, .btn-primary:focus {
+.button.is-primary:hover, .button.is-primary:focus {
   background-color: #EF3743;
 }
 */
