@@ -1,5 +1,28 @@
 # Changelog
 
+## 0.15.0 - 2026-08-10
+
+### Changed
+
+- **Breaking**: Replaced the Podigee Web Player with the [Podlove Web Player](https://podlove.org/podlove-web-player/)
+  (`@podlove/web-player` 5.13.0, self-hosted from `assets/podlove-player/` — no external CDN). The
+  `{% podigee_player %}` Liquid tag is gone; use `{% podlove_player %}` instead (same no-argument
+  usage). `assets/podigee-player/` and `lib/jekyll/podigee_player_tag.rb` are removed, along with the
+  `player_theme` config option (`assets/_config.yml.sample`) — Podlove v5 has no equivalent named-theme
+  concept, so there's nothing to configure there.
+- Sites still using the old `{% podigee_player page %}` syntax in post bodies (the `page` argument was
+  always silently ignored by both the old and new tag) need to update to `{% podlove_player %}`.
+
+### Fixed
+
+- `PodcastPlayerPage` (the generator behind the standalone `/players/<slug>` pages, used for e.g.
+  Twitter Card player embeds) never copied a post's `filesize` or `date` over to the generated page.
+  This never mattered for the old Podigee integration, which didn't need either, but the new Podlove
+  tag needs both (`audio[].size` and `publicationDate` are required fields in its config schema) — so
+  audio downloads without explicit `filesize` front matter would have crashed trying to stat a
+  nonexistent local file, and every publication date would have rendered empty. Both are now copied
+  over correctly.
+
 ## 0.14.0 - 2026-08-10
 
 ### Changed

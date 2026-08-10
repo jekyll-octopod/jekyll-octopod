@@ -1,8 +1,10 @@
 title: Octopod
 url: http://localhost:4000
 
-### download_url: is needed, if and only if audio files are hosted in a different location, it is the path of the directory where the audio files are stored
-download_url: "http://your.fancy.hosting/episodes"
+### download_url: only needed if audio files are hosted in a different location than this site;
+### it is the path of the directory where the audio files are stored. Leave commented out to use
+### the default (this site's own url + /episodes).
+# download_url: "http://your.fancy.hosting/episodes"
 subtitle: Static Site Podcast Publishing for Geeks
 description: My super duper cool podcast.
 author: Uncle Octopod
@@ -14,8 +16,6 @@ email: octopod@example.com
 keywords: [octopod, podcast, magic]
 itunes_categories: [Technology]
 episodes_per_feed_page: 100
-
-player_theme: default # default | "default-dark" | legacy | minimal
 
 ### Date can be localized via date_de.rb plugin, you don't need to change this
 date_format: ordinal

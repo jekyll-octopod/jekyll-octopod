@@ -1,0 +1,49 @@
+/*!
+  * @intlify/core-base v9.1.7
+  * (c) 2021 kazuya kawaguchi
+  * Released under the MIT License.
+  */
+
+/*!
+  * @intlify/devtools-if v9.1.7
+  * (c) 2021 kazuya kawaguchi
+  * Released under the MIT License.
+  */
+
+/*!
+  * @intlify/runtime v9.1.7
+  * (c) 2021 kazuya kawaguchi
+  * Released under the MIT License.
+  */
+
+/*!
+  * @intlify/vue-devtools v9.1.7
+  * (c) 2021 kazuya kawaguchi
+  * Released under the MIT License.
+  */
+
+/*!
+ * Programatically add the following
+ */
+
+/*!
+ * get-value <https://github.com/jonschlinkert/get-value>
+ *
+ * Copyright (c) 2014-2018, Jon Schlinkert.
+ * Released under the MIT License.
+ */
+
+/*!
+ * isobject <https://github.com/jonschlinkert/isobject>
+ *
+ * Copyright (c) 2014-2017, Jon Schlinkert.
+ * Released under the MIT License.
+ */
+
+/*! @license DOMPurify 3.0.8 | (c) Cure53 and other contributors | Released under the Apache license 2.0 and Mozilla Public License 2.0 | github.com/cure53/DOMPurify/blob/3.0.8/LICENSE */
+
+/*! creation: 2024-12-07T13:06:45.605Z revision: dd0459fe638811edc210f44e36882724d36055f8 name: @podlove/player version: 5.13.0 */
+
+/*!@license Copyright 2013, Heinrich Goebl, License: MIT, see https://github.com/hgoebl/mobile-detect.js*/
+
+/*!mobile-detect v1.4.4 2019-09-21*/

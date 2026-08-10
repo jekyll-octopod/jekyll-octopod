@@ -206,7 +206,7 @@ if ARGV.size > 0 && (ARGV[0] == 'episode' || ARGV[0] == 'deploy' || ARGV[0] == '
       post.puts 'It is only necessary for hosting remotely.'
       post.puts '-->'
       post.puts 
-      post.puts "{% podigee_player page %}\n\n"
+      post.puts "{% podlove_player %}\n\n"
       post.puts "## Shownotes and Links\n\n* Note"
     end
 

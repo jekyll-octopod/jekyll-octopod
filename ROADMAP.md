@@ -37,7 +37,8 @@ There are several issues, that I see with jekyll-octopod that could be fixed:
    where you left it, but it would introduce a cookie for that - which we didn't use up to now,
    so you should add an extra comment in your data privacy statement then to explain that cookie.
    The cookie wouldn't be evaluated at the server, nevertheless.~~  
-   **Changed (2026-08-10):** Updated Podigee Web Player to it's latest version.
+   **Done (2026-08-10):** Replaced the Podigee Web Player with the
+   [Podlove Web Player](https://podlove.org/podlove-web-player/), self-hosted (no external CDN).
 
 4. Ruby dependency:
    I don't really see a way around this, though I see people struggling with getting Ruby working
