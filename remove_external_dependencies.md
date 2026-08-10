@@ -51,9 +51,9 @@ with
 with
 ```
 <a href="https://twitter.com/{{ site.twitter_nick }}"
-   class="button btn-primary btn-sm"
+   class="button is-primary is-small"
    data-show-count="false">
-  <i class="fa fa-twitter"></i>Follow @{{ site.twitter_nick }}
+  <i class="lab la-twitter"></i>Follow @{{ site.twitter_nick }}
 </a>
 ```
 
@@ -64,10 +64,10 @@ with
 with
 ```
 <a href="https://twitter.com/share"
-   class="button btn-primary btn-sm"
+   class="button is-primary is-small"
    data-url="{{ site.url }}{{post.url }}"
    data-text="{{ post.title }}">
-  <i class="fa fa-twitter"></i> Tweet</a>
+  <i class="lab la-twitter"></i> Tweet</a>
 ```
 
 * in _layouts/default.html (and _layouts/with_twitter_card.html, if it exists) delete

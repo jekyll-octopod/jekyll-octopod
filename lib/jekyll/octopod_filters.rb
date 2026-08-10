@@ -264,24 +264,6 @@ module Jekyll
       list.join("\n")
     end
 
-    def talk_list(site, page)
-      pages = site['pages'].select { |p|
-        p.data['talk'] && p.data['title']
-      }.sort_by { |p| p.data['talk'] }
-
-      list =  ['<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"> Talks <span class="caret"></span>
-                </a><ul class="dropdown-menu">']
-      list << pages.map { |p|
-        active = (p.url == page['url']) || (page.key?('next') && File.join(p.dir, p.basename) == '/index')
-        navigation_list_item(File.join(site['url'], p.url), p.data['title'], active)
-      }
-      list << ['</ul></li>']
-
-      if pages.any?
-        list.join("\n")
-      end
-    end
-
     def navigation_list_item(url, title, active = false)
       a_class = active ? ' class="active"' : ''
       %Q{<li#{a_class}><a #{a_class} href="#{url}">#{title}</a></li>}

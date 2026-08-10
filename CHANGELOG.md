@@ -1,5 +1,49 @@
 # Changelog
 
+## 0.13.0 - 2026-08-10
+
+### Changed
+
+- Ported the remaining installer-copied templates from Bootstrap 3 to Bulma classes and Line Awesome
+  icons, completing the theme migration started in 0.10.0/0.11.0: `assets/_layouts/default.html`,
+  `with_twitter_card.html`, `page.html`, and `assets/_includes/post_header.html`, `post.html`,
+  `sidebar.html`, `disqus_count.html`. Sites created via `octopod setup` now get Bulma-shaped markup
+  (navbar, sidebar box, feed/directory lists, post headers) instead of the old Bootstrap 3 output.
+- **Breaking**: The `navigation_list` Liquid filter's rendered output changed shape. It used to emit
+  Bootstrap-style `<li><a class="active">...</a></li>` items; it now emits flat Bulma navbar items,
+  `<a class="navbar-item is-active">...</a>`, with no `<li>` wrapper — Bulma's navbar has no `<ul>`
+  list structure. Sites with custom navbar markup built around the old `<li>`-wrapped shape will need
+  to adjust. The `navigation_list_item` helper itself is unchanged and still returns `<li>`-wrapped
+  items for callers that need a real list (e.g. a custom `<ol>`/`<ul>` of pages) — only `navigation_list`
+  (the navbar-specific filter) switched to the new `navbar_item` helper internally.
+- Removed the dead `<script>` tag loading MathJax from an external CDN in the installer's example
+  usage; MathJax support itself was already removed from the gem back in 0.9.6 (2018-07-11), this
+  just cleans up a leftover reference.
+
+### Removed
+
+- Removed the `talk_list` Liquid filter (`lib/jekyll/octopod_filters.rb`). It was unused by any
+  bundled template and still built a Bootstrap 3 dropdown menu (`data-toggle="dropdown"`, needs
+  `bootstrap.min.js`, which no longer ships), so it was already broken for any site that did call it.
+
+### Fixed
+
+- `bin/octopod` crashed outright on Ruby 3.2+ (including the 4.0.6 this project now targets):
+  `File.exists?` was used in five places, but that method was removed from modern Ruby (`File.exist?`
+  is the replacement, deprecated since 2.1). Also, several `FileUtils.cp`/`mkdir` calls passed an
+  options hash as a positional third argument (`{verbose: true}`), which newer `FileUtils` no longer
+  accepts — it needs real keyword arguments (`verbose: true`). `octopod setup`, `episode`, and `deploy`
+  all work again as a result.
+- Fixed a typo in `assets/_sass/_overrides.scss` (`btn small, .btn small` — missing a leading dot on
+  the bare `btn` selector, and both were dead since the Bulma port dropped Bootstrap's `.btn` class
+  in favor of `.button`) — now `.button small`.
+- Restored the Ubuntu webfont as the site's body font. It was silently broken by 0.10.0's Sass
+  `@import`→`@use` migration in jekyll-bulma (`$font-family-base` stopped having any effect once Sass
+  variables became module-scoped instead of global) and never actually re-fixed for the current
+  `--bulma-body-family` custom property. Added an active override in `assets/_sass/_overrides.scss`;
+  also updated its commented-out example navbar theme from Bootstrap `.navbar-default` overrides to
+  the Bulma CSS-custom-property equivalent, since the old example no longer matched anything real.
+
 ## 0.12.0 - 2026-08-09
 
 ### Removed
