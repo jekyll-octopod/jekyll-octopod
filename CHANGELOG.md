@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.15.1 - 2026-08-10
+
+### Fixed
+
+- The Podlove Web Player's default theme has no UI element that displays `episode.subtitle`
+  anywhere (verified against the player's own Redux state: the subtitle is correctly received and
+  parsed, it's just never rendered by the stock theme, at any viewport width). `{% podlove_player %}`
+  now folds the subtitle into the title it sends (`"Title - Subtitle"`) as a pragmatic workaround,
+  so it's actually visible. The plain `subtitle` field is still sent alongside it, unused by the
+  default theme today but available if a custom theme (or a future Podlove release) picks it up.
+
 ## 0.15.0 - 2026-08-10
 
 ### Changed

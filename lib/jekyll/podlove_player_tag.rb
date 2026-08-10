@@ -22,8 +22,16 @@ module Jekyll
           title: format }
       end
 
+      # Podlove Web Player v5's default theme has no UI element that displays episode.subtitle
+      # anywhere (verified: absent from the compact header, the chapters panel, and at every
+      # viewport width tested) even though it's correctly present in the player's own Redux
+      # state - a gap in their stock theme, not a data problem on our end. Folding subtitle into
+      # the title that *is* displayed is the pragmatic workaround; the plain subtitle field is
+      # still sent too, in case a future custom theme (or theirs, if they ever fix it) uses it.
+      title = page["subtitle"] ? "#{page["title"]} - #{page["subtitle"]}" : page["title"]
+
       { version: 5,
-        title: page["title"],
+        title: title,
         subtitle: page["subtitle"],
         summary: page["summary"],
         poster: config['url'] + "/img/" + (page["image"] || "logo-360x360.png"),
