@@ -15,7 +15,7 @@ There are several issues, that I see with jekyll-octopod that could be fixed:
    a theme, that is then not really a theme any more, but also the store for the webplayer, subscribe
    button and other assets.
 
-2. CSS Framework:
+2. ~~CSS Framework:
    Bootflat is highly depending on Bootstrap, but not maintained any more, while the 3.x
    Bootstrap version, that we are using, is creating deprecation warnings in some browser's
    development console (I don't remember which one).
@@ -25,7 +25,10 @@ There are several issues, that I see with jekyll-octopod that could be fixed:
    framework called [Bulma](https://bulma.io) and already created a jekyll theme for this
    [jekyll-bulma](https://github.com/jekyll-octopod/jekyll-bulma), that I use on my
    [homepage](https://informatom.com) already. This new theme can be used as a basis for the Asset
-   gem mentioned in 1.
+   gem mentioned in 1.~~
+   **Done (2026-08-10):** Bootflat and Bootstrap have been successfully replaced by
+   [Bulma](https://bulma.io) via [jekyll-bulma](https://github.com/jekyll-octopod/jekyll-bulma)
+   across jekyll-octopod, its demo site, and consuming sites.
 
 3. Web Player:
    We having been using Podigee Web Player now for a while, and it works nicely. (Props to the nice
