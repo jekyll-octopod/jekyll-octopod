@@ -45,6 +45,8 @@ There are several issues, that I see with jekyll-octopod that could be fixed:
    users providing them with just web forms to fill out. But that would mean giving up on
    Jekyll Octopod all together.
 
-5. Fatigue:
+5. ~~Fatigue:
    I feel a bit of fatigue, maintaining Jekyll Octopod now for 28 months. So if anybody of you
-   want's to take over as a maintainer, now would be a good point in time. :-)
+   want's to take over as a maintainer, now would be a good point in time. :-)~~
+   **Update (2026-08-10):** with the help of Claude, an update of jekyll-octopod is in heavy
+   development (also as of today).
