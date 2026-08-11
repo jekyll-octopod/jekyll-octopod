@@ -25,14 +25,25 @@
 # Line Awesome Icons Liquid Tag
 # Documentation can be found at https://icons8.com/line-awesome
 #
+# Line Awesome ships three icon families sharing one glyph namespace: 'las' (solid, the
+# default here), 'lar' (regular/outline) and 'lab' (brands - Twitter, Facebook, Apple, etc.,
+# who only exist in this family). Because all three families' CSS rules carry equal
+# specificity, whichever one is declared last in the compiled stylesheet always wins if more
+# than one is present on the same element - so brand icons render nothing under the default
+# 'las' class, and must explicitly switch families rather than add 'lab' alongside it.
+#
 # Example:
 #    {% icon la-camera-retro %}
 #    {% icon la-camera-retro la-lg %}
 #    {% icon la-spinner la-spin %}
 #    {% icon la-shield la-rotate-90 %}
+#    {% icon la-twitter lab %}     # brand icon: replaces the family, doesn't just add a class
+#    {% icon la-star lar %}        # outline/regular style instead of the default solid
 
 module Jekyll
   class LineAwesomeTag < Liquid::Tag
+
+    ICON_FAMILIES = %w[las lar lab].freeze
 
     def render(context)
       if tag_contents = determine_arguments(@markup.strip)
@@ -47,6 +58,7 @@ Syntax error in tag 'icon' while parsing the following markup:
 Valid syntax:
   for icons: {% icon la-camera-retro %}
   for icons with size/spin/rotate: {% icon la-camera-retro la-lg %}
+  for a non-default family (lar/lab): {% icon la-twitter lab %}
 eos
       end
     end
@@ -59,10 +71,13 @@ eos
     end
 
     def icon_tag(icon_class, icon_extra = nil)
-      if icon_extra.empty?
-        "<i class=\"las #{icon_class}\"></i>"
+      family = ICON_FAMILIES.include?(icon_extra) ? icon_extra : 'las'
+      modifier = ICON_FAMILIES.include?(icon_extra) ? nil : icon_extra
+
+      if modifier.nil? || modifier.empty?
+        "<i class=\"#{family} #{icon_class}\"></i>"
       else
-        "<i class=\"las #{icon_class} #{icon_extra}\"></i>"
+        "<i class=\"#{family} #{icon_class} #{modifier}\"></i>"
       end
     end
   end

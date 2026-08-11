@@ -1,5 +1,35 @@
 # Changelog
 
+## 0.17.2 - 2026-08-11
+
+### Fixed
+
+- `PodcastPlayerPageGenerator` (`lib/jekyll/podcast_player_page_generator.rb`) built each episode's
+  standalone player page at `players/<slug>/index.html` using `post.data['slug']` alone, with no
+  date. That slug is derived purely from the filename's title portion, so two posts can legitimately
+  share one (a recurring "Update"/"Q&A" episode, or two differently-titled posts that happen to share
+  a filename word - found on panoptikum.io: `2017-02-12-search.markdown` and
+  `2017-04-02-search.markdown`). Both resolved to the same destination and one silently vanished from
+  the built site with no error, only a late "destination shared by multiple files" warning from
+  Jekyll itself. Fixed: the earliest post with a given slug keeps the plain `players/<slug>/` path
+  (so nothing changes for the common, non-colliding case); any later post sharing that slug now gets
+  its date appended (`players/<slug>-<YYYYMMDD>/`) instead of being dropped.
+
+## 0.17.1 - 2026-08-11
+
+### Fixed
+
+- The `{% icon %}` tag (`lib/jekyll/line_awesome.rb`) always rendered `class="las ..."` (the
+  solid family), with no way to reach Line Awesome's other two icon families. This silently
+  broke every brand icon (Twitter, Facebook, Apple, Google, Android, etc.) - those glyphs only
+  exist in the `lab` (brands) family, and since `.las`/`.lar`/`.lab` carry equal CSS
+  specificity, whichever is declared last in the compiled stylesheet (`.las`) always won even
+  if `lab` were just added alongside it, not substituted. Surfaced while migrating
+  panoptikum.io's old Font Awesome icon usage over to this tag. The tag's second (optional)
+  argument now switches the whole family when it's exactly `las`, `lar` or `lab`
+  (`{% icon la-twitter lab %}`), falling back to its old behavior (an appended modifier class
+  such as `la-2x` or `la-spin`) for anything else, so existing usage keeps working unchanged.
+
 ## 0.17.0 - 2026-08-11
 
 ### Added
