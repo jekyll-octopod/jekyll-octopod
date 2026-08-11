@@ -1,5 +1,28 @@
 # Changelog
 
+## 0.16.0 - 2026-08-11
+
+### Changed
+
+- **Breaking**: Replaced Twitter with the fediverse across the theme, since that's where the podcast
+  audience actually is now. The `twitter_nick` config option (`assets/_config.yml.sample`) is gone;
+  set `fediverse_url` to your profile's full URL (e.g. `https://podcasts.social/@my_account`) instead.
+  The sidebar "Follow" button (`assets/_includes/sidebar.html`) now links there with a `rel="me"`
+  attribute (so Mastodon can verify the link back to your site) and shows the derived `@user@instance`
+  handle via the new `fediverse_handle` Liquid filter (`lib/jekyll/octopod_filters.rb`).
+- **Breaking**: Removed the per-post "Tweet" quick-share button (`assets/_includes/post.html`) and the
+  unused `tweet_us.html` include. Mastodon/the fediverse has no universal share-intent URL — every
+  visitor's instance is different — so there's no equivalent to drop in, and adding a third-party
+  cross-instance share helper would go against this project's own stance on external dependencies (see
+  the now-removed `remove_external_dependencies.md`, which was Twitter-widget-specific and fully stale
+  once Twitter itself was removed).
+- **Breaking**: Removed the Twitter Card `player` meta tags (`twitter:card`, `twitter:site`, etc.) that
+  let X/Twitter render an inline audio player for shared episode links — a Twitter-specific embed
+  protocol, unrelated to linking a Twitter account, with no fediverse equivalent to replace it with.
+  This left `_layouts/with_twitter_card.html` byte-identical to `_layouts/default.html`, so it's been
+  deleted; `_layouts/post.html` now uses `layout: default` directly. Sites with custom pages set to
+  `layout: with_twitter_card` need to switch to `layout: default`.
+
 ## 0.15.1 - 2026-08-10
 
 ### Fixed

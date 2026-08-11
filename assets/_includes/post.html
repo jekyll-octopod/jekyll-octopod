@@ -18,11 +18,6 @@
       {% endfor %}
     {% endif %}
   <hr>
-  <a href="https://twitter.com/share"
-     class="button is-primary is-small"
-     data-url="{{ site.url }}{{post.url }}"
-     data-text="{{ post.title }}">
-    <i class="lab la-twitter"></i> Tweet</a>
   {% unless page.url == '/index.html' %}{% include disqus_thread.html %}{% endunless %}
   {% unless page.url == '/index.html' %}{% include isso_thread.html %}{% endunless %}
   <hr>

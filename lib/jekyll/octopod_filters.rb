@@ -211,6 +211,17 @@ module Jekyll
       URI.parse(url).host
     end
 
+    # Returns a displayable @user@instance handle from a fediverse profile
+    # url (e.g. a Mastodon profile), for use next to a "Follow" link.
+    #
+    #   {{ 'https://podcasts.social/@AuaUffCode' | fediverse_handle }}
+    #     => "@AuaUffCode@podcasts.social"
+    def fediverse_handle(url)
+      uri = URI.parse(url)
+      user = uri.path.split('/').last.sub(/\A@/, '')
+      "@#{user}@#{uri.host}"
+    end
+
     # Generates the config for disqus integration
     # If a page object is given, it generates the config variables only for this
     # page. Otherwise it generate only the global config variables.

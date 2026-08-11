@@ -26,8 +26,8 @@ ssh_port: 22
 document_root: /path/to/your/htdocs/
 rsync_delete: true
 
-### Twiter config, optional
-twitter_nick: my_twitter_handle # Twitter will not be used unless this is set
+### Fediverse config, optional
+fediverse_url: https://podcasts.social/@my_account # Fediverse links will not be shown unless this is set
 
 language: en
 explicit: "no" # "yes" | "no" | clean

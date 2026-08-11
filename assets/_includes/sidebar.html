@@ -98,10 +98,9 @@
 
 <hr/>
 
-{% if site.twitter_nick %}
-  <a href="https://twitter.com/{{ site.twitter_nick }}"
-     class="button is-primary is-small"
-     data-show-count="false">
-    <i class="lab la-twitter"></i>Follow @{{ site.twitter_nick }}
+{% if site.fediverse_url %}
+  <a rel="me" href="{{ site.fediverse_url }}"
+     class="button is-primary is-small">
+    <i class="lab la-mastodon"></i>Follow {{ site.fediverse_url | fediverse_handle }}
   </a>
 {% endif %}
