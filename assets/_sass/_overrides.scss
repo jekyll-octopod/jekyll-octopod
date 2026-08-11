@@ -21,33 +21,51 @@ h1 small, h2 small, h3 small {
   font-size: 45%;
 }
 
-// Theme for the Swiss-Sided Dice podcast, red and white based on the Swiss flag - commented out for now, until a better solution can be found
-
-/*
-// Bulma's navbar reads its colors from CSS custom properties scoped on .navbar,
-// so a single block covers the background plus the hue/saturation/lightness
-// triple it derives hover, active and dropdown shading from - no separate
-// hover/toggle overrides needed the way Bootstrap required.
+// Example: give your site its own brand color instead of Bulma's default navbar. Bulma's navbar
+// reads its colors from CSS custom properties scoped on .navbar, so a single block covers the
+// background plus the hue/saturation/lightness triple it derives hover, active and dropdown
+// shading from. Swap the values below for your own color and delete this comment once you've
+// made it yours.
 .navbar {
-  --bulma-navbar-background-color: #E11A27;
-  --bulma-navbar-h: 356deg;
-  --bulma-navbar-s: 87%;
-  --bulma-navbar-l: 45%;
-  --bulma-navbar-item-color: #FFF;
-  --bulma-navbar-burger-color: #FFF;
+  --bulma-navbar-background-color: #48CFAD;
+  --bulma-navbar-h: 166deg;
+  --bulma-navbar-s: 48%;
+  --bulma-navbar-l: 55%;
+
+  // Without this, Bulma still colors the *currently active* nav item (a.navbar-item.is-active)
+  // from its own global --bulma-link-h/-s/-l default (a blue unrelated to the values above) instead
+  // of from this navbar's own hue/saturation/lightness - these four properties are what it actually
+  // reads for that state, so they need to be pointed at our own values too.
+  --bulma-navbar-item-selected-h: var(--bulma-navbar-h);
+  --bulma-navbar-item-selected-s: var(--bulma-navbar-s);
+  --bulma-navbar-item-selected-l: var(--bulma-navbar-l);
+  --bulma-navbar-item-selected-background-l: 40%;
+  --bulma-navbar-item-selected-color-l: 97%;
 }
 
-// Links and buttons in the website are a dark red for best contrast, but get lightened on hover for feedback
+// The resting nav items' text color is Bulma's own --bulma-text-l, which is intentionally light
+// in dark mode (for contrast against the page's now-dark background) - but our navbar's own
+// background above is a literal color, so it doesn't darken with the rest of the page. Without
+// this, dark mode ends up with near-white text on a background that's still light-mode teal,
+// unreadable. Darkening the same hue/saturation here keeps the brand color recognizable while
+// giving Bulma's light dark-mode text something dark enough to actually contrast against.
+@media (prefers-color-scheme: dark) {
+  .navbar {
+    --bulma-navbar-background-color: #1B4B40;
+    --bulma-navbar-l: 20%;
+  }
+}
+
+// Links and buttons in the website match the navbar, but get lightened on hover for feedback
 a {
-  color: #CF000F;
+  color: #48CFAD;
 }
 a:hover {
-  color: #EF3743;
+  color: #7BD1BD;
 }
 .button.is-primary {
-  background-color: #CF000F;
+  background-color: #48CFAD;
 }
 .button.is-primary:hover, .button.is-primary:focus {
-  background-color: #EF3743;
+  background-color: #7BD1BD;
 }
-*/
