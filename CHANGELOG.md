@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.16.1 - 2026-08-11
+
+### Fixed
+
+- The commented-out navbar-color example in the scaffold's `assets/_sass/_overrides.scss` carried a
+  specific real podcast's branding ("Swiss-Sided Dice", red/white) rather than reading as a generic
+  example. Replaced it with a neutral steel-blue placeholder, uncommented so it's active out of the
+  box, with the comment reworded to explain the CSS-custom-property mechanism instead of naming a
+  podcast (and the stray "the way Bootstrap required" aside removed).
+- That example only colored the navbar's resting state. Two related gaps, fixed alongside it:
+  - The *currently active* nav item (`a.navbar-item.is-active`) didn't inherit the navbar's own
+    hue/saturation/lightness at all — it reads a separate `--bulma-navbar-item-selected-*` set of
+    properties that default to Bulma's own global link color, unrelated to the navbar override. Now
+    pointed at the navbar's own values, with its own background/text lightness for a clearly
+    distinguished "you are here" state.
+  - The example's background was a literal color, so it didn't react to `prefers-color-scheme: dark`
+    the way the rest of the (CSS-custom-property-driven) theme does. Left alone, dark mode swapped the
+    resting nav items' text to something light (Bulma's own `--bulma-text-l`, meant for contrast
+    against a dark page) while the navbar itself stayed exactly as light as in light mode — light text
+    on a still-light bar. Added a `@media (prefers-color-scheme: dark)` override with a darker version
+    of the same hue (verified 6.1:1 contrast against Bulma's dark-mode text color).
+
 ## 0.16.0 - 2026-08-11
 
 ### Changed
