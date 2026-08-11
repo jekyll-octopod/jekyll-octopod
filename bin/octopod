@@ -2,7 +2,8 @@
 # require "byebug"
 PWD = Dir.pwd
 
-GEM_DIR = Gem::Specification.find_by_name("jekyll-octopod").gem_dir
+GEM_SPEC = Gem::Specification.find_by_name("jekyll-octopod")
+GEM_DIR = GEM_SPEC.gem_dir
 # HAS20170501 disgusting hack for development
 # GEM_DIR = "/home/user/jekyll/jekyll-octopod/"
 
@@ -28,6 +29,11 @@ Basic Command Line Usage:
   Additional Octopod commands:
     octopod episode                                           # adds a template for a new episode
     octopod deploy                                            # deploys your site
+    octopod update                                            # updates template files from an existing setup to
+                                                                # the currently installed jekyll-octopod version,
+                                                                # without touching posts, imprint.md or index.md,
+                                                                # and rewrites the old '{% podigee_player %}' tag
+                                                                # to '{% podlove_player %}' wherever it's still used
 
   See 'octopod <command> --help' for more information on a specific command.
 
@@ -110,7 +116,7 @@ def get_stdin(message)
   STDIN.gets.chomp
 end
 
-if ARGV.size > 0 && (ARGV[0] == 'episode' || ARGV[0] == 'deploy' || ARGV[0] == 'setup')
+if ARGV.size > 0 && (ARGV[0] == 'episode' || ARGV[0] == 'deploy' || ARGV[0] == 'setup' || ARGV[0] == 'update')
   options = YAML.load_file(File.join(PWD, '_config.yml'))
   options['posts_dir'] = File.join(PWD, '_posts')
 
@@ -269,6 +275,44 @@ if ARGV.size > 0 && (ARGV[0] == 'episode' || ARGV[0] == 'deploy' || ARGV[0] == '
 
     if write_file?(PWD + "/_config.yaml")
       FileUtils.cp(GEM_DIR + "/assets/_config.yml.sample", PWD + "/_config.yml", verbose: true)
+    end
+    puts "===== ... done ===== ", ""
+
+  when 'update'
+    # Paths that are always left alone: real posts, hand-written content pages, and the gem's
+    # demo episode audio. Unlike 'setup', these are skipped outright rather than offered as a
+    # per-file prompt, since this command targets sites that are already live.
+    skip_on_update = %w[_posts imprint.md index.md episodes]
+
+    update_file = lambda do |file|
+      relative = file.split(GEM_DIR + "/assets")[1]
+      next if skip_on_update.any? { |skip| relative == "/#{skip}" || relative.start_with?("/#{skip}/") }
+      copy_file_or_create_dir(file)
+    end
+
+    puts "", "===== Updating template files to jekyll-octopod #{GEM_SPEC.version} ... ====="
+    puts "_posts/, imprint.md, index.md and the demo episodes/ directory are left untouched."
+    puts "You'll be asked before any other existing file gets overwritten.", ""
+
+    Dir.glob(GEM_DIR + "/assets/**/*").each(&update_file)
+    Dir.glob(GEM_DIR + "/assets/**/.*").each(&update_file)
+    puts "===== ... done ===== ", ""
+
+    puts "", "===== Rewriting the old '{% podigee_player %}' tag to '{% podlove_player %}' ... ====="
+    podigee_player_tag = /\{%-?\s*podigee_player\b.*?-?%\}/
+    updated_posts = Dir.glob(File.join(options['posts_dir'], '**', '*')).select do |post_file|
+      next false unless File.file?(post_file)
+      content = File.read(post_file)
+      next false unless content.match?(podigee_player_tag)
+      File.write(post_file, content.gsub(podigee_player_tag, '{% podlove_player %}'))
+      true
+    end
+
+    if updated_posts.empty?
+      puts "No posts used the old 'podigee_player' tag."
+    else
+      puts "Updated:"
+      updated_posts.each { |post_file| puts "  #{post_file}" }
     end
     puts "===== ... done ===== ", ""
   end

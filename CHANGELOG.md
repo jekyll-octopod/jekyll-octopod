@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.17.0 - 2026-08-11
+
+### Added
+
+- New `octopod update` CLI command for bringing an existing site's scaffold files up to date with the
+  currently installed jekyll-octopod version, without the all-or-nothing risk of `octopod setup`.
+  Unlike `setup`, it never touches `_posts/`, `imprint.md`, `index.md` or the gem's demo
+  `episodes/episode0.*` files — those are skipped outright, not just defaulted in the overwrite
+  prompt, since `update` targets sites that are already live with real, hand-written content. It also
+  scans every post under `_posts/` for the retired `{% podigee_player %}` tag (from the old Podigee
+  integration, dropped when the self-hosted Podlove Web Player landed in 0.15.1) and rewrites it to
+  `{% podlove_player %}` in place, printing which files it touched.
+
 ## 0.16.1 - 2026-08-11
 
 ### Fixed
