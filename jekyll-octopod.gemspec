@@ -8,12 +8,11 @@ Gem::Specification.new do |s|
   s.platform = Gem::Platform::RUBY
   s.authors = ["Arne Eilermann", "Stefan Haslinger"]
   s.email = ["stefan.haslinger@informatom.com"]
-  s.homepage = "https://github.com/haslinger/jekyll-octopod"
+  s.homepage = "https://github.com/jekyll-octopod/jekyll-octopod"
   s.summary = %q{Podcasting Publishing Extension for Jekyll}
   s.description = %q{Enables you to publish your podcast using the Jekyll static site generator, creating feeds and a reasonably looking website}
   s.license = "MIT"
 
-  s.rubyforge_project = "jekyll-"
   s.files = Dir["lib/**/*"] + ["Rakefile", "README.md"] + Dir["assets/**/*"]
   s.test_files = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.executables = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
@@ -21,7 +20,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'facets', '~> 3.2'
   s.add_dependency 'jekyll', '~> 4.4'
-  s.add_dependency 'jekyll-bulma', '~> 1.0.3'
+  s.add_dependency 'jekyll-octopod-bulma', '~> 0.1'
   s.add_development_dependency 'rspec', '~> 3.13'
   s.add_dependency 'jekyll-admin', '~> 0.12'
   s.add_dependency 'kramdown-parser-gfm', '~> 1.1'

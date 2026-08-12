@@ -6,7 +6,8 @@ module Jekyll
       @name = name
 
       self.process(@name)
-      self.read_yaml(File.join(base, '_layouts'), 'feed.xml')
+      @path = ThemeLayout.path_for(site, base, 'feed.xml')
+      self.read_yaml(base, 'feed.xml')
       self.data['next'] = pages_total > page_number ? (page_number + 1).to_s : nil
       self.data['last'] = pages_total > 1 ? pages_total.to_s : nil
       self.data['prev'] = case page_number

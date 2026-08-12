@@ -1,5 +1,50 @@
 # Changelog
 
+## 0.18.0 - 2026-08-12
+
+### Changed
+
+- Extracted `assets/_layouts`, `assets/_includes` (sidebar layout, post/feed layouts and includes)
+  and the vendored `podlove-player`, `subscribe-button`, and `img`/favicon assets out of this gem
+  into a new gem-based theme, [jekyll-octopod-bulma](https://github.com/jekyll-octopod/jekyll-octopod-bulma)
+  (a fork of [jekyll-bulma](https://github.com/jekyll-octopod/jekyll-bulma), not a runtime
+  dependency of it). `_config.yml.sample`'s `theme:` now points at `jekyll-octopod-bulma`, and this
+  gem depends on it instead of `jekyll-bulma` directly.
+- `assets/` in this gem now only holds copy-once starter content: `index.md`, `imprint.md`, the demo
+  post/episode, feed templates (`episodes.*.rss`, `feed.*.json`, `general_feed.xml`), `_config.yml.sample`,
+  and `_sass/_overrides.scss` (still meant to be hand-edited per site). `octopod setup`/`update`'s copy
+  loop is unchanged — it still copies everything under the gem's `assets/`, which is simply a much
+  smaller set of files now.
+- `octopod update` now also removes any leftover local copy of the files/directories that moved into
+  the theme gem (`_layouts`, `podlove-player`, `subscribe-button`, `img`, `favicon.ico`,
+  `apple-touch-icon-precomposed.png`, and the theme-owned `_includes/*.html`) — those would otherwise
+  silently shadow the theme gem's current version forever, with no build error to point at it. Any
+  `.md` file found along the way is always kept.
+- `octopod update` also points your `Gemfile` and `_config.yml` at `jekyll-octopod-bulma` for you: it
+  replaces an existing `gem 'jekyll-bulma', ...` line in place (any quote style/indentation/version
+  constraint), or adds `jekyll-octopod-bulma` next to your `jekyll-octopod` line if there was no
+  `jekyll-bulma` line to begin with, and rewrites `theme: jekyll-bulma` to
+  `theme: jekyll-octopod-bulma` in `_config.yml`. Re-running `update` is a no-op once both are in
+  place. Just run `octopod update` after upgrading — `bundle install` afterwards picks up the rest.
+
+### Removed
+
+- Dropped `.autotest` (ZenTest-era config for a test runner this gem hasn't used in years) and
+  `materials/demo.png` (an old Bootstrap/Bootflat-themed screenshot, unreferenced anywhere and
+  superseded twice over by the Bulma port and the fediverse switch).
+
+### Fixed
+
+- The default `rake`/`rake test` task pointed at a `test/all.rb` that hasn't existed for a long
+  time (this gem's tests live in `spec/`, run via `rspec`) and errored immediately. `Rakefile` now
+  defines `rake spec` via `RSpec::Core::RakeTask`, and that's the default task.
+- `lib/jekyll/static_file.rb`'s `octopod_exclude` had a dead, unused `nested_files = %w[]` local.
+- `README.md`'s logo image pointed at `assets/img/logo.jpg`, which just moved to
+  jekyll-octopod-bulma in this same release — now points at the live docs site instead.
+- The gemspec's `homepage` still pointed at the old `haslinger/jekyll-octopod` repo instead of the
+  `jekyll-octopod` org; also dropped the long-dead `rubyforge_project` attribute (RubyForge shut
+  down in 2014).
+
 ## 0.17.2 - 2026-08-11
 
 ### Fixed

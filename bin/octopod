@@ -102,6 +102,72 @@ def copy_file_or_create_dir(file)
   end
 end
 
+# Removes a leftover site-local copy of something that's now served by the jekyll-octopod-bulma
+# theme gem instead (see 'now_theme_served' in the 'update' command). '.md' files are always kept,
+# no matter where they're found, since they're real content rather than theme boilerplate.
+def remove_theme_served_path(path)
+  return unless File.exist?(path)
+
+  if File.directory?(path)
+    Dir.glob(File.join(path, '**', '*'), File::FNM_DOTMATCH).sort.reverse_each do |entry|
+      next if File.basename(entry) == '.' || File.basename(entry) == '..'
+      if File.directory?(entry)
+        FileUtils.rmdir(entry, verbose: true) if Dir.empty?(entry)
+      elsif !entry.end_with?('.md')
+        FileUtils.rm(entry, verbose: true)
+      end
+    end
+    FileUtils.rmdir(path, verbose: true) if Dir.exist?(path) && Dir.empty?(path)
+  elsif !path.end_with?('.md')
+    FileUtils.rm(path, verbose: true)
+  end
+end
+
+# Points a site's Gemfile and _config.yml at jekyll-octopod-bulma instead of the old direct
+# jekyll-bulma dependency/theme setting. Mirrors the version constraint this gem itself declares on
+# jekyll-octopod-bulma (see jekyll-octopod.gemspec) rather than hardcoding one here, so it can't
+# drift out of sync as that constraint changes across releases.
+def update_gemfile_and_theme_config
+  bulma_constraint = GEM_SPEC.dependencies.find { |d| d.name == 'jekyll-octopod-bulma' }&.requirement&.to_s
+  new_gem_line = "gem 'jekyll-octopod-bulma'#{bulma_constraint ? ", '#{bulma_constraint}'" : ''}"
+
+  gemfile_path = PWD + '/Gemfile'
+  if File.exist?(gemfile_path)
+    gemfile = File.read(gemfile_path)
+    jekyll_bulma_line = /^(\s*)gem\s+(['"])jekyll-bulma\2.*$/
+
+    if gemfile.match?(jekyll_bulma_line)
+      gemfile = gemfile.sub(jekyll_bulma_line) { "#{$1}#{new_gem_line}" }
+      File.write(gemfile_path, gemfile)
+      puts "Replaced the 'jekyll-bulma' line in Gemfile with: #{new_gem_line}"
+    elsif !gemfile.match?(/gem\s+(['"])jekyll-octopod-bulma\1/)
+      jekyll_octopod_line = /^(\s*)gem\s+(['"])jekyll-octopod\2.*$/
+      if gemfile.match?(jekyll_octopod_line)
+        gemfile = gemfile.sub(jekyll_octopod_line) { |line| "#{line}\n#{$1}#{new_gem_line}" }
+        File.write(gemfile_path, gemfile)
+        puts "Added to Gemfile, next to 'jekyll-octopod': #{new_gem_line}"
+      else
+        puts "Couldn't find a 'jekyll-octopod' line in Gemfile to add 'jekyll-octopod-bulma' next"
+        puts "to - add it yourself: #{new_gem_line}"
+      end
+    else
+      puts "Gemfile already references 'jekyll-octopod-bulma'."
+    end
+  else
+    puts "No Gemfile found - skipping."
+  end
+
+  config_path = PWD + '/_config.yml'
+  if File.exist?(config_path)
+    config = File.read(config_path)
+    theme_line = /^theme:\s*jekyll-bulma\s*$/
+    if config.match?(theme_line)
+      File.write(config_path, config.sub(theme_line, 'theme: jekyll-octopod-bulma'))
+      puts "Updated 'theme: jekyll-bulma' to 'theme: jekyll-octopod-bulma' in _config.yml."
+    end
+  end
+end
+
 def ask(message, valid_options = nil)
   if valid_options
     answer = get_stdin("#{message} #{valid_options.to_s.gsub(/"/, '').gsub(/, /,'/')} ") while !valid_options.include?(answer)
@@ -296,6 +362,33 @@ if ARGV.size > 0 && (ARGV[0] == 'episode' || ARGV[0] == 'deploy' || ARGV[0] == '
 
     Dir.glob(GEM_DIR + "/assets/**/*").each(&update_file)
     Dir.glob(GEM_DIR + "/assets/**/.*").each(&update_file)
+    puts "===== ... done ===== ", ""
+
+    # As of jekyll-octopod 0.18.0, these paths are served straight from the jekyll-octopod-bulma
+    # theme gem instead of being copied here - they're simply no longer under GEM_DIR + "/assets"
+    # for the loop above to touch. A leftover copy here would otherwise silently shadow the theme
+    # forever (Jekyll always prefers a site's own file over the theme's), with no build error to
+    # point at it - so 'update' removes them outright, same "trust git diff, don't special-case"
+    # philosophy as the rest of this command. Any '.md' file is kept no matter where it's found,
+    # since that's real content, never theme boilerplate.
+    now_theme_served = %w[
+      _layouts podlove-player subscribe-button img favicon.ico apple-touch-icon-precomposed.png
+      _includes/sidebar.html _includes/post_header.html _includes/post.html _includes/post_line.html
+      _includes/disqus_thread.html _includes/disqus_count.html _includes/isso_thread.html
+    ]
+    found_theme_served = now_theme_served.select { |path| File.exist?(File.join(PWD, path)) }
+
+    unless found_theme_served.empty?
+      puts "", "===== Removing files now served by the jekyll-octopod-bulma theme gem ====="
+      puts "These used to be copied into your site but are served straight from the"
+      puts "jekyll-octopod-bulma theme gem as of jekyll-octopod 0.18.0 - removing the local copies"
+      puts "so the theme's current version takes effect ('.md' files, if any, are kept):"
+      found_theme_served.each { |path| remove_theme_served_path(File.join(PWD, path)) }
+      puts "===== ... done ===== ", ""
+    end
+
+    puts "", "===== Pointing Gemfile/_config.yml at jekyll-octopod-bulma ... ====="
+    update_gemfile_and_theme_config
     puts "===== ... done ===== ", ""
 
     puts "", "===== Rewriting the old '{% podigee_player %}' tag to '{% podlove_player %}' ... ====="

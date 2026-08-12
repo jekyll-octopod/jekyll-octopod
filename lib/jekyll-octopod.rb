@@ -1,5 +1,6 @@
 require "jekyll/octopod_filters"
 require "jekyll/line_awesome"
+require "jekyll/theme_layout"
 require "jekyll/paged_feed_page"
 require "jekyll/paged_feed_page_generator"
 require "jekyll/podcast_player_page"

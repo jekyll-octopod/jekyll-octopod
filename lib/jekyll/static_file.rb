@@ -3,7 +3,6 @@ module Jekyll
 
     def octopod_exclude
       src = path.sub("#{@base}/", '')
-      nested_files = %w[]
 
       excludes = %w[Gemfile Gemfile.lock README.md octopod]
       return true if excludes.include?(src)

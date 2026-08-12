@@ -56,7 +56,7 @@ disqus_developer: 0 # 1 | 0
 ### Isso comments
 use_isso: "no" # "no" | "yes"
 
-theme: jekyll-bulma
+theme: jekyll-octopod-bulma
 
 ### Jekyll Admin: uncomment the last line of this paragraph to enable Jekyll Admin.
 ### (but you will loose auto regeneration after code changes with a text editor then)

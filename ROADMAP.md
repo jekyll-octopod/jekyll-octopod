@@ -9,11 +9,18 @@ so that other people could read them as well.
 
 There are several issues, that I see with jekyll-octopod that could be fixed:
 
-1. The installation script:
+1. ~~The installation script:
    Updating is almost impossible currently because of the installation process, that copies file into
    the project. We could, now that gem based themes a working nicely, extract all the assets into
    a theme, that is then not really a theme any more, but also the store for the webplayer, subscribe
-   button and other assets.
+   button and other assets.~~
+   **Done (2026-08-12):** Extracted layouts, includes, and vendored assets (Podlove player, subscribe
+   button, logo/favicons) into a new gem-based theme,
+   [jekyll-octopod-bulma](https://github.com/jekyll-octopod/jekyll-octopod-bulma) (a fork of
+   [jekyll-bulma](https://github.com/jekyll-octopod/jekyll-bulma)), served straight from the gem via
+   `theme:` instead of copied per-site. jekyll-octopod itself now only ships plugin code plus a
+   handful of copy-once starter files (`index.md`, `imprint.md`, demo post, feed templates,
+   `_config.yml.sample`).
 
 2. ~~CSS Framework:
    Bootflat is highly depending on Bootstrap, but not maintained any more, while the 3.x
@@ -40,12 +47,14 @@ There are several issues, that I see with jekyll-octopod that could be fixed:
    **Done (2026-08-10):** Replaced the Podigee Web Player with the
    [Podlove Web Player](https://podlove.org/podlove-web-player/), self-hosted (no external CDN).
 
-4. Ruby dependency:
+4. ~~Ruby dependency:
    I don't really see a way around this, though I see people struggling with getting Ruby working
    on Windows. I have considered a rewrite with a differernt technology - maybe as an Electron
    app using a Node based static site generator or even as a hosted service for non technical
    users providing them with just web forms to fill out. But that would mean giving up on
-   Jekyll Octopod all together.
+   Jekyll Octopod all together.~~  
+   **Won't fix (2026-08-12):** Jekyll itself is Ruby, so this stays - Windows install friction is
+   an accepted trade-off, not something to be solved.
 
 5. ~~Fatigue:
    I feel a bit of fatigue, maintaining Jekyll Octopod now for 28 months. So if anybody of you

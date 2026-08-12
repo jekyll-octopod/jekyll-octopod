@@ -1,11 +1,6 @@
-require 'rake/testtask'
 require "bundler/gem_tasks"
+require "rspec/core/rake_task"
 
-task :default => [:test]
+RSpec::Core::RakeTask.new(:spec)
 
-Rake::TestTask.new(:test) do |t|
-  t.libs << '.'
-  t.pattern = 'test/all.rb'
-  t.verbose = true
-end
-Rake::Task['test'].comment = "Run all tests"
+task :default => :spec

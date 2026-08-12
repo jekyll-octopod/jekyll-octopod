@@ -7,7 +7,8 @@ module Jekyll
       @name = 'index.html'
 
       self.process(@name)
-      self.read_yaml(File.join(base, '_layouts'), 'player_index.html')
+      @path = ThemeLayout.path_for(site, base, 'player_index.html')
+      self.read_yaml(base, 'player_index.html')
 
       self.data['title']    = post.data['title']
       self.data['subtitle'] = post.data['subtitle']

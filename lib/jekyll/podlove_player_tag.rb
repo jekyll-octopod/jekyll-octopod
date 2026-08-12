@@ -34,7 +34,7 @@ module Jekyll
         title: title,
         subtitle: page["subtitle"],
         summary: page["summary"],
-        poster: config['url'] + "/img/" + (page["image"] || "logo-360x360.png"),
+        poster: config['url'] + "/assets/img/" + (page["image"] || "logo-360x360.png"),
         link: config['url'] + page["url"],
         publicationDate: page["date"].respond_to?(:xmlschema) ? page["date"].xmlschema : page["date"].to_s,
         duration: page["duration"],
@@ -45,7 +45,7 @@ module Jekyll
 
     def playerbaseconfig(context)
       config = context.registers[:site].config
-      { version: 5, base: "#{config["url"]}/podlove-player/" }.to_json
+      { version: 5, base: "#{config["url"]}/assets/podlove-player/" }.to_json
     end
 
     def render(context)
@@ -55,7 +55,7 @@ module Jekyll
       id = "podlove-player-#{page['id'] ? sha1(page['id'], 8) : 'embed'}"
       return <<~HTML
         <div id="#{id}"></div>
-        <script src="#{config["url"]}/podlove-player/embed.js"></script>
+        <script src="#{config["url"]}/assets/podlove-player/embed.js"></script>
         <script>
           window.podlovePlayer('##{id}', #{playerconfig(context)}, #{playerbaseconfig(context)});
         </script>
