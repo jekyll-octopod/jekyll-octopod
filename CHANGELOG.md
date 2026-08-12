@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.18.1 - 2026-08-12
+
+### Fixed
+
+- The initial `jekyll-octopod-bulma` 0.1.0 publish went out with an empty gem package (no
+  `_layouts`/`_includes`/`_sass`/`assets`), so any site resolving to it would fail to find the
+  theme. Tightened the dependency to `~> 0.1.1`, the corrected republish, so `0.1.0` can never be
+  resolved again.
+
 ## 0.18.0 - 2026-08-12
 
 ### Changed
