@@ -120,7 +120,40 @@ def remove_theme_served_path(path)
     FileUtils.rmdir(path, verbose: true) if Dir.exist?(path) && Dir.empty?(path)
   elsif !path.end_with?('.md')
     FileUtils.rm(path, verbose: true)
+    # Clean up now-empty parent directories this file leaves behind (e.g. img/logo/ once every
+    # generic favicon file under it is gone), but never touch PWD itself and never remove a
+    # directory that still holds real, unrelated content (a site's own photos alongside the
+    # generic ones, say) - Dir.empty? guards that.
+    parent = File.dirname(path)
+    while parent != PWD && Dir.exist?(parent) && Dir.empty?(parent)
+      FileUtils.rmdir(parent, verbose: true)
+      parent = File.dirname(parent)
+    end
   end
+end
+
+# 'now_theme_served' used to list '_layouts' and 'img' wholesale, on the assumption that a legacy
+# site's copies of those directories were 100% gem output. That's wrong whenever a site added its
+# own files alongside them - a custom '_layouts/presentation.html' with no gem equivalent, or real
+# content photos dropped into 'img/' - since a whole-directory delete has no way to tell those apart
+# from the generic files it's supposed to clean up. This instead lists the theme gem's *actual*
+# shipped filenames in those two directories, read from the installed jekyll-octopod-bulma gem
+# itself (same reasoning as the version-constraint lookup in update_gemfile_and_theme_config: read
+# from the gem so this can't drift out of sync as its shipped file list changes) - so 'update' only
+# ever removes a file that's actually theme content, and leaves anything else in place.
+def theme_shipped_generic_files
+  theme_gem_dir = begin
+    Gem::Specification.find_by_name('jekyll-octopod-bulma').gem_dir
+  rescue Gem::MissingSpecError
+    nil
+  end
+  return [] unless theme_gem_dir
+
+  layouts = Dir.glob(File.join(theme_gem_dir, '_layouts', '*')).map { |f| "_layouts/#{File.basename(f)}" }
+  img = Dir.glob(File.join(theme_gem_dir, 'assets', 'img', '**', '*'), File::FNM_DOTMATCH)
+            .reject { |f| File.directory?(f) }
+            .map { |f| f.sub("#{theme_gem_dir}/assets/", '') }
+  layouts + img
 end
 
 # Points a site's Gemfile and _config.yml at jekyll-octopod-bulma instead of the old direct
@@ -371,8 +404,8 @@ if ARGV.size > 0 && (ARGV[0] == 'episode' || ARGV[0] == 'deploy' || ARGV[0] == '
     # point at it - so 'update' removes them outright, same "trust git diff, don't special-case"
     # philosophy as the rest of this command. Any '.md' file is kept no matter where it's found,
     # since that's real content, never theme boilerplate.
-    now_theme_served = %w[
-      _layouts podlove-player subscribe-button img favicon.ico apple-touch-icon-precomposed.png
+    now_theme_served = theme_shipped_generic_files + %w[
+      podlove-player subscribe-button favicon.ico apple-touch-icon-precomposed.png
       _includes/sidebar.html _includes/post_header.html _includes/post.html _includes/post_line.html
       _includes/disqus_thread.html _includes/disqus_count.html _includes/isso_thread.html
     ]

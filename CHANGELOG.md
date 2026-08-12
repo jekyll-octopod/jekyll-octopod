@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.18.2 - 2026-08-12
+
+### Fixed
+
+- `octopod update` deleted the *entire* `_layouts/` and `img/` directories outright, on the
+  assumption that a legacy site's copies of those directories were 100% gem output. That's wrong
+  whenever a site added its own files alongside the generic ones - a custom layout with no gem
+  equivalent (found on a real site: slide-deck layouts for a `talks/` feature), or real content
+  photos dropped into `img/` (found on another real site: ~150 blog-post screenshots), got silently
+  deleted right along with the generic files. `update` now only removes filenames the
+  `jekyll-octopod-bulma` theme gem actually ships in `_layouts/` and `assets/img/` (read from the
+  installed gem itself, so this can't drift out of sync as its file list changes), and cleans up any
+  directory left empty in the process - anything else in `_layouts/` or `img/` is left untouched.
+
 ## 0.18.1 - 2026-08-12
 
 ### Fixed
