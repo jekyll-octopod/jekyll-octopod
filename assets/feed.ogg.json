@@ -1,5 +1,0 @@
----
-layout: jsonfeed
-format: ogg
----
-{{ content }}

@@ -9,9 +9,6 @@ subtitle: Static Site Podcast Publishing for Geeks
 description: My super duper cool podcast.
 author: Uncle Octopod
 
-### author_url: This is the URL of a site owned by the author (see https://jsonfeed.org/version/1)
-author_url: "http://your.fancy.hosting/"
-
 email: octopod@example.com
 keywords: [octopod, podcast, magic]
 itunes_categories: [Technology]
@@ -48,10 +45,6 @@ itunes_url: https://itunes.apple.com/at/podcast/myname/id232323
 #  itunes: http://itunes.apple.com/de/podcast/podcast_name/id42424242
 #  torrent_m4a: http://bitlove.org/example_user/example_podcast_m4a/feed
 #  torrent_mp3: http://bitlove.org/example_user/example_podcast_mp3/feed
-
-### Disqus comments
-disqus_shortname: # Disqus will not be used unless this is set
-disqus_developer: 0 # 1 | 0
 
 ### Isso comments
 use_isso: "no" # "no" | "yes"

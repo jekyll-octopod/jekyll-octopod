@@ -420,6 +420,19 @@ if ARGV.size > 0 && (ARGV[0] == 'episode' || ARGV[0] == 'deploy' || ARGV[0] == '
       puts "===== ... done ===== ", ""
     end
 
+    # As of jekyll-octopod 0.19.0, JSON Feed support is gone outright - not moved to the theme
+    # gem, just removed (no real podcast client ever consumed it, and a since-fixed bug in this
+    # gem's own :after_init hook meant it silently never even built). Any 'feed.*.json' marker
+    # file left over from an older site is now genuinely dead: nothing generates its content, and
+    # jekyll-octopod-bulma's sidebar no longer links to it. Removed the same way theme-served
+    # files are removed above.
+    found_json_feeds = Dir.glob(File.join(PWD, 'feed.*.json'))
+    unless found_json_feeds.empty?
+      puts "", "===== Removing feed.*.json marker files (JSON Feed support was removed) ====="
+      found_json_feeds.each { |path| remove_theme_served_path(path) }
+      puts "===== ... done ===== ", ""
+    end
+
     puts "", "===== Pointing Gemfile/_config.yml at jekyll-octopod-bulma ... ====="
     update_gemfile_and_theme_config
     puts "===== ... done ===== ", ""

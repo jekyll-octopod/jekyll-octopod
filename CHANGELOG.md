@@ -1,5 +1,33 @@
 # Changelog
 
+## 0.20.0 - 2026-08-15
+
+### Removed
+
+- **Breaking**: Dropped Disqus comment support outright (`disqus_shortname`/`disqus_developer`
+  config, the `disqus_config` Liquid filter, the `disqus_thread`/`disqus_count` includes, and the
+  `<comments>#disqus_thread</comments>` tag in the RSS feed template). Checked all sites in this
+  gem's own family before removing: none had `disqus_shortname` actually set, so this was dead,
+  unreachable code everywhere it shipped - Isso (`use_isso`) is unaffected and remains the
+  supported self-hosted comments option. `octopod update` doesn't need a new cleanup step for this
+  one, since the removed includes lived in the theme gem (`jekyll-octopod-bulma`), not in this
+  gem's own `assets/`.
+
+## 0.19.0 - 2026-08-15
+
+### Removed
+
+- **Breaking**: Dropped JSON Feed support outright (`feed.*.json`, the `jsonfeed` layout, the
+  `author_url` config option it alone existed for). No real podcast client (Apple Podcasts, Spotify,
+  Overcast, Pocket Casts, AntennaPod, gpodder) has ever consumed JSON Feed - only a handful of
+  general-purpose blog readers (NetNewsWire, Feedbin, Reeder) do, which isn't this gem's audience.
+  It was also silently broken since 0.11.1: `update_config.rb`'s destination-conflict fix for the
+  RSS marker files was mistakenly applied to the JSON marker files too, excluding them from Jekyll's
+  reader with no generator to take their place, so `feed.*.json` stopped being written at all while
+  `jekyll-octopod-bulma`'s sidebar kept linking to it - a dead link on every site using this gem
+  since that release. `octopod update` now removes any leftover `feed.*.json` from an existing site
+  automatically, the same way it cleans up files that moved into the theme gem.
+
 ## 0.18.2 - 2026-08-12
 
 ### Fixed
