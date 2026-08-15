@@ -407,7 +407,7 @@ if ARGV.size > 0 && (ARGV[0] == 'episode' || ARGV[0] == 'deploy' || ARGV[0] == '
     now_theme_served = theme_shipped_generic_files + %w[
       podlove-player subscribe-button favicon.ico apple-touch-icon-precomposed.png
       _includes/sidebar.html _includes/post_header.html _includes/post.html _includes/post_line.html
-      _includes/disqus_thread.html _includes/disqus_count.html _includes/isso_thread.html
+      _includes/isso_thread.html
     ]
     found_theme_served = now_theme_served.select { |path| File.exist?(File.join(PWD, path)) }
 
@@ -420,16 +420,20 @@ if ARGV.size > 0 && (ARGV[0] == 'episode' || ARGV[0] == 'deploy' || ARGV[0] == '
       puts "===== ... done ===== ", ""
     end
 
-    # As of jekyll-octopod 0.19.0, JSON Feed support is gone outright - not moved to the theme
-    # gem, just removed (no real podcast client ever consumed it, and a since-fixed bug in this
-    # gem's own :after_init hook meant it silently never even built). Any 'feed.*.json' marker
-    # file left over from an older site is now genuinely dead: nothing generates its content, and
-    # jekyll-octopod-bulma's sidebar no longer links to it. Removed the same way theme-served
-    # files are removed above.
-    found_json_feeds = Dir.glob(File.join(PWD, 'feed.*.json'))
-    unless found_json_feeds.empty?
-      puts "", "===== Removing feed.*.json marker files (JSON Feed support was removed) ====="
-      found_json_feeds.each { |path| remove_theme_served_path(path) }
+    # As of jekyll-octopod 0.19.0/0.20.0, JSON Feed and Disqus support are gone outright - not
+    # moved to the theme gem the way the paths above were, just removed. JSON Feed: no real
+    # podcast client ever consumed it, and a since-fixed bug in this gem's own :after_init hook
+    # meant it silently never even built. Disqus: unused across every site in this gem's own
+    # family (none had disqus_shortname set) and superseded by Isso for self-hosted comments. Any
+    # leftover 'feed.*.json' marker file or local copy of the old disqus includes is now genuinely
+    # dead - nothing generates or serves it any more. Removed the same way theme-served files are
+    # removed above.
+    removed_feature_paths = Dir.glob(File.join(PWD, 'feed.*.json')) +
+      %w[_includes/disqus_thread.html _includes/disqus_count.html]
+        .map { |path| File.join(PWD, path) }.select { |path| File.exist?(path) }
+    unless removed_feature_paths.empty?
+      puts "", "===== Removing files for features that were removed entirely (JSON Feed, Disqus) ====="
+      removed_feature_paths.each { |path| remove_theme_served_path(path) }
       puts "===== ... done ===== ", ""
     end
 

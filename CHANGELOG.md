@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.20.1 - 2026-08-15
+
+### Fixed
+
+- 0.20.0's Disqus removal turned out to need an `octopod update` cleanup step after all, contrary
+  to what that release's own changelog entry claimed: `_includes/disqus_thread.html` and
+  `_includes/disqus_count.html` were still listed in `bin/octopod`'s `now_theme_served` array,
+  which is meant for paths still served by the `jekyll-octopod-bulma` theme gem - but both files
+  are gone from the theme now too, not just moved there, so leaving them in that list was
+  misleading (still functionally removed a leftover local copy, just for the wrong stated reason).
+  Moved them into the same "features removed entirely" cleanup as the `feed.*.json` markers.
+  Also swept every `_config.yml.sample`/`_layouts`/`_includes` shadow copy across this gem's own
+  site family for both the JSON Feed and Disqus removals - found and fixed leftover `author_url`/
+  `disqus_shortname` sample config and a dead `disqus_config` filter call in a site (this docs
+  site included) that still had its own un-migrated local `_layouts/default.html`.
+
 ## 0.20.0 - 2026-08-15
 
 ### Removed
