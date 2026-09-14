@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.22.0 - 2026-09-14
+
+### Added
+
+- `{% podlove_player %}` now sends a `share` config block listing every channel the Podlove Web
+  Player itself supports (twitter, facebook, whats-app, linkedin, pinterest, xing, mail, link).
+  Previously nothing was sent at all, so the player's own default (`channels: []`) applied - the
+  share tab existed in the bundled player but had nothing to offer. Not configurable per-site/post
+  for now (no known reason yet to want fewer than all of them); the `outlet` field for the share
+  tab's embed-snippet option is intentionally still unset, that's a separate feature.
+
 ## 0.21.0 - 2026-09-14
 
 ### Added

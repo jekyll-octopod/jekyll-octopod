@@ -2,6 +2,7 @@ require "spec_helper"
 require "liquid"
 require "jekyll/podlove_player_tag"
 require "tmpdir"
+require "json"
 
 describe Jekyll::PodlovePlayerTag do
   # Liquid::Tag.new is private in the installed liquid version (tags are meant to be built via
@@ -94,6 +95,17 @@ describe Jekyll::PodlovePlayerTag do
     it "returns nil when there's no audio" do
       expect(subject.vtt_sibling_of(nil)).to be_nil
       expect(subject.vtt_sibling_of({})).to be_nil
+    end
+  end
+
+  describe "#playerconfig" do
+    it "always sends the player's full list of supported share channels" do
+      site = double(config: { "url" => "https://example.com" })
+      page = { "title" => "Episode 1", "url" => "/episode1.html", "date" => Time.now, "audio" => nil }
+      context = double(registers: { site: site, page: page })
+
+      cfg = JSON.parse(subject.playerconfig(context))
+      expect(cfg["share"]).to eq({ "channels" => described_class::SHARE_CHANNELS })
     end
   end
 
