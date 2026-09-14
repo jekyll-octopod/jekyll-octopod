@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.21.0 - 2026-09-14
+
+### Added
+
+- `{% podlove_player %}` now auto-detects a WebVTT transcript sitting next to an episode's audio
+  (same basename, `.vtt` extension - e.g. `episode1.mp3` -> `episode1.vtt`) and feeds it to the
+  player as its `transcripts` config field, including Auphonic's `<v Speaker>text</v>` voice-tag
+  convention for per-cue speaker names. The Podlove Web Player has no native understanding of
+  WebVTT itself - its `transcripts` field wants a plain list of `{start, start_ms, end, end_ms,
+  speaker, voice, text}` cues (see the config docs linked at the top of `podlove_player_tag.rb`)
+  - so this is a real format conversion, not just passing the file through. An explicit
+  `page["transcript"]` front-matter filename overrides auto-detection, for episodes where the
+  transcript doesn't share the audio's basename. Resolved on disk the same way `file_size()`
+  already locates audio files (relative to the site root if the filename contains a "/",
+  otherwise under `episodes/`), so no new front-matter field is required for the common case -
+  just drop the `.vtt` in next to the `.mp3`.
+
 ## 0.20.1 - 2026-08-15
 
 ### Fixed
