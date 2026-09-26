@@ -28,6 +28,10 @@ Basic Command Line Usage:
 
   Additional Octopod commands:
     octopod episode                                           # adds a template for a new episode
+    octopod import <feed url> [target directory]              # creates a new site from an existing podcast
+                                                                # feed, one post per episode, downloading all
+                                                                # enclosures, images and transcripts locally
+                                                                # (--no-download: link to the audio instead)
     octopod deploy                                            # deploys your site
     octopod update                                            # updates template files from an existing setup to
                                                                 # the currently installed jekyll-octopod version,
@@ -61,6 +65,21 @@ Configuration is read from '<source>/_config.yml' but can be overridden
 using the following options:
 
 DEPLOY_HELP
+
+import_help = <<IMPORT_HELP
+octopod import - creates a new podcast site from an existing podcast RSS feed
+
+octopod import <feed url or file> [target directory] [options]
+
+Channel metadata goes into _config.yml, every episode becomes a post in _posts/,
+and all enclosures, episode images and WebVTT transcripts are downloaded into the
+new site, so it hosts everything itself (use --no-download to keep the audio
+where it is and only link to it). Paged feeds (atom:link rel="next") are
+followed. The target directory defaults to a slug of the podcast's title.
+
+(Any other 'octopod import <importer name>' is passed on to Jekyll's own importers.)
+
+IMPORT_HELP
 
 DEFAULT_EXT = '.md'
 
@@ -215,7 +234,47 @@ def get_stdin(message)
   STDIN.gets.chomp
 end
 
-if ARGV.size > 0 && (ARGV[0] == 'episode' || ARGV[0] == 'deploy' || ARGV[0] == 'setup' || ARGV[0] == 'update')
+if ARGV[0] == 'import' && (ARGV.include?('--help') || ARGV.include?('-h') ||
+                           (ARGV[1] && (ARGV[1].match?(%r{\Ahttps?://}i) || File.file?(ARGV[1]))))
+  require 'octopod/importer'
+
+  import_options = {}
+  opts = OptionParser.new do |opts|
+    opts._octopod_banner = import_help
+
+    opts.on("--url [URL]", "Public url of the new site, written to _config.yml (default: http://localhost:4000)") do |url|
+      import_options[:site_url] = url
+    end
+
+    opts.on("--limit [N]", Integer, "Only import the newest N episodes, e.g. for a quick trial run") do |limit|
+      import_options[:limit] = limit
+    end
+
+    opts.on("--no-download", "Don't download the enclosures, link to them where they are: sets download_url",
+                             "in _config.yml and filesize in each post (images and transcripts are still",
+                             "downloaded)") do
+      import_options[:download_enclosures] = false
+    end
+
+    opts.on("-f", "--force", "Import into an existing, non-empty directory - e.g. to resume an interrupted",
+                             "import: already downloaded files are kept, everything else is rewritten") do
+      import_options[:force] = true
+    end
+  end
+  opts.parse!
+
+  if ARGV[1].nil?
+    puts opts.help
+    exit
+  end
+
+  target = ARGV[2] && File.expand_path(ARGV[2], PWD)
+  begin
+    Jekyll::Octopod::Importer.new(ARGV[1], target, gem_spec: GEM_SPEC, **import_options).run
+  rescue ArgumentError, SystemCallError, REXML::ParseException => e
+    abort "octopod import failed: #{e.message}"
+  end
+elsif ARGV.size > 0 && (ARGV[0] == 'episode' || ARGV[0] == 'deploy' || ARGV[0] == 'setup' || ARGV[0] == 'update')
   options = YAML.load_file(File.join(PWD, '_config.yml'))
   options['posts_dir'] = File.join(PWD, '_posts')
 

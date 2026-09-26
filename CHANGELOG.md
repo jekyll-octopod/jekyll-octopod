@@ -1,5 +1,33 @@
 # Changelog
 
+## 0.23.0 - 2026-09-26
+
+### Added
+
+- `octopod import <feed url or file> [target directory]` creates a brand new site from an existing
+  podcast RSS feed: channel metadata (title, subtitle, description, author, owner email, keywords,
+  iTunes categories, language, explicit, copyright) goes into `_config.yml`, edited from
+  `_config.yml.sample` line by line so its comments survive; every item becomes one post in
+  `_posts/`; and every enclosure is downloaded to `episodes/` and linked via `audio:`, so the new
+  site hosts its audio itself (no `download_url`/`filesize` needed). Also imported: psc and
+  `podcast:chapters` chapters, `podcast:transcript` WebVTT files (saved next to the audio, so
+  0.21.0's transcript auto-detection picks them up), per-episode images (`assets/img/episodes/`),
+  the channel image (converted to the theme's `logo-itunes.jpg`/`logo-360x360.png` if ImageMagick
+  is installed), durations, tags and guids. Paged feeds (`atom:link rel="next"`) are followed. Post
+  slugs come from the episode's old page URL where possible, so a migrated site keeps its post and
+  `/players/<slug>` URLs; shownotes are wrapped in `{% raw %}` and a single `<div>` so Liquid and
+  kramdown leave them alone. Feed marker files (`episodes.<format>.rss`) are only written for
+  formats the feed actually has. `--url`, `--limit N` (newest N episodes, for a trial run) and
+  `--force` (import into a non-empty directory, e.g. to resume - downloads are skipped for files
+  that are already there) are supported. `--no-download` links to the enclosures where they are
+  instead of downloading them: `download_url` in `_config.yml` is set to the directory all
+  enclosure URLs share, each post's `audio` holds the rest of its URL, and `filesize` comes from the
+  feed's enclosure `length` (or a HEAD request where that's 0). Enclosures spread over several
+  hosts can't be expressed as a single `download_url`, so `--no-download` refuses those. Images and
+  transcripts are still downloaded either way. `octopod import <importer name>` for anything that isn't
+  a URL or an existing file is still passed on to Jekyll's own importers, as before.
+- New runtime dependency `rexml` (a bundled, no longer default, gem since Ruby 3.0).
+
 ## 0.22.0 - 2026-09-14
 
 ### Added

@@ -24,4 +24,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rspec', '~> 3.13'
   s.add_dependency 'jekyll-admin', '~> 0.12'
   s.add_dependency 'kramdown-parser-gfm', '~> 1.1'
+  s.add_dependency 'rexml', '~> 3.4'
 end
