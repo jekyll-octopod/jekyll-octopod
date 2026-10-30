@@ -283,7 +283,7 @@ module Jekyll
 
       if site['episode_feed_formats']
         site['episode_feed_formats'].map { |f|
-         feeds << ["#{f} Episode RSS-Feed", "#{site['url']}/episodes.#{f}.rss"] unless f == except
+         feeds << ["#{f} Episode RSS-Feed", OctopodFilters.feed_url(site, f)] unless f == except
         }
       end
       if site['additional_feeds']
@@ -293,6 +293,33 @@ module Jekyll
       end
 
       feeds
+    end
+
+    # Path of an episode feed page, relative to the site root. By default that's
+    # '/episodes.<format>.rss' (page 1) and '/episodes<n>.<format>.rss' (page n). The
+    # 'episode_feed_permalinks' setting in '_config.yml' moves page 1 of a format elsewhere, e.g. to
+    # keep the feed URL of a podcast migrated from another platform:
+    #
+    #   episode_feed_permalinks:
+    #     mp3: /feed/mp3/
+    def self.feed_path(site, format, page_number = 1)
+      permalink = (site['episode_feed_permalinks'] || {})[format.to_s]
+      if page_number == 1 && permalink && !permalink.to_s.strip.empty?
+        permalink.start_with?('/') ? permalink : "/#{permalink}"
+      else
+        "/episodes#{page_number == 1 ? '' : page_number}.#{format}.rss"
+      end
+    end
+
+    def self.feed_url(site, format, page_number = 1)
+      "#{site['url']}#{feed_path(site, format, page_number)}"
+    end
+
+    # Returns the full URL of an episode feed, honouring 'episode_feed_permalinks'.
+    #
+    #   {{ site | episode_feed_url:'mp3' }} => https://example.com/episodes.mp3.rss
+    def episode_feed_url(site, format)
+      OctopodFilters.feed_url(site, format)
     end
 
     # Returns HTML links to all episode feeds named by the convetion

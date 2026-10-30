@@ -1,5 +1,29 @@
 # Changelog
 
+## 0.24.0 - 2026-10-30
+
+### Fixed
+
+- Speaker names in transcripts: the Podlove Web Player looks each cue's `speaker` up in the
+  episode's `contributors` list and ignores the cue's `voice`, but octopod always sent
+  `speaker: nil` and no contributors - so WebVTT voice tags (`<v Thomas>`) were never shown,
+  and the transcript had no paragraph breaks at speaker changes. Each voice is now shown as the
+  speaker's name out of the box.
+
+### Added
+
+- `speakers` setting (in `_config.yml`, or per post in its front matter) maps WebVTT voices to
+  a full name and avatar for the player's transcript:
+  `{ id, name, voice (defaults to name), avatar }`; root-relative avatar paths are expanded with
+  the site `url`. Reported by the "Pi ist genau 3" migration.
+- `episode_feed_permalinks` setting (in `_config.yml`) moves the first page of an episode feed to
+  a custom path per format, e.g. `mp3: /feed/mp3/`, so a podcast migrated from another platform
+  (here: WordPress/Podlove) keeps its feed URL. A path ending in `/` is written as `index.html`.
+  Further pages keep their `episodes<n>.<format>.rss` names. Without the setting nothing changes.
+  The new `episode_feed_url` filter and the feed pages' `self_url`/`first_url`/`last_url`/
+  `next_url`/`prev_url` data expose the resulting URLs to themes (jekyll-octopod-bulma 0.1.6 uses
+  them).
+
 ## 0.23.0 - 2026-09-26
 
 ### Added

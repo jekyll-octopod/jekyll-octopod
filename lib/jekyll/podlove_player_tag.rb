@@ -45,9 +45,44 @@ module Jekyll
         duration: page["duration"],
         audio: audio,
         chapters: page["chapters"] ? page["chapters"].map { |chapter| split_chapter(chapter) }.compact : nil,
-        transcripts: transcripts_for(page),
         share: { channels: SHARE_CHANNELS }
-      }.to_json
+      }.merge(transcripts_and_contributors(page, config).compact).to_json
+    end
+
+    # The player shows a transcript cue's speaker by looking cue[:speaker] up by id in the
+    # top-level "contributors" list (and ignores cue[:voice] entirely), so the VTT voice tags only
+    # become visible names/avatars - and paragraph breaks at each speaker change - once both are
+    # filled in. Speakers can be declared per post or site-wide:
+    #
+    #   speakers:
+    #     - id: thomas
+    #       name: Thomas Kahle
+    #       voice: Thomas                    # matches <v Thomas>, defaults to name
+    #       avatar: /assets/img/speakers/thomas.jpg
+    #
+    # Voices without a declared speaker still get a contributor named after the voice itself, so
+    # speaker names work out of the box without any configuration.
+    def transcripts_and_contributors(page, config)
+      speakers = page["speakers"] || config["speakers"] || []
+      contributors = speakers.map do |speaker|
+        avatar = speaker["avatar"]
+        avatar = config["url"] + avatar if avatar&.start_with?("/")
+        { id: speaker["id"].to_s, name: speaker["name"], avatar: avatar, group: speaker["group"] }.compact
+      end
+      id_by_voice = speakers.to_h { |speaker| [speaker["voice"] || speaker["name"], speaker["id"].to_s] }
+
+      transcripts = transcripts_for(page)
+      transcripts&.each do |cue|
+        next unless cue[:voice]
+
+        unless id_by_voice.key?(cue[:voice])
+          id_by_voice[cue[:voice]] = cue[:voice]
+          contributors << { id: cue[:voice], name: cue[:voice] }
+        end
+        cue[:speaker] = id_by_voice[cue[:voice]]
+      end
+
+      { transcripts: transcripts, contributors: contributors.empty? ? nil : contributors }
     end
 
     # Finds a WebVTT transcript for this episode and parses it into the cue list Podlove Web

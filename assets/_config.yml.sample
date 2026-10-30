@@ -26,6 +26,20 @@ rsync_delete: true
 ### Fediverse config, optional
 fediverse_url: https://podcasts.social/@my_account # Fediverse links will not be shown unless this is set
 
+### Feed permalinks, optional: by default the episode feeds live at /episodes.<format>.rss. When
+### migrating a podcast from another platform, keep its old feed URL so subscribers don't have to
+### resubscribe (a path ending in "/" is written as index.html, which every web server serves).
+# episode_feed_permalinks:
+#   mp3: /feed/mp3/
+
+### Transcript speakers, optional: map WebVTT voice tags (<v Thomas>) to names and avatars shown
+### in the player's transcript. Without this, the voice tag itself is shown as the speaker's name.
+# speakers:
+#   - id: thomas
+#     name: Thomas Kahle
+#     voice: Thomas # defaults to name
+#     avatar: /assets/img/speakers/thomas.jpg
+
 language: en
 explicit: "no" # "yes" | "no" | clean
 

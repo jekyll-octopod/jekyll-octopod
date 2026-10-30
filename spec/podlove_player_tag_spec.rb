@@ -109,6 +109,66 @@ describe Jekyll::PodlovePlayerTag do
     end
   end
 
+  describe "#transcripts_and_contributors" do
+    around do |example|
+      Dir.mktmpdir do |dir|
+        Dir.chdir(dir) do
+          FileUtils.mkdir_p("episodes")
+          File.write("episodes/episode1.vtt", <<~VTT)
+            WEBVTT
+
+            00:00:00.000 --> 00:00:01.000
+            <v Thomas>Hallo.
+
+            00:00:01.000 --> 00:00:02.000
+            <v Petra>Servus.
+
+            00:00:02.000 --> 00:00:03.000
+            No voice tag here.
+          VTT
+          example.run
+        end
+      end
+    end
+
+    let(:config) { { "url" => "https://example.com" } }
+    let(:page) { { "audio" => { "mp3" => "episode1.mp3" } } }
+
+    it "derives contributors from the VTT voices when no speakers are configured" do
+      result = subject.transcripts_and_contributors(page, config)
+
+      expect(result[:contributors]).to eq([{ id: "Thomas", name: "Thomas" }, { id: "Petra", name: "Petra" }])
+      expect(result[:transcripts].map { |cue| cue[:speaker] }).to eq(["Thomas", "Petra", nil])
+    end
+
+    it "maps voices to configured speakers and expands root-relative avatars" do
+      config["speakers"] = [
+        { "id" => "thomas", "name" => "Thomas Kahle", "voice" => "Thomas", "avatar" => "/img/thomas.jpg" },
+        { "id" => "petra", "name" => "Petra Schwer", "voice" => "Petra", "avatar" => "https://cdn.example/p.jpg" }
+      ]
+      result = subject.transcripts_and_contributors(page, config)
+
+      expect(result[:contributors]).to eq([
+        { id: "thomas", name: "Thomas Kahle", avatar: "https://example.com/img/thomas.jpg" },
+        { id: "petra", name: "Petra Schwer", avatar: "https://cdn.example/p.jpg" }
+      ])
+      expect(result[:transcripts].map { |cue| cue[:speaker] }).to eq(["thomas", "petra", nil])
+    end
+
+    it "falls back to the speaker's name as voice, and lets a post override site-wide speakers" do
+      config["speakers"] = [{ "id" => "nobody", "name" => "Nobody" }]
+      page["speakers"] = [{ "id" => "t", "name" => "Thomas" }]
+      result = subject.transcripts_and_contributors(page, config)
+
+      expect(result[:contributors]).to eq([{ id: "t", name: "Thomas" }, { id: "Petra", name: "Petra" }])
+      expect(result[:transcripts].first[:speaker]).to eq("t")
+    end
+
+    it "returns no contributors when there's neither a transcript nor configured speakers" do
+      expect(subject.transcripts_and_contributors({}, config)).to eq({ transcripts: nil, contributors: nil })
+    end
+  end
+
   describe "#transcripts_for" do
     around do |example|
       Dir.mktmpdir do |dir|
